@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>You Already Chose</title>
+<style>
+  :root{
+    --bg1:#3a4a5c; --bg2:#242f3d;
+    --paper:#f4f1ea; --ink:#282c33; --muted:#8b8f98;
+    --accent:#4a8ac0; --accent-d:#3a6f9e;
+    --hot:#e0654e; --good:#4c9a6a; --line:#e2ddd3;
+    --pop:#e8a13c;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;min-height:100%}
+  body{
+    font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    background:radial-gradient(130% 90% at 50% -10%, var(--bg1), var(--bg2));
+    color:var(--ink);display:flex;align-items:flex-start;justify-content:center;
+    padding:56px 18px 76px;min-height:100vh;
+  }
+  .wrap{width:100%;max-width:560px}
+  .card{background:var(--paper);border-radius:20px;padding:24px;position:relative;overflow:hidden;
+    box-shadow:0 24px 60px -16px rgba(0,0,0,.55)}
+  h1{font-size:28px;margin:0 0 6px;text-align:center;letter-spacing:.01em}
+  .sub{text-align:center;color:var(--muted);font-size:15px;margin:0 0 22px;font-style:italic;line-height:1.45}
+  .lead{font-size:16px;line-height:1.5;text-align:center;margin:0 0 20px}
+
+  button.btn{display:block;width:100%;border:none;border-radius:12px;cursor:pointer;
+    font-family:inherit;font-size:16px;letter-spacing:.02em;padding:14px;
+    background:var(--ink);color:var(--paper);transition:transform .1s,opacity .15s;box-shadow:0 3px 0 #171a1f}
+  button.btn:active{transform:translateY(2px);box-shadow:none}
+  button.btn:focus-visible,.plan:focus-visible{outline:3px solid var(--pop);outline-offset:3px}
+  button.btn.ghost{background:transparent;color:var(--muted);box-shadow:inset 0 0 0 1.5px var(--line)}
+
+  /* plan cards */
+  .plans{display:flex;flex-direction:column;gap:12px;margin-bottom:8px}
+  .plan{position:relative;width:100%;border:0;border-radius:14px;padding:16px;cursor:pointer;background:#fff;
+    color:inherit;font:inherit;text-align:left;
+    box-shadow:inset 0 0 0 1.5px var(--line);transition:transform .1s,box-shadow .15s}
+  .plan:hover{transform:translateY(-2px)}
+  .plan.hot{box-shadow:inset 0 0 0 2.5px var(--accent);transform:scale(1.02)}
+  .plan.dim{opacity:.85}
+  .plan .badge{position:absolute;top:-10px;left:16px;background:var(--pop);color:#fff;
+    font-size:11px;font-family:system-ui,sans-serif;font-weight:700;letter-spacing:.04em;
+    padding:3px 9px;border-radius:20px;text-transform:uppercase}
+  .plan .pname{font-size:18px;font-weight:600;margin-bottom:2px}
+  .plan .price{font-size:15px;color:var(--muted);font-family:system-ui,sans-serif}
+  .plan .price b{color:var(--ink);font-size:22px}
+  .plan .note{font-size:12.5px;color:var(--hot);margin-top:6px;font-family:system-ui,sans-serif}
+  .plan .social{font-size:12px;color:var(--muted);margin-top:6px;font-family:system-ui,sans-serif}
+  .plan .strike{text-decoration:line-through;opacity:.6}
+
+  .mininote{font-size:12px;color:var(--muted);text-align:center;margin:12px 0 0;font-family:system-ui,sans-serif}
+
+  /* reveal of nudges */
+  .nudges{display:flex;flex-direction:column;gap:10px;margin:4px 0 18px}
+  .nudge{background:#efeae0;border-radius:12px;padding:13px 15px;position:relative;
+    box-shadow:inset 0 0 0 1px var(--line)}
+  .nudge b{display:block;font-size:14.5px;margin-bottom:3px;color:var(--accent-d)}
+  .nudge span{font-size:13.5px;line-height:1.45;color:var(--ink)}
+
+  .tag{display:inline-block;background:var(--accent);color:#fff;font-size:11px;font-family:system-ui,sans-serif;
+    padding:2px 8px;border-radius:20px;margin-bottom:8px;letter-spacing:.03em}
+  .tag.hot{background:var(--hot)}
+  .tag.good{background:var(--good)}
+
+  .lesson{background:#e7eef4;border-radius:12px;padding:14px 16px;margin:0 0 18px}
+  .lesson b{display:block;margin-bottom:4px;letter-spacing:.04em;text-transform:uppercase;font-size:12px;color:var(--muted)}
+  .lesson{font-size:15px;line-height:1.5}
+
+  .result{text-align:center;font-size:15.5px;line-height:1.5;margin:0 0 6px}
+  .result .big{font-size:20px;font-weight:600;display:block;margin-bottom:6px;color:var(--accent-d)}
+
+
+  .game-notes{margin-top:18px;color:var(--ink)}
+  .note-card{
+    background:rgba(244,241,234,.98);
+    border:1px solid rgba(255,255,255,.22);
+    border-radius:16px;
+    padding:18px;
+    box-shadow:0 14px 34px -20px rgba(0,0,0,.5);
+  }
+  .note-card + .note-card{margin-top:12px}
+  .note-kicker{
+    margin:0 0 10px!important;
+    color:var(--accent-d)!important;
+    font:700 11px/1 system-ui,sans-serif!important;
+    letter-spacing:.13em;
+    text-transform:uppercase;
+  }
+  .note-card h2{
+    margin:0;
+    color:var(--ink);
+    font-size:20px;
+    line-height:1.25;
+    font-weight:600;
+  }
+  .note-card p{
+    margin:10px 0 0;
+    color:#626772;
+    font-size:14px;
+    line-height:1.65;
+  }
+  .how-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:9px;
+    margin-top:12px;
+  }
+  .how-step{
+    min-height:120px;
+    padding:12px;
+    border-radius:12px;
+    background:#ebe7de;
+    border:1px solid #ddd8ce;
+  }
+  .how-step b{
+    display:block;
+    margin:8px 0 5px;
+    color:var(--ink);
+    font-size:14px;
+  }
+  .how-step>span:last-child{
+    display:block;
+    color:#6e737d;
+    font-size:12.5px;
+    line-height:1.45;
+  }
+  .step-num{
+    display:grid!important;
+    place-items:center;
+    width:24px;
+    height:24px;
+    border-radius:50%;
+    background:var(--ink);
+    color:var(--paper)!important;
+    font:700 11px/1 system-ui,sans-serif!important;
+  }
+  .craft-note{
+    margin-top:13px!important;
+    padding-top:12px;
+    border-top:1px solid #d8d3c9;
+    font-style:italic;
+    color:#767b84!important;
+  }
+
+  .fade{animation:fade .4s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
+  @media(max-width:520px){
+    body{padding-left:12px;padding-right:12px}
+    .card{padding:18px}
+    .how-grid{grid-template-columns:1fr}
+    .how-step{min-height:0;display:grid;grid-template-columns:28px 1fr;column-gap:9px}
+    .how-step .step-num{grid-row:1 / span 2;grid-column:1}
+    .how-step b,.how-step>span:last-child{grid-column:2}
+    .how-step b{margin:1px 0 4px}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation-duration:.001ms!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <main class="card" id="card"></main>
+
+  <section class="game-notes" aria-label="About the You Already Chose game">
+    <div class="note-card">
+      <p class="note-kicker">How to play</p>
+      <div class="how-grid">
+        <div class="how-step">
+          <span class="step-num">1</span>
+          <b>Choose naturally</b>
+          <span>Pick the option that feels right without overthinking the screen.</span>
+        </div>
+        <div class="how-step">
+          <span class="step-num">2</span>
+          <b>Inspect the design</b>
+          <span>See the visual and psychological cues that were shaping your attention.</span>
+        </div>
+        <div class="how-step">
+          <span class="step-num">3</span>
+          <b>Compare</b>
+          <span>View the same information again after the pressure and emphasis are removed.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="note-card">
+      <p class="note-kicker">Why this game</p>
+      <h2>How interfaces influence decisions before we notice</h2>
+      <p>I came to HCI from neuroscience, and I wanted this game to show how attention, context, and mental shortcuts shape everyday choices. People rarely compare every option from scratch. We use cues such as what stands out, what others appear to prefer, what feels scarce, and what a number is compared against.</p>
+      <p>Those shortcuts are useful because they make decisions faster. In an interface, however, the same mechanisms can be used to guide someone toward a particular plan, purchase, or fare. Visual hierarchy can direct attention, framing can make one option feel safer, an anchor can change how a price feels, and scarcity can shorten the time someone spends evaluating alternatives.</p>
+      <p>I made this game as a before-and-after experience. First, you choose from a screen designed to favor one option. Then the interface reveals each influence and presents the same core choices more evenly. The contrast makes the design intervention visible without pretending that people make decisions independently of presentation.</p>
+      <p>The HCI question is not whether an interface influences behavior—it inevitably affects what people notice and understand. The important question is whether that influence supports the user’s goals or primarily serves the business at the user’s expense. Persuasive design becomes deceptive when it hides important information, manufactures pressure, or makes refusal unnecessarily difficult.</p>
+      <p class="craft-note">The plans, prices, popularity percentages, and scarcity messages in this demonstration are fictional and intentionally constructed. This is one example of how I connect neuroscience and HCI; the other games explore different ideas from perception and cognition through interaction.</p>
+    </div>
+  </section>
+</div>
+<script>
+const card=document.getElementById('card');
+/* Three decision scenarios. Each rotates on "Try again".
+   In each, one option (pushed:true) is what the screen is engineered to sell,
+   using the same six nudges dressed for the context. */
+const SCENARIOS=[
+  {
+    intro:'Pick a plan. It\u2019s a completely free choice.<br>\u2026or is it?',
+    startLabel:'Choose a plan',
+    prompt:'Which plan feels right to you?',
+    urgency:'\u26a1 Only 3 spots left at this price today',
+    pushName:'Pro',
+    badge:'Most popular',
+    options:[
+      {id:'basic', name:'Basic', big:'$4', small:'/mo', tag:'Limited features'},
+      {id:'pro',   name:'Pro',   big:'$12', small:'/mo', anchor:'$24', social:'Best value \u2014 chosen by 89% of users', pushed:true},
+      {id:'max',   name:'Max',   big:'$29', small:'/mo', tag:'For power users'},
+    ],
+    nudges:[
+      ['Visual emphasis','The Pro card was bigger, brighter, and outlined in blue. Your eye lands there first and treats it as the default answer.'],
+      ['Social proof','\u201cChosen by 89% of users\u201d and \u201cMost popular.\u201d Social information can feel reassuring, especially when we are unsure.'],
+      ['Anchoring','The struck-through \u201c$24\u201d made $12 feel like a deal \u2014 even though $12 was always the real price.'],
+      ['Framing the alternatives','Basic was \u201cLimited,\u201d Max was \u201cFor power users.\u201d Both nudged you to the safe middle.'],
+      ['Scarcity','\u201cOnly 3 spots left today\u201d manufactures urgency so you decide before doubt sets in.'],
+      ['The decoy','Max exists mostly to make Pro look reasonable. A pricey top tier can make the middle option feel more reasonable.'],
+    ],
+  },
+  {
+    intro:'Just grabbing dinner. Add whatever you like.<br>\u2026or whatever they like?',
+    startLabel:'Order food',
+    prompt:'Add a drink to your order?',
+    urgency:'\u26a1 Offer ends in 4:59',
+    pushName:'the Combo',
+    badge:'Popular choice',
+    options:[
+      {id:'none', name:'No drink', big:'$0', small:'', tag:'Skip'},
+      {id:'combo',name:'Make it a Combo', big:'+$3', small:'', anchor:'+$6', social:'92% add a drink', pushed:true},
+      {id:'large',name:'Large Combo', big:'+$5', small:'', tag:'Most food'},
+    ],
+    nudges:[
+      ['Visual emphasis','The Combo was the highlighted, pre-framed \u201cyes\u201d \u2014 the eye reads it as the expected pick.'],
+      ['Social proof','\u201c92% add a drink\u201d quietly tells you that not adding one is the odd choice.'],
+      ['Anchoring','\u201c+$6\u201d crossed out makes \u201c+$3\u201d feel like a saving on something you weren\u2019t going to buy.'],
+      ['Framing the alternatives','\u201cNo drink\u201d framed as \u201cSkip\u201d makes the free option feel like missing out.'],
+      ['Scarcity','A countdown-style \u201cOffer ends in 4:59\u201d pushes you to decide fast.'],
+      ['The decoy','\u201cLarge Combo\u201d exists to make the regular Combo feel like the sensible middle.'],
+    ],
+  },
+  {
+    intro:'Book a flight. Pick the fare that suits you.<br>\u2026or the one that suits them?',
+    startLabel:'Find flights',
+    prompt:'Which fare would you like?',
+    urgency:'\u26a1 2 seats left at this fare',
+    pushName:'Flex',
+    badge:'Recommended',
+    options:[
+      {id:'basic', name:'Basic', big:'$89', small:'', tag:'No changes, no bag'},
+      {id:'flex',  name:'Flex',  big:'$129', small:'', anchor:'$169', social:'Recommended \u2014 most travellers pick this', pushed:true},
+      {id:'premium',name:'Premium', big:'$249', small:'', tag:'For frequent flyers'},
+    ],
+    nudges:[
+      ['Visual emphasis','Flex was the boxed, highlighted \u201crecommended\u201d card \u2014 your eye anchors to it first.'],
+      ['Social proof','\u201cMost travellers pick this\u201d reassures you that the middle fare is the normal, safe call.'],
+      ['Anchoring','The struck-through \u201c$169\u201d reframes $129 as a discount rather than a price.'],
+      ['Framing the alternatives','Basic was defined by what it lacks (\u201cno changes, no bag\u201d) to make it feel risky.'],
+      ['Scarcity','\u201c2 seats left at this fare\u201d rushes the decision before you compare carefully.'],
+      ['The decoy','Premium makes Flex look moderate \u2014 the classic three-tier squeeze toward the middle.'],
+    ],
+  },
+];
+
+let scenarioIdx=0;
+let S=SCENARIOS[0];
+
+function intro(){
+  S=SCENARIOS[scenarioIdx % SCENARIOS.length];
+  card.className='card fade';
+  card.innerHTML=`
+    <h1>You Already Chose</h1>
+    <p class="sub">${S.intro}</p>
+    <button class="btn" id="start">${S.startLabel}</button>`;
+  document.getElementById('start').onclick=chooseScreen;
+}
+
+function chooseScreen(){
+  card.className='card fade';
+  card.innerHTML=`
+    <p class="lead">${S.prompt}</p>
+    <div class="plans" id="plans"></div>
+    <p class="mininote">${S.urgency}</p>`;
+  const wrap=document.getElementById('plans');
+  S.options.forEach(p=>{
+    const d=document.createElement('button');
+    d.type='button';
+    d.className='plan'+(p.pushed?' hot':' dim');
+    let inner='';
+    if(p.pushed)inner+=`<div class="badge">${S.badge}</div>`;
+    inner+=`<div class="pname">${p.name}</div>`;
+    if(p.anchor){
+      inner+=`<div class="price"><span class="strike">${p.anchor}</span> <b>${p.big}</b>${p.small}</div>`;
+    }else{
+      inner+=`<div class="price"><b>${p.big}</b>${p.small}</div>`;
+    }
+    if(p.social)inner+=`<div class="note">${p.social}</div>`;
+    if(p.tag)inner+=`<div class="social">${p.tag}</div>`;
+    d.innerHTML=inner;
+    d.onclick=()=>result(p);
+    wrap.appendChild(d);
+  });
+}
+
+function result(p){
+  const pushed=p.pushed;
+  card.className='card fade';
+  card.innerHTML=`
+    <p class="result"><span class="big">You chose ${p.name}.</span>
+      ${pushed
+        ? 'You selected the option this screen was designed to favor. It still felt like your decision \u2014 but the presentation was working to make this choice feel easiest.'
+        : `Interesting \u2014 you chose a different option. Look at everything the screen was doing to steer attention toward <b>${S.pushName}</b>.`}</p>
+    <button class="btn" id="see" style="margin-top:16px">Show me what the screen did</button>`;
+  document.getElementById('see').onclick=nudges;
+}
+
+function nudges(){
+  card.className='card fade';
+  const items=S.nudges.map(([t,d])=>`<div class="nudge"><b>${t}</b><span>${d}</span></div>`).join('');
+  card.innerHTML=`
+    <p class="sub" style="margin:0 0 16px">Six quiet nudges were shaping your choice:</p>
+    <div class="nudges">${items}</div>
+    <button class="btn" id="rebuild">Now strip the tricks away</button>`;
+  document.getElementById('rebuild').onclick=honest;
+}
+
+function honest(){
+  card.className='card fade';
+  card.innerHTML=`
+    <p class="sub" style="margin:0 0 16px">The same options \u2014 presented neutrally. No emphasis, no urgency, no decoy pressure.</p>
+    <div class="plans" id="plans"></div>
+    <p class="mininote" style="color:var(--good)">Same information. No pressure. Now it\u2019s actually your choice.</p>
+    <button class="btn" id="done" style="margin-top:18px">What this means</button>`;
+  const wrap=document.getElementById('plans');
+  S.options.forEach(p=>{
+    const d=document.createElement('article');
+    d.className='plan';
+    d.style.transform='none';
+    d.style.cursor='default';
+    d.innerHTML=`<div class="pname">${p.name}</div>
+      <div class="price"><b>${p.big}</b>${p.small}</div>`;
+    wrap.appendChild(d);
+  });
+  document.getElementById('done').onclick=reveal;
+}
+
+function reveal(){
+  card.className='card fade';
+  card.innerHTML=`
+    <h1>The choice was steered.</h1>
+    <p class="sub">and you barely felt it</p>
+    <p class="lead" style="font-size:15.5px;text-align:left">Your brain doesn\u2019t weigh options in a vacuum. It leans on shortcuts \u2014 what others pick, what\u2019s easiest to see, what feels scarce, what a price is compared against. These heuristics are fast and usually helpful, which is exactly why they\u2019re so easy to exploit.</p>
+    <div class="lesson"><b>Design lesson</b>
+      Every interface influences what people notice, compare, and understand. The ethical question is whether that influence helps people make a choice aligned with their own goals or quietly prioritizes the business at their expense. Persuasion is a design tool; responsibility lies in how transparently and respectfully it is used.</div>
+    <button class="btn" id="again">Try another example \u2192</button>`;
+  document.getElementById('again').onclick=()=>{ scenarioIdx++; intro(); };
+}
+
+intro();
+</script>
+</body>
+</html>
