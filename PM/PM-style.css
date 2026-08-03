@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Nunito:wght@400;500;600;700&display=swap');
+:root{--paper:#fff;--desk:#f3eee4;--card:#f7f3ed;--tag:#eee9df;--ink:#111;--accent:#e8715a;--line:#cfc8bc;--rail:303px}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:#fff;font:16px/1.35 Nunito,sans-serif}img{display:block;max-width:100%}a{color:inherit}.portfolio-shell{display:grid;grid-template-columns:var(--rail) minmax(0,1fr)}.profile-rail{position:sticky;top:0;align-self:start;height:100vh;padding:27px 37px;background:var(--desk)}.back{display:inline-flex;gap:13px;padding:8px 14px;border:2px solid;text-decoration:none;font-weight:700}.intro{margin-top:27px}.intro h1{margin:0 0 2px;font:700 30px 'Bricolage Grotesque',sans-serif}.intro p{margin:0 0 8px;font-size:14px;line-height:1.2}.intro strong{font-size:13px;line-height:1.15}.explore{margin-top:38px;padding:14px 8px 22px;border:2px solid;background:#fffaf2;box-shadow:6px 7px #ded8ce;transform:rotate(-1deg)}.explore h2{margin:0 0 8px;font:700 16px 'Bricolage Grotesque';text-transform:uppercase}.explore a{display:block;padding:8px 3px;text-decoration:none;font-weight:700}.explore .active{display:flex;justify-content:space-between;border-radius:5px;background:#f4b5a7}.rail-lower{display:flex;align-items:center;gap:15px;margin-top:42px}.contact-note{padding:14px 10px;border:2px solid;background:#fffaf2;transform:rotate(1deg)}.contact-note strong,.contact-note span{display:block}.contact-note span{margin-top:8px;font-size:13px;font-weight:700}.growth{display:grid;place-items:center;text-align:center}.growth>span{font-size:56px;line-height:.8}.growth strong{margin-top:8px;font-size:10px}main{min-width:0;padding:70px 38px 30px}.currently{display:grid;grid-template-columns:1fr 180px;gap:30px;align-items:start;max-width:920px;margin:0 auto 70px}.currently>div{padding:15px 20px;border:1px solid;box-shadow:-5px 5px #ddd}.currently h2{margin:0 0 13px;font:700 20px 'Bricolage Grotesque';text-transform:uppercase}.currently h2 span{display:inline-block;width:8px;height:8px;margin-right:4px;border-radius:50%;background:var(--accent)}.currently p{margin:0;font-size:14px}.currently blockquote{margin:0;padding:20px 16px;border:2px solid;background:#fffaf2;box-shadow:4px 4px #ddd;transform:rotate(8deg);font-weight:700}.work-section{max-width:950px;margin:0 auto 72px}.section-heading{text-align:center}.section-heading h2{display:flex;align-items:center;gap:15px;margin:0;font:600 36px 'Bricolage Grotesque'}.section-heading h2:before,.section-heading h2:after{content:'';flex:1;border-top:1.5px dashed}.section-heading p{max-width:790px;margin:9px auto 38px;font-size:14px}.two-cards{display:grid;grid-template-columns:1fr 1fr;gap:22px}.project-card{border:2px solid var(--line);border-radius:18px;background:rgba(247,243,237,.9);box-shadow:0 5px 4px rgba(0,0,0,.2)}.vertical-card{padding:15px 20px 26px}.vertical-card h3{margin:0 0 18px;text-align:center;font:600 30px 'Bricolage Grotesque'}.vertical-card img{width:100%;aspect-ratio:1.34;object-fit:cover;border-radius:22px}.tags{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}.tags span,.nda{padding:6px 13px;border-radius:4px;background:var(--tag);font-size:14px}.vertical-card p{margin:0;font-weight:600}.horizontal-card{display:grid;grid-template-columns:42% 58%;min-height:390px;padding:18px 20px}.project-copy{position:relative;padding:18px 20px 12px 0;display:flex;flex-direction:column;align-items:flex-start}.project-copy h3{margin:24px 0;font:600 25px 'Bricolage Grotesque'}.project-copy p{max-width:35ch;margin:0;font-size:17px;font-weight:600}.project-copy .tags{margin-top:auto}.project-link{display:block;margin:10px 0 0;color:var(--accent);font-weight:700}.project-visual{display:grid;place-items:center;align-self:stretch;padding:24px;border-radius:20px;background:#f0ebe1}.project-visual img{width:100%;height:100%;object-fit:contain}.apple-visual{margin-left:10px;border:1px solid rgba(0,0,0,.15);background:#f3efe7}.apple-visual img{width:64px;height:77px}.tgp-visual{padding:16px}.tgp-visual img{object-fit:cover}.shloka-card{overflow:visible}.shloka-visual{padding:0;overflow:hidden}.shloka-visual img{object-fit:cover}.award{position:absolute;left:-42px;bottom:-60px;padding:12px;border:2px solid;background:#fffaf2;text-align:center;transform:rotate(-7deg);font-weight:700}.site-footer{grid-column:1/-1;display:grid;grid-template-columns:1fr 320px;gap:70px;padding:95px 145px 120px;border-top:2px dashed;background:var(--desk)}.footer-copy p{margin:0 0 35px}.footer-copy h2{display:inline-block;margin:0 0 50px;border-bottom:4px solid var(--accent);font:600 44px 'Bricolage Grotesque'}.footer-copy strong{display:block;max-width:620px;font-size:21px}.footer-links a{display:flex;gap:22px;align-items:center;padding:14px 0;border-bottom:1px solid;text-decoration:none;font-weight:600}.footer-links a:first-child{font-size:21px}.footer-links span{font-size:16px}
+@media(max-width:1000px){:root{--rail:240px}.profile-rail{padding-inline:24px}.rail-lower{display:block}.growth{margin-top:25px}main{padding-inline:25px}.horizontal-card{grid-template-columns:1fr}.project-visual{grid-row:1;min-height:300px}.project-copy{padding-right:0}.site-footer{padding-inline:70px}}
+@media(max-width:720px){.portfolio-shell{display:block}.profile-rail{position:static;height:auto;padding:20px}.intro,.rail-lower{display:none}.explore{margin-top:18px}.explore a:not(.active),.explore h2{display:none}main{padding:35px 15px}.currently{grid-template-columns:1fr;margin-bottom:45px}.currently blockquote{display:none}.section-heading h2{font-size:27px}.two-cards{grid-template-columns:1fr}.horizontal-card{padding:12px}.site-footer{grid-template-columns:1fr;padding:60px 30px}.footer-copy h2{font-size:34px}.award{position:static;margin-top:18px;transform:rotate(-3deg)}}
+@media(max-width:440px){.vertical-card h3{font-size:25px}.project-copy p{font-size:15px}.site-footer{padding-inline:20px}}
+
+/* Reliable sans-serif fallbacks when the webfont is still loading. */
+.explore h2,.currently h2,.section-heading h2,.vertical-card h3,.project-copy h3,.footer-copy h2{font-family:'Bricolage Grotesque',Arial,sans-serif}
+
+/* Figma-matched Currently composition */
+.currently{position:relative;display:block;width:min(100%,920px);height:150px;margin:0 auto 55px}
+.currently>div{width:817px;max-width:calc(100% - 105px);min-height:125px;padding:14px 22px;background:#fff}
+.currently h2{margin-bottom:13px;font-size:20px;line-height:1.15}
+.currently p{max-width:714px;font-size:14px;line-height:1.35}
+.currently blockquote{position:absolute;z-index:2;top:-30px;right:0;width:185px;min-height:169px;padding:35px 22px 20px;display:flex;align-items:center;font-size:14px;line-height:1.3;transform:rotate(8deg)}
+@media(max-width:720px){.currently{height:auto;margin-bottom:45px}.currently>div{width:100%;max-width:none}.currently blockquote{display:none}}
+
+/* Figma-matched Augment Therapy geometry */
+main{padding-right:24px;padding-left:24px}
+.currently{margin-bottom:23px}
+.section-heading p{margin-bottom:47px}
+.work-section{max-width:928px}
+.two-cards{gap:21px}
+.vertical-card{min-height:521px}
+@media(max-width:1000px){main{padding-right:24px;padding-left:24px}}
+@media(max-width:720px){main{padding-right:15px;padding-left:15px}.currently{margin-bottom:45px}.section-heading p{margin-bottom:30px}.vertical-card{min-height:0}}
+
+/* Keep the Shloka award note clear of both project links. */
+.shloka-card .award{bottom:-100px}
+.shloka-section{margin-bottom:115px}
+@media(max-width:720px){.shloka-card .award{position:static;margin-top:20px}.shloka-section{margin-bottom:72px}}
+
+/* End the profile rail before the full-width footer. */
+.profile-rail{position:relative;top:auto;align-self:stretch;height:auto;min-height:100vh}
+@media(max-width:720px){.profile-rail{position:static;min-height:0}}
+
+/* Explore links highlight only on interaction. */
+.explore .active{background:transparent}
+.explore a{border-radius:5px;transition:background-color .18s ease}
+.explore a:hover,.explore a:focus-visible{background:#f4b5a7;outline:none}
+.explore .active span{opacity:0;transition:opacity .18s ease}
+.explore .active:hover span,.explore .active:focus-visible span{opacity:1}

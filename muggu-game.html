@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muggu</title>
+<style>
+  :root{
+    --red-0:#a34c38;
+    --red-1:#843322;
+    --red-2:#632318;
+    --red-3:#421812;
+    --rice:#fff8e8;
+    --rice-soft:#f5ead5;
+    --muted:#e9c9b9;
+    --shadow:rgba(49,16,11,.42);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;min-height:100%}
+  html{background:var(--red-3)}
+  body{
+    font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    color:var(--rice);
+    display:flex;
+    align-items:flex-start;
+    justify-content:center;
+    min-height:100vh;
+    padding:calc(32px + env(safe-area-inset-top)) 18px 48px;
+    background:
+      radial-gradient(circle at 18% 12%,rgba(255,255,255,.06),transparent 28%),
+      radial-gradient(circle at 82% 88%,rgba(65,15,10,.28),transparent 34%),
+      linear-gradient(145deg,var(--red-0) 0%,var(--red-1) 44%,var(--red-2) 100%);
+  }
+  body:before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    opacity:.12;
+    mix-blend-mode:soft-light;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.45'/%3E%3C/svg%3E");
+  }
+  .wrap{width:100%;max-width:510px;margin-top:24px;margin-bottom:28px}
+  header{text-align:center;margin-bottom:12px}
+  header h1{margin:0;font-size:34px;letter-spacing:.16em;font-weight:600;color:var(--rice)}
+  header p{margin:5px 0 0;font-size:12.5px;color:var(--muted);font-style:italic;letter-spacing:.035em}
+  .frame{
+    position:relative;
+    padding:15px;
+    border:1px solid rgba(255,248,232,.22);
+    border-radius:20px;
+    background:linear-gradient(180deg,rgba(126,43,29,.98),rgba(87,28,20,.98));
+    box-shadow:0 28px 70px -24px rgba(35,10,7,.85),inset 0 1px 0 rgba(255,255,255,.09);
+  }
+  .tool-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+  .tool{
+    border:none;
+    border-radius:12px;
+    padding:10px 8px;
+    font-family:inherit;
+    font-size:13.5px;
+    cursor:pointer;
+    color:var(--muted);
+    background:rgba(73,22,16,.38);
+    box-shadow:inset 0 0 0 1px rgba(255,248,232,.17);
+    transition:transform .13s,background .13s,color .13s,box-shadow .13s;
+  }
+  .tool:hover{transform:translateY(-1px)}
+  .tool.active{background:var(--rice);color:var(--red-2);font-weight:700;box-shadow:0 3px 0 rgba(55,16,11,.45)}
+  .status{min-height:18px;text-align:center;color:var(--muted);font-size:12.5px;margin:0 4px 10px}
+  .status b{color:var(--rice);font-weight:600}
+  .board{
+    position:relative;
+    width:100%;
+    aspect-ratio:1/1;
+    overflow:hidden;
+    border-radius:15px;
+    background:
+      radial-gradient(circle at 50% 42%,rgba(255,255,255,.025),transparent 44%),
+      linear-gradient(145deg,#9b432f 0%,#7b2f20 56%,#682519 100%);
+    box-shadow:inset 0 3px 18px rgba(53,15,10,.42),inset 0 0 0 1px rgba(255,248,232,.1);
+  }
+  .board:after{
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    opacity:.08;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.6' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  #board{position:absolute;inset:0;width:100%;height:100%;touch-action:none;z-index:1}
+  .motifs{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    justify-content:center;
+    margin-top:12px;
+    min-height:44px;
+  }
+  .motifs.hidden{display:none}
+  .motif{
+    width:46px;height:42px;border:none;border-radius:11px;cursor:pointer;
+    background:rgba(67,20,14,.4);color:var(--rice);
+    box-shadow:inset 0 0 0 1px rgba(255,248,232,.16);
+    transition:.13s;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .motif svg{width:28px;height:28px;overflow:visible}
+  .motif.active{background:var(--rice);color:var(--red-2);transform:translateY(-2px);box-shadow:0 3px 0 rgba(55,16,11,.45)}
+  .motif span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .controls{display:flex;gap:9px;margin-top:13px}
+  button.act{
+    flex:1;border:none;border-radius:11px;padding:12px;cursor:pointer;font-family:inherit;font-size:14px;
+    color:var(--rice);background:rgba(68,20,14,.48);box-shadow:inset 0 0 0 1px rgba(255,248,232,.17),0 3px 0 rgba(55,16,11,.42);
+  }
+  button.act.primary{background:var(--rice);color:var(--red-2);font-weight:700;box-shadow:0 3px 0 #d5c4aa;white-space:nowrap}
+  button.act:active{transform:translateY(2px);box-shadow:none}
+  .bottom-row{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:12px;flex-wrap:wrap}
+  .symtoggle{display:flex;align-items:center;gap:7px;color:var(--muted);font-size:12px;cursor:pointer;user-select:none}
+  .symtoggle .box{width:17px;height:17px;border-radius:5px;display:flex;align-items:center;justify-content:center;box-shadow:inset 0 0 0 1.5px rgba(255,248,232,.45);font-size:11px;color:var(--red-2)}
+  .symtoggle.on .box{background:var(--rice);box-shadow:none}
+  .hint{margin-top:11px;text-align:center;color:var(--muted);font-size:11.5px;line-height:1.5;font-style:italic}
+  .toast{position:absolute;left:50%;top:15px;transform:translateX(-50%);z-index:6;background:rgba(55,16,11,.9);color:var(--rice);padding:7px 14px;border-radius:18px;font-size:12px;opacity:0;pointer-events:none;transition:.25s;white-space:nowrap}
+  .toast.show{opacity:1;top:22px}
+  .finish{
+    position:absolute;inset:0;z-index:7;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;
+    background:rgba(77,22,15,.72);backdrop-filter:blur(2px);opacity:0;pointer-events:none;transition:opacity .35s;
+  }
+  .finish.show{opacity:1;pointer-events:auto}
+  .finish .big{font-size:22px;letter-spacing:.08em;color:var(--rice)}
+  .finish .sub{font-size:12.5px;color:var(--muted)}
+  @media(max-width:430px){header h1{font-size:29px}.tool{font-size:12.5px}.frame{padding:12px}.controls{gap:7px}button.act{padding:12px 7px;font-size:13px}button.act.primary{font-size:11.5px}}
+  @media(prefers-reduced-motion:reduce){*{transition-duration:.001ms!important;animation-duration:.001ms!important}}
+
+  .game-notes{margin-top:18px;color:var(--red-3)}
+  .note-card{
+    background:rgba(255,248,232,.97);
+    border:1px solid rgba(255,255,255,.24);
+    border-radius:16px;
+    padding:17px;
+    box-shadow:0 18px 42px -22px rgba(35,10,7,.88);
+  }
+  .note-card + .note-card{margin-top:11px}
+  .note-kicker{
+    margin:0 0 8px;
+    font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:#a34c38;
+  }
+  .note-card h2{
+    margin:0;
+    color:#421812;
+    font-size:20px;
+    line-height:1.22;
+    font-weight:600;
+  }
+  .note-card p{
+    margin:9px 0 0;
+    color:#6e3529;
+    font-size:13px;
+    line-height:1.65;
+  }
+  .how-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+    margin-top:12px;
+  }
+  .how-step{
+    min-width:0;
+    background:#f0dfca;
+    border-radius:11px;
+    padding:10px 9px;
+  }
+  .how-step b{
+    display:block;
+    margin-bottom:4px;
+    color:#421812;
+    font-size:12px;
+    line-height:1.2;
+  }
+  .how-step span{
+    display:block;
+    color:#784638;
+    font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    font-size:10.5px;
+    line-height:1.45;
+  }
+  .step-num{
+    width:20px;
+    height:20px;
+    border-radius:50%;
+    display:flex!important;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:7px;
+    background:#a34c38;
+    color:#fff8e8!important;
+    font-weight:700;
+    font-size:10px!important;
+  }
+  .craft-note{
+    margin-top:12px!important;
+    padding-top:11px;
+    border-top:1px solid #dec8b5;
+    font-style:italic;
+    color:#784638!important;
+  }
+  @media(max-width:390px){
+    .how-grid{grid-template-columns:1fr}
+    .how-step{
+      display:grid;
+      grid-template-columns:24px 1fr;
+      column-gap:8px;
+    }
+    .how-step b,.how-step span{grid-column:2}
+    .step-num{grid-row:1 / span 2;grid-column:1;margin:0!important}
+  }
+
+
+  .gallery-wrap{margin-top:16px}
+  .gallery-head{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:12px;
+    margin:0 3px 8px;
+  }
+  .gallery-head h2{
+    margin:0;
+    color:var(--rice);
+    font-size:15px;
+    font-weight:600;
+    letter-spacing:.05em;
+  }
+  .gallery-count{
+    color:var(--muted);
+    font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    font-size:10.5px;
+  }
+  .gallery{
+    min-height:104px;
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:9px;
+    padding:10px;
+    border-radius:14px;
+    background:rgba(66,24,18,.36);
+    box-shadow:inset 0 2px 10px rgba(42,12,8,.32),inset 0 0 0 1px rgba(255,248,232,.12);
+  }
+  .gallery-empty{
+    grid-column:1/-1;
+    align-self:center;
+    justify-self:center;
+    margin:22px 8px;
+    color:var(--muted);
+    font-size:12px;
+    font-style:italic;
+    text-align:center;
+  }
+  .gallery-item{
+    position:relative;
+    min-width:0;
+    border-radius:11px;
+    overflow:hidden;
+    background:#7b2f20;
+    box-shadow:0 4px 10px rgba(42,12,8,.3),inset 0 0 0 1px rgba(255,248,232,.12);
+  }
+  .gallery-open{
+    width:100%;
+    display:block;
+    padding:0;
+    border:0;
+    background:transparent;
+    cursor:pointer;
+    color:var(--rice);
+    font-family:inherit;
+    text-align:left;
+  }
+  .gallery-open img{
+    width:100%;
+    aspect-ratio:1/1;
+    display:block;
+    object-fit:cover;
+    background:#7b2f20;
+  }
+  .gallery-meta{
+    display:block;
+    padding:7px 8px 8px;
+    overflow:hidden;
+    color:var(--muted);
+    font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    font-size:9.5px;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+  }
+  .gallery-delete{
+    position:absolute;
+    top:5px;
+    right:5px;
+    width:24px;
+    height:24px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border:1px solid rgba(255,248,232,.2);
+    border-radius:50%;
+    background:rgba(55,16,11,.84);
+    color:var(--rice);
+    cursor:pointer;
+    font-size:15px;
+    line-height:1;
+    box-shadow:0 2px 6px rgba(35,10,7,.3);
+  }
+  .gallery-open:hover img{filter:brightness(1.06)}
+  .gallery-delete:hover{background:#421812}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Muggu</h1>
+    <p>draw with chukkalu · let symmetry carry the line</p>
+  </header>
+
+  <div class="frame">
+    <div class="tool-row">
+      <button class="tool active" data-tool="connect">Connect</button>
+      <button class="tool" data-tool="stamp">Stamp</button>
+      <button class="tool" data-tool="freehand">Freehand</button>
+    </div>
+
+    <div class="status" id="status"><b>Connect</b> nearby chukkalu to build a flowing pattern.</div>
+
+    <div class="board">
+      <svg id="board" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid meet" aria-label="Muggu drawing board"></svg>
+      <div class="toast" id="toast"></div>
+      <div class="finish" id="finish">
+        <div class="big">✦ added to gallery ✦</div>
+        <div class="sub">Your muggu is waiting below.</div>
+      </div>
+    </div>
+
+    <div class="motifs hidden" id="motifs" aria-label="Stamp motifs">
+      <button class="motif active" data-motif="petal" title="Petal"><span>Petal</span><svg viewBox="-20 -20 40 40"><path d="M0 15 C-13 5 -12 -8 0 -16 C12 -8 13 5 0 15Z" fill="none" stroke="currentColor" stroke-width="2.4"/></svg></button>
+      <button class="motif" data-motif="leaf" title="Leaf"><span>Leaf</span><svg viewBox="-20 -20 40 40"><path d="M0 16 C-14 6 -11 -9 0 -16 C11 -9 14 6 0 16Z M0 13 L0 -12" fill="none" stroke="currentColor" stroke-width="2.2"/></svg></button>
+      <button class="motif" data-motif="loop" title="Loop"><span>Loop</span><svg viewBox="-20 -20 40 40"><ellipse cx="0" cy="0" rx="10" ry="15" fill="none" stroke="currentColor" stroke-width="2.4"/></svg></button>
+      <button class="motif" data-motif="curl" title="Curl"><span>Curl</span><svg viewBox="-20 -20 40 40"><path d="M-12 9 C-2 13 12 8 11 -3 C10 -11 1 -12 -3 -6 C-6 -1 -2 4 3 2" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button>
+      <button class="motif" data-motif="center" title="Flower center"><span>Center</span><svg viewBox="-20 -20 40 40"><circle r="5" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cy="-11" r="3" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="10" cy="-3" r="3" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="6" cy="9" r="3" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="-6" cy="9" r="3" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="-10" cy="-3" r="3" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+    </div>
+
+    <div class="controls">
+      <button class="act" id="undo">Undo</button>
+      <button class="act" id="clear">Clear</button>
+      <button class="act primary" id="complete">Add to gallery ✦</button>
+    </div>
+
+    <div class="bottom-row">
+      <div class="symtoggle on" id="symmetry"><span class="box">✓</span> symmetry</div>
+    </div>
+
+    <div class="hint" id="hint">Drag from one chukka to another. Each line curves gently around the dots, and symmetry repeats it across the muggu.</div>
+  </div>
+
+
+  <section class="gallery-wrap" aria-label="Your saved Muggulu">
+    <div class="gallery-head">
+      <h2>Your Muggulu</h2>
+      <span class="gallery-count" id="galleryCount"></span>
+    </div>
+    <div class="gallery" id="gallery">
+      <p class="gallery-empty">Completed patterns will appear here.</p>
+    </div>
+  </section>
+
+  <section class="game-notes" aria-label="About the Muggu game">
+    <div class="note-card">
+      <p class="note-kicker">How to play</p>
+      <div class="how-grid">
+        <div class="how-step"><span class="step-num">1</span><b>Choose</b><span>Use Connect, Stamp, or Freehand to begin your pattern.</span></div>
+        <div class="how-step"><span class="step-num">2</span><b>Draw</b><span>Work around the chukkalu and let symmetry repeat each gesture.</span></div>
+        <div class="how-step"><span class="step-num">3</span><b>Save</b><span>Add the finished pattern to Your Muggulu so you can revisit it later.</span></div>
+      </div>
+    </div>
+
+    <div class="note-card">
+      <p class="note-kicker">Why this game</p>
+      <h2>A digital doorway into an everyday art form</h2>
+      <p>Muggu is a traditional threshold-drawing practice associated with Telugu-speaking regions of South India. Patterns are built from chukkalu—carefully placed dots—then shaped with looping lines, curves, and repeated forms. Traditionally drawn with rice flour, and now also with chalk or stone powder, each muggu transforms an ordinary entrance into a space of attention and welcome.</p>
+      <p>We chose this game because the interaction already lives inside the art: connect dots, repeat a line, place a motif, and find balance through symmetry. Rather than turning muggu into a score-based puzzle, the game focuses on the calm rhythm of making and the freedom to create a pattern in your own way.</p>
+      <p>Muggu is significant because it brings creativity into daily life. The designs are often redrawn, adapted, and passed between generations, carrying regional visual knowledge through an art form that is both temporary and continuously renewed.</p>
+      <p class="craft-note">This is not a simulation of every regional style or the full skill behind traditional muggu. It is a playful introduction designed to spark curiosity about the practice, its visual logic, and the cultural meaning carried by each pattern.</p>
+    </div>
+  </section>
+
+</div>
+
+<script>
+const NS="http://www.w3.org/2000/svg";
+const board=document.getElementById("board");
+const statusEl=document.getElementById("status");
+const hintEl=document.getElementById("hint");
+const motifsEl=document.getElementById("motifs");
+const toastEl=document.getElementById("toast");
+const finishEl=document.getElementById("finish");
+const galleryEl=document.getElementById("gallery");
+const galleryCountEl=document.getElementById("galleryCount");
+const GALLERY_KEY="muggu-gallery-v1";
+const GALLERY_LIMIT=12;
+let galleryItems=[];
+const RICE="#fff8e8";
+const DOT="#f7ead4";
+const N=7,MARGIN=54,STEP=(400-MARGIN*2)/(N-1),CENTER=200;
+
+let tool="connect";
+let symmetry=true;
+let motif="petal";
+let actions=[];
+let pointer=null;
+let preview=[];
+let connectAnchor=null;
+
+
+function readGallery(){
+  try{
+    const stored=JSON.parse(localStorage.getItem(GALLERY_KEY)||"[]");
+    galleryItems=Array.isArray(stored)?stored:[];
+  }catch(_){
+    galleryItems=[];
+  }
+}
+function persistGallery(){
+  try{localStorage.setItem(GALLERY_KEY,JSON.stringify(galleryItems))}catch(_){}
+}
+function makeSnapshot(){
+  const copy=board.cloneNode(true);
+  copy.removeAttribute("id");
+  const dots=copy.querySelector("#dots");
+  if(dots)dots.remove();
+  copy.setAttribute("xmlns",NS);
+  copy.setAttribute("width","400");
+  copy.setAttribute("height","400");
+  const bg=document.createElementNS(NS,"rect");
+  bg.setAttribute("x","0");
+  bg.setAttribute("y","0");
+  bg.setAttribute("width","400");
+  bg.setAttribute("height","400");
+  bg.setAttribute("fill","#7b2f20");
+  copy.insertBefore(bg,copy.firstChild);
+  return new XMLSerializer().serializeToString(copy);
+}
+function renderGallery(){
+  galleryEl.innerHTML="";
+  galleryCountEl.textContent=galleryItems.length?`${galleryItems.length} saved`:"";
+  if(!galleryItems.length){
+    const empty=document.createElement("p");
+    empty.className="gallery-empty";
+    empty.textContent="Completed patterns will appear here.";
+    galleryEl.appendChild(empty);
+    return;
+  }
+  galleryItems.forEach((item,index)=>{
+    const card=document.createElement("div");
+    card.className="gallery-item";
+
+    const open=document.createElement("button");
+    open.className="gallery-open";
+    open.type="button";
+    open.setAttribute("aria-label","Open this saved muggu");
+
+    const img=document.createElement("img");
+    img.alt="Saved muggu pattern";
+    img.src=`data:image/svg+xml;charset=utf-8,${encodeURIComponent(item.svg)}`;
+
+    const meta=document.createElement("span");
+    meta.className="gallery-meta";
+    const saved=new Date(item.savedAt);
+    meta.textContent=Number.isNaN(saved.getTime())?"Saved muggu":saved.toLocaleString([],{
+      month:"short",day:"numeric",hour:"numeric",minute:"2-digit"
+    });
+
+    open.append(img,meta);
+    open.addEventListener("click",()=>openGalleryItem(item.id));
+
+    const remove=document.createElement("button");
+    remove.className="gallery-delete";
+    remove.type="button";
+    remove.textContent="×";
+    remove.setAttribute("aria-label","Remove this saved muggu");
+    remove.addEventListener("click",e=>{
+      e.stopPropagation();
+      galleryItems=galleryItems.filter(x=>x.id!==item.id);
+      persistGallery();
+      renderGallery();
+      flash("Removed from gallery");
+    });
+
+    card.append(open,remove);
+    galleryEl.appendChild(card);
+  });
+}
+function addCurrentToGallery(){
+  const item={
+    id:`muggu-${Date.now()}-${Math.random().toString(16).slice(2)}`,
+    savedAt:new Date().toISOString(),
+    symmetry,
+    actions:JSON.parse(JSON.stringify(actions)),
+    svg:makeSnapshot()
+  };
+  galleryItems.unshift(item);
+  galleryItems=galleryItems.slice(0,GALLERY_LIMIT);
+  persistGallery();
+  renderGallery();
+}
+function openGalleryItem(id){
+  const item=galleryItems.find(x=>x.id===id);
+  if(!item)return;
+  actions=JSON.parse(JSON.stringify(item.actions||[]));
+  symmetry=!!item.symmetry;
+  connectAnchor=null;
+  pointer=null;
+  preview=[];
+  finishEl.classList.remove("show");
+  const sym=document.getElementById("symmetry");
+  sym.classList.toggle("on",symmetry);
+  document.querySelector("#symmetry .box").textContent=symmetry?"✓":"";
+  setTool("connect");
+  document.querySelector(".frame").scrollIntoView({behavior:"smooth",block:"start"});
+  flash("Muggu reopened");
+}
+
+function svgEl(name,attrs={}){
+  const el=document.createElementNS(NS,name);
+  Object.entries(attrs).forEach(([k,v])=>el.setAttribute(k,v));
+  return el;
+}
+function gridPoint(gx,gy){return [MARGIN+gx*STEP,MARGIN+gy*STEP]}
+function nearestDotFromClient(cx,cy,radius=STEP*.52){
+  const rect=board.getBoundingClientRect();
+  const x=(cx-rect.left)/rect.width*400;
+  const y=(cy-rect.top)/rect.height*400;
+  let best=null,dist=Infinity;
+  for(let gy=0;gy<N;gy++)for(let gx=0;gx<N;gx++){
+    const [px,py]=gridPoint(gx,gy),d=Math.hypot(x-px,y-py);
+    if(d<dist){dist=d;best={gx,gy,x:px,y:py}}
+  }
+  return dist<=radius?best:null;
+}
+function clientToSvg(cx,cy){
+  const rect=board.getBoundingClientRect();
+  return {x:(cx-rect.left)/rect.width*400,y:(cy-rect.top)/rect.height*400};
+}
+function snapLoose(p){
+  let best=null,dist=Infinity;
+  for(let gy=0;gy<N;gy++)for(let gx=0;gx<N;gx++){
+    const [x,y]=gridPoint(gx,gy),d=Math.hypot(p.x-x,p.y-y);
+    if(d<dist){dist=d;best={x,y}}
+  }
+  if(dist<STEP*.34) return {x:p.x*.58+best.x*.42,y:p.y*.58+best.y*.42};
+  return p;
+}
+function d4Point(p,index){
+  const x=p.x-CENTER,y=p.y-CENTER;
+  const maps=[
+    [ x, y],[-x, y],[ x,-y],[-x,-y],
+    [ y, x],[-y, x],[ y,-x],[-y,-x]
+  ];
+  return {x:CENTER+maps[index][0],y:CENTER+maps[index][1]};
+}
+function d4Vector(v,index){
+  const x=v.x,y=v.y;
+  const maps=[[x,y],[-x,y],[x,-y],[-x,-y],[y,x],[-y,x],[y,-x],[-y,-x]];
+  return {x:maps[index][0],y:maps[index][1]};
+}
+function c4Point(p,index){
+  const x=p.x-CENTER,y=p.y-CENTER;
+  const maps=[[x,y],[-y,x],[-x,-y],[y,-x]];
+  return {x:CENTER+maps[index][0],y:CENTER+maps[index][1]};
+}
+function transformCount(){return symmetry?8:1}
+function connectTransformCount(){return symmetry?4:1}
+const D4_DET=[1,-1,-1,1,-1,1,1,-1];
+function uniqueTransforms(points){
+  const out=[],seen=new Set();
+  for(let i=0;i<transformCount();i++){
+    const pts=points.map(p=>d4Point(p,i));
+    const key=pts.map(p=>`${p.x.toFixed(1)},${p.y.toFixed(1)}`).join("|");
+    if(!seen.has(key)){seen.add(key);out.push({index:i,points:pts})}
+  }
+  return out;
+}
+function uniqueConnectTransforms(points){
+  const out=[],seen=new Set();
+  for(let i=0;i<connectTransformCount();i++){
+    const pts=points.map(p=>c4Point(p,i));
+    const key=pts.map(p=>`${p.x.toFixed(1)},${p.y.toFixed(1)}`).join("|");
+    if(!seen.has(key)){seen.add(key);out.push({index:i,points:pts})}
+  }
+  return out;
+}
+function smoothPath(points){
+  if(points.length<2)return "";
+  if(points.length===2)return `M ${points[0].x} ${points[0].y} L ${points[1].x} ${points[1].y}`;
+  let d=`M ${points[0].x.toFixed(1)} ${points[0].y.toFixed(1)}`;
+  for(let i=0;i<points.length-1;i++){
+    const p0=points[i-1]||points[i],p1=points[i],p2=points[i+1],p3=points[i+2]||p2;
+    const c1={x:p1.x+(p2.x-p0.x)/6,y:p1.y+(p2.y-p0.y)/6};
+    const c2={x:p2.x-(p3.x-p1.x)/6,y:p2.y-(p3.y-p1.y)/6};
+    d+=` C ${c1.x.toFixed(1)} ${c1.y.toFixed(1)}, ${c2.x.toFixed(1)} ${c2.y.toFixed(1)}, ${p2.x.toFixed(1)} ${p2.y.toFixed(1)}`;
+  }
+  return d;
+}
+function connectCurve(a,b,side=1,lane=1){
+  const dx=b.x-a.x,dy=b.y-a.y,len=Math.hypot(dx,dy)||1;
+  const nx=-dy/len*side,ny=dx/len*side;
+  // Repeated connections between the same two chukkalu fan outward instead of being blocked.
+  const bow=Math.min(len*.42,Math.max(12,len*.16)+(lane-1)*8);
+  return `M ${a.x.toFixed(1)} ${a.y.toFixed(1)} C ${(a.x+dx*.28+nx*bow).toFixed(1)} ${(a.y+dy*.28+ny*bow).toFixed(1)}, ${(a.x+dx*.72+nx*bow).toFixed(1)} ${(a.y+dy*.72+ny*bow).toFixed(1)}, ${b.x.toFixed(1)} ${b.y.toFixed(1)}`;
+}
+function samePoint(a,b){return Math.hypot(a.x-b.x,a.y-b.y)<.5}
+function connectPairKey(a,b){
+  const pts=[a,b].map(p=>`${p.x.toFixed(1)},${p.y.toFixed(1)}`).sort();
+  return pts.join('|');
+}
+function addConnectFromAnchor(target){
+  if(!connectAnchor || samePoint(connectAnchor,target)) return false;
+  const pair=connectPairKey(connectAnchor,target);
+  const repeats=actions.filter(a=>a.type==='connect'&&a.pair===pair).length;
+  const side=repeats%2===0?1:-1;
+  const lane=Math.floor(repeats/2)+1;
+  actions.push({type:'connect',a:{x:connectAnchor.x,y:connectAnchor.y},b:{x:target.x,y:target.y},side,lane,pair});
+  finishEl.classList.remove('show');
+  render();
+  return true;
+}
+function motifPath(name){
+  return {
+    petal:"M0 16 C-13 6 -12 -9 0 -18 C12 -9 13 6 0 16Z",
+    leaf:"M0 17 C-14 7 -11 -10 0 -18 C11 -10 14 7 0 17Z M0 14 L0 -14",
+    loop:"M0 -17 C12 -17 13 17 0 17 C-13 17 -12 -17 0 -17Z",
+    curl:"M-14 10 C-3 15 14 9 12 -4 C11 -13 1 -15 -4 -8 C-8 -2 -3 5 4 2",
+    center:"M0 -6 A6 6 0 1 0 .1 -6 M0 -16 A3.5 3.5 0 1 0 .1 -16 M15 -5 A3.5 3.5 0 1 0 15.1 -5 M9 12 A3.5 3.5 0 1 0 9.1 12 M-9 12 A3.5 3.5 0 1 0 -8.9 12 M-15 -5 A3.5 3.5 0 1 0 -14.9 -5"
+  }[name];
+}
+function drawPath(group,d,width=4.6,opacity=.96){
+  group.appendChild(svgEl("path",{d,fill:"none",stroke:RICE,"stroke-width":width,"stroke-linecap":"round","stroke-linejoin":"round",opacity}));
+}
+function render(){
+  board.innerHTML="";
+  const defs=svgEl("defs");
+  const filter=svgEl("filter",{id:"riceTexture",x:"-10%",y:"-10%",width:"120%",height:"120%"});
+  filter.appendChild(svgEl("feTurbulence",{type:"fractalNoise",baseFrequency:"0.018",numOctaves:"1",seed:"8",result:"noise"}));
+  filter.appendChild(svgEl("feDisplacementMap",{in:"SourceGraphic",in2:"noise",scale:".65"}));
+  defs.appendChild(filter);board.appendChild(defs);
+
+  const art=svgEl("g",{id:"art",filter:"url(#riceTexture)"});
+  actions.forEach(action=>{
+    if(action.type==="connect"){
+      uniqueConnectTransforms([action.a,action.b]).forEach(t=>drawPath(art,connectCurve(t.points[0],t.points[1],action.side||1,action.lane||1),4.5));
+    }
+    if(action.type==="freehand"){
+      uniqueTransforms(action.points).forEach(t=>drawPath(art,smoothPath(t.points),4.2));
+    }
+    if(action.type==="stamp"){
+      const base={x:action.x,y:action.y};
+      for(let i=0;i<transformCount();i++){
+        const p=d4Point(base,i);
+        const v=d4Vector({x:Math.cos(action.angle),y:Math.sin(action.angle)},i);
+        const angle=Math.atan2(v.y,v.x)*180/Math.PI+90;
+        const g=svgEl("g",{transform:`translate(${p.x.toFixed(1)} ${p.y.toFixed(1)}) rotate(${angle.toFixed(1)})`});
+        drawPath(g,motifPath(action.motif),action.motif==="center"?3.4:4.1);
+        art.appendChild(g);
+      }
+    }
+  });
+
+  if(pointer&&tool==="freehand"&&preview.length>1){
+    uniqueTransforms(preview).forEach(t=>drawPath(art,smoothPath(t.points),4.2,.52));
+  }
+  board.appendChild(art);
+
+  const dots=svgEl("g",{id:"dots"});
+  for(let gy=0;gy<N;gy++)for(let gx=0;gx<N;gx++){
+    const [x,y]=gridPoint(gx,gy);
+    dots.appendChild(svgEl("circle",{cx:x,cy:y,r:3.3,fill:DOT,opacity:.92}));
+  }
+  if(tool==="connect"&&connectAnchor){
+    dots.appendChild(svgEl("circle",{cx:connectAnchor.x,cy:connectAnchor.y,r:10.5,fill:"none",stroke:RICE,"stroke-width":1.8,opacity:.9,"stroke-dasharray":"2.5 3.5"}));
+    dots.appendChild(svgEl("circle",{cx:connectAnchor.x,cy:connectAnchor.y,r:4.8,fill:RICE,opacity:.98}));
+  }
+  board.appendChild(dots);
+}
+function pushAction(action){actions.push(action);finishEl.classList.remove("show");render()}
+function setTool(next){
+  tool=next;pointer=null;preview=[];connectAnchor=null;
+  document.querySelectorAll(".tool").forEach(b=>b.classList.toggle("active",b.dataset.tool===tool));
+  motifsEl.classList.toggle("hidden",tool!=="stamp");
+  const copy={
+    connect:["<b>Connect</b> freely from one chukka.","Tap one chukka to anchor it, then tap or sweep to as many destinations as you like. Repeat any connection to layer more loops. Tap the anchor again to release it."],
+    stamp:["<b>Stamp</b> a motif onto any chukka.","Choose a petal, leaf, loop, curl, or flower center. Tap a chukka and symmetry places the rest."],
+    freehand:["<b>Freehand</b> a flowing line of your own.","Draw anywhere on the board. The stroke is smoothed and gently pulled toward nearby chukkalu so it still feels anchored."]
+  }[tool];
+  statusEl.innerHTML=copy[0];hintEl.textContent=copy[1];render();
+}
+document.querySelectorAll(".tool").forEach(b=>b.addEventListener("click",()=>setTool(b.dataset.tool)));
+document.querySelectorAll(".motif").forEach(b=>b.addEventListener("click",()=>{
+  motif=b.dataset.motif;
+  document.querySelectorAll(".motif").forEach(x=>x.classList.toggle("active",x===b));
+}));
+
+document.getElementById("symmetry").addEventListener("click",()=>{
+  symmetry=!symmetry;
+  document.getElementById("symmetry").classList.toggle("on",symmetry);
+  document.querySelector("#symmetry .box").textContent=symmetry?"✓":"";
+  flash(symmetry?"Symmetry on":"Symmetry off");render();
+});
+
+board.addEventListener("pointerdown",e=>{
+  finishEl.classList.remove("show");
+  if(tool==="connect"){
+    const d=nearestDotFromClient(e.clientX,e.clientY);
+    if(!d)return;
+    const hit={x:d.x,y:d.y};
+    if(!connectAnchor){
+      connectAnchor=hit;
+      pointer={kind:"connect",start:connectAnchor,visited:new Set()};
+      board.setPointerCapture(e.pointerId);
+      render();
+    }else if(samePoint(connectAnchor,hit)){
+      connectAnchor=null;
+      pointer=null;
+      render();
+    }else{
+      addConnectFromAnchor(hit);
+      pointer={kind:"connect",start:connectAnchor,visited:new Set([connectPairKey(connectAnchor,hit)])};
+      board.setPointerCapture(e.pointerId);
+    }
+  }else if(tool==="freehand"){
+    const p=snapLoose(clientToSvg(e.clientX,e.clientY));
+    pointer={kind:"freehand"};preview=[p];board.setPointerCapture(e.pointerId);render();
+  }else if(tool==="stamp"){
+    const d=nearestDotFromClient(e.clientX,e.clientY,STEP*.68);
+    if(!d){flash("Tap closer to a chukka");return}
+    const angle=Math.atan2(d.y-CENTER,d.x-CENTER);
+    pushAction({type:"stamp",motif,x:d.x,y:d.y,angle});
+  }
+});
+board.addEventListener("pointermove",e=>{
+  if(!pointer)return;
+  if(pointer.kind==="connect"){
+    const d=nearestDotFromClient(e.clientX,e.clientY);
+    if(d){
+      const hit={x:d.x,y:d.y};
+      if(!samePoint(pointer.start,hit)){
+        const k=connectPairKey(pointer.start,hit);
+        if(!pointer.visited.has(k)){
+          pointer.visited.add(k);
+          addConnectFromAnchor(hit);
+        }
+      }
+    }
+  }else if(pointer.kind==="freehand"){
+    const p=snapLoose(clientToSvg(e.clientX,e.clientY));
+    const last=preview[preview.length-1];
+    if(!last||Math.hypot(p.x-last.x,p.y-last.y)>3.5){preview.push(p);render()}
+  }
+});
+function endPointer(){
+  if(pointer&&pointer.kind==="freehand"&&preview.length>2){
+    const kept=preview.filter((_,i)=>i===0||i===preview.length-1||i%2===0);
+    actions.push({type:"freehand",points:kept});
+  }
+  pointer=null;preview=[];render();
+}
+board.addEventListener("pointerup",endPointer);
+board.addEventListener("pointercancel",endPointer);
+
+document.getElementById("undo").addEventListener("click",()=>{actions.pop();finishEl.classList.remove("show");render()});
+document.getElementById("clear").addEventListener("click",()=>{actions=[];connectAnchor=null;finishEl.classList.remove("show");render()});
+document.getElementById("complete").addEventListener("click",()=>{
+  if(!actions.length){flash("Draw your muggu first ✦");return}
+  addCurrentToGallery();
+  finishEl.classList.add("show");
+  const art=board.querySelector("#art");
+  if(art){art.animate([{opacity:.45,transform:"scale(.985)",transformOrigin:"200px 200px"},{opacity:1,transform:"scale(1)"}],{duration:620,easing:"ease-out"})}
+});
+finishEl.addEventListener("click",()=>finishEl.classList.remove("show"));
+function flash(msg){toastEl.textContent=msg;toastEl.classList.add("show");clearTimeout(flash.t);flash.t=setTimeout(()=>toastEl.classList.remove("show"),1300)}
+
+readGallery();
+renderGallery();
+setTool("connect");
+render();
+</script>
+</body>
+</html>

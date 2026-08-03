@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ARWell Pro case study: redesigning a therapist-led augmented reality rehabilitation platform.">
+  <title>ARWell Pro — Case Study</title>
+  <link rel="stylesheet" href="ARWell-Pro-style.css">
+</head>
+<body>
+  <div class="case-study-shell">
+    <aside class="case-sidebar" aria-label="Case study navigation">
+      <a class="back-link" href="../og-index.html"><span aria-hidden="true">←</span> Back to Desk</a>
+      <nav class="contents">
+        <p class="contents-title">Contents</p>
+        <ol>
+          <li><a href="#snapshot">Project Snapshot</a></li>
+          <li><a href="#role">My Role</a></li>
+          <li><a href="#starting-point">Where We Started</a></li>
+          <li><a href="#research">Research Approach</a></li>
+          <li><a href="#findings">Key Findings</a></li>
+          <li><a href="#principles">Design Principles</a></li>
+          <li><a href="#reflection">Reflection</a></li>
+          <li><a href="#next-steps">Next Steps</a></li>
+        </ol>
+      </nav>
+      <div class="sidebar-doodle" aria-hidden="true">✦</div>
+    </aside>
+
+    <main>
+      <article class="case-paper">
+        <header class="hero" id="snapshot">
+          <div class="hero-copy">
+            <h1>ARWell Pro: Designing Therapist-Led AR Therapy</h1>
+            <p class="lede">A therapist-facing AR rehabilitation platform redesigned to make session setup clearer, patient management easier, and therapy engagement more clinically focused.</p>
+            <dl class="project-meta">
+              <div><dt>Role</dt><dd>Product Strategy · Product Research · Product Design</dd></div>
+              <div><dt>Duration</dt><dd>6 months</dd></div>
+              <div><dt>Methods</dt><dd>Live Session Observation · Stakeholder Interviews · Usability Testing · Prototyping</dd></div>
+            </dl>
+          </div>
+          <figure class="hero-image"><img src="assets/hero.png" alt="A child using ARWell during a therapist-led rehabilitation session"></figure>
+        </header>
+
+        <section class="metrics" aria-label="Project outcomes">
+          <article><strong>23%</strong><span>More excited for therapy<br>Company-measured post-launch</span></article>
+          <article><strong>4.4%</strong><span>greater time-on-task</span></article>
+          <article><strong>61%</strong><span>increased focus during therapy</span></article>
+          <article><strong>4</strong><span>clear therapist actions</span></article>
+        </section>
+
+        <section class="system-overview">
+          <h2>1. The Therapy System, at a Glance</h2>
+          <div class="overview-grid">
+            <article><h3>Problem</h3><p>ARWell Pro had promising <strong>AR gameplay</strong>, but the <strong>clinical workflow was fragmented.</strong> Therapists lacked clear session controls, children dropped off early, and rewards were interrupting therapy time.</p></article>
+            <article><h3>The Pivot</h3><p>Direct child feedback was <strong>not enough.</strong> Caregivers and teachers saw these children every day in ways researchers could not. Including them gave us <strong>behavioral context around focus, frustration, decision-making, and reward timing.</strong></p></article>
+            <article><h3>Key Insight</h3><p>Therapy engagement breaks down when <strong>play, clinical intent, and therapist control</strong> stop working together.</p></article>
+            <article><h3>The Stakes</h3><p>This was not a consumer app where a bad experience meant someone closed a tab. A failed therapy session could mean <strong>30–45 minutes of recovery time lost.</strong></p></article>
+          </div>
+        </section>
+
+        <section id="role" class="role-section">
+          <h2>2. My Role</h2>
+          <p class="section-kicker">What I owned across strategy, research, design, and delivery</p>
+          <div class="role-workflow">
+            <article class="role-row">
+              <p class="role-phase">Discover</p>
+              <div class="role-detail">
+                <h3>Product Strategy &amp; Prioritization</h3>
+                <p>Identified therapist workflow friction as the core product problem and translated research findings into priorities across session setup, patient management, game selection, and reward controls.</p>
+              </div>
+              <div class="role-detail divided">
+                <h3>Research Planning &amp; Synthesis</h3>
+                <p>Independently planned and conducted live session observations, therapist interviews, caregiver and teacher interviews, and usability testing to uncover recurring workflow and engagement patterns.</p>
+              </div>
+            </article>
+
+            <article class="role-row">
+              <p class="role-phase">Define</p>
+              <div class="role-detail">
+                <h3>End-to-End Product Design</h3>
+                <p>Independently owned the redesign of the therapist dashboard, session setup, patient and program management, game library, reward controls, and gameplay progression.</p>
+              </div>
+              <div class="role-detail divided">
+                <h3>Agile Delivery &amp; Risk Management</h3>
+                <p>Managed delivery through sprint planning, tracked risks and dependencies, coordinated with clinical and technical stakeholders, and adjusted priorities as constraints emerged.</p>
+              </div>
+            </article>
+
+            <article class="role-row role-row-single">
+              <p class="role-phase">Deliver</p>
+              <div class="role-detail">
+                <h3>Validation &amp; Outcomes</h3>
+                <p>Validated the redesigned workflows with therapists and children and connected product decisions to improved engagement, clearer therapist control, and better protection of therapy time.</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="problem-section" id="starting-point">
+          <h2>3. Where We Started</h2>
+          <p>ARWell Pro’s original landing screen created friction before therapy even began. Therapists opened the app to unclear weekly goal metrics, unlabeled navigation arrows, buried game selection, and no obvious first action.</p>
+          <p>Patient management, program setup, session type selection, and reward access were either missing or scattered across the experience. For therapists, setup took attention away from the child. For children, the interface created confusion before the exercise even started.</p>
+          <p>The issue was not just visual clutter — it was a clinical workflow problem.</p>
+          <div class="before-after">
+            <article><h3>Before</h3><img src="assets/original-dashboard.png" alt="Original ARWell Pro dashboard interface"><h4>Before — What was broken</h4><p>✕ Weekly goal controls did not clearly explain what was being tracked<br>✕ Three unlabeled navigation arrows<br>✕ Game selection buried inside the interface<br>✕ No session type selection<br>✕ Patient and program management scattered<br>✕ Reward store visible without therapist control</p></article>
+            <article><h3>After</h3><img src="assets/therapy-session.png" alt="Redesigned therapist dashboard"><h4>After — What I rebuilt</h4><p>✓ Four-action therapist dashboard<br>✓ Start Session, Manage Patients, Manage Programs, and View Data<br>✓ Session setup for teletherapy and in-person care<br>✓ Patient and program management flows<br>✓ Category-based game library<br>✓ Therapist-controlled reward access</p></article>
+          </div>
+        </section>
+
+        <section id="research">
+          <h2>4. Research Approach</h2>
+          <div class="research-layout">
+            <figure class="framed-image research-photo">
+              <img src="assets/research-session.png" alt="A therapist observing a child during a live AR rehabilitation session">
+              <figcaption>Observing live sessions revealed how therapy decisions happened around the screen, not just inside the app.</figcaption>
+            </figure>
+            <div>
+              <p>I mapped the full therapy workflow before redesigning the interface.</p><p>Before opening Figma, I needed to understand what was actually happening during a therapy session: how therapists prepared activities, how children responded to instructions, when attention started to drop, and when rewards helped or interrupted care.</p><p>I looked beyond individual screens and studied the full therapy ecosystem — therapist setup, child engagement, instruction clarity, gameplay progression, reward timing, and session control.</p>
+            </div>
+          </div>
+          <div class="research-box"><div><h3>Research Questions</h3><ol><li>Where does the therapist workflow break during live sessions?</li><li>What causes children to disengage before completing therapy games?</li><li>When do rewards support therapy, and when do they interrupt it?</li><li>What controls do therapists need to keep sessions clinically useful?</li></ol></div><div><h3>Methods</h3><p>• 30+ live therapy sessions observed across clinics and schools<br>• Therapist interviews conducted separately from live sessions<br>• Caregiver and teacher interviews added mid-project after a key research pivot<br>• Usability testing with therapists and children on redesigned flows<br>• Literature synthesis on pediatric motivation and reward timing</p></div></div>
+        </section>
+
+        <section id="findings">
+          <h2>5. Key Findings</h2><p class="section-kicker">Three behaviors that changed the redesign.</p><p>Each finding came from observing what happened during real therapy sessions, not just from reviewing screens.</p>
+
+          <article class="finding-story">
+            <h3>1. Therapists were navigating around the app, not through it.</h3>
+            <p><strong>What I observed:</strong> The original experience did not give therapists a clear path to start or manage a session. They had to interpret unclear goal metrics, click through games one by one, and work around scattered controls before therapy could begin. Game selection was especially slow. Therapists could not browse by therapy goal, save curated sets, or quickly choose the right activity for a patient.</p>
+            <p><strong>Design response:</strong> I rebuilt the dashboard and game library around how therapists actually planned sessions. The new flow centered on four clear actions — Start Session, Manage Patients, Manage Programs, and View Data — and reorganized games by therapy goal, including Balance, Strength, Coordination, Endurance, and Sesame Street.</p>
+            <p>Programs also became reusable clinical objects, allowing therapists to save and assign curated game sets instead of rebuilding the session every time.</p>
+            <p><strong>Clinical value:</strong> Reduced setup friction so therapists could spend less attention navigating the interface and more attention supporting the child.</p>
+          </article>
+
+          <div class="library-comparison">
+            <h3>Rebuilt Game Library — Organized by Therapy Goal</h3>
+            <div class="library-columns">
+              <article>
+                <div class="library-shot before-library"><img src="assets/original-dashboard.png" alt="Original game-selection interface"></div>
+                <h4>Before</h4>
+                <p>Therapists had to click through games one at a time, making discovery slow during session setup.</p>
+              </article>
+              <article>
+                <div class="library-shot"><img src="assets/interface-detail.png" alt="Rebuilt game library organized by therapy goal"></div>
+                <h4>After</h4>
+                <p>Games were organized by therapy goal, making activity selection faster and more clinically relevant.</p>
+              </article>
+            </div>
+          </div>
+
+          <article class="finding-story second-finding">
+            <h3>2. Children quit games that gave them no reason to keep going.</h3>
+            <p><strong>What I observed:</strong> Across multiple games, levels changed visually but did not always build in a way children could understand. Themes, objects, and difficulty shifts often felt disconnected, so children had little reason to believe the next level would feel different or worth reaching.</p>
+            <p><strong>Design response:</strong> I redesigned progression logic so levels built through clearer themes, movement behavior, and challenge patterns. Punch Ball became one example of this shift: instead of unrelated objects across levels, the redesigned version used a space theme where difficulty increased through object size, speed, motion, and timing.</p>
+            <p><strong>Clinical value:</strong> Reduced setup friction so therapists could spend less attention navigating the interface and more attention supporting the child.</p>
+          </article>
+
+          <div class="progression-comparison">
+            <h3>From Random Levels to Purposeful Progression</h3>
+            <div class="progression-columns">
+              <section class="progression-side" aria-labelledby="before-progression">
+                <h4 id="before-progression">Before</h4>
+                <div class="progression-grid before-grid">
+                  <figure><img src="assets/dashboard-redesign.png" alt="Goats game level"><figcaption>Goats</figcaption></figure>
+                  <figure><img src="assets/program-flow.png" alt="Ducks game level"><figcaption>Ducks</figcaption></figure>
+                  <figure><img src="assets/game-detail.png" alt="Rabbits game level"><figcaption>Rabbits</figcaption></figure>
+                  <figure><img src="assets/gameplay.png" alt="Aliens game level"><figcaption>Aliens</figcaption></figure>
+                  <figure><img src="assets/reward-store-off.png" alt="Food game level"><figcaption>Food</figcaption></figure>
+                </div>
+                <p class="progression-summary"><strong>Random unrelated themes</strong> (levels had no connection to each other)</p>
+              </section>
+
+              <section class="progression-side" aria-labelledby="after-progression">
+                <h4 id="after-progression">After</h4>
+                <div class="progression-grid after-grid">
+                  <figure><img src="assets/game-library.png" alt="Static planets level"><figcaption>Static planets</figcaption></figure>
+                  <figure><img src="assets/games-grid.png" alt="Smaller asteroids level"><figcaption>Smaller asteroids</figcaption></figure>
+                  <figure><img src="assets/progression.png" alt="Satellites with spinning arms level"><figcaption>Satellites with spinning arms</figcaption></figure>
+                  <figure><img src="assets/reward-controls.png" alt="Rockets flying in loops level"><figcaption>Rockets flying in loops</figcaption></figure>
+                  <figure><img src="assets/reward-store-on.png" alt="Rockets flying on and off screen quickly"><figcaption>Rockets flying on and off screen quickly</figcaption></figure>
+                </div>
+                <p class="progression-summary">Games were organized by therapy goal, making activity selection faster and more clinically relevant.</p>
+              </section>
+            </div>
+          </div>
+
+          <article class="finding-story third-finding">
+            <h3>3. The reward store was interrupting therapy time.</h3>
+            <p><strong>What I observed:</strong> Children often went straight to the reward store before starting exercises. In a 30–45 minute therapy session, open-ended browsing could take over valuable session time. What was meant to motivate therapy was sometimes replacing therapy.</p>
+            <p><strong>Design response:</strong> I added therapist-controlled reward access so the store could be turned on or off per patient. I also added a 2-minute reward timer, giving children enough time to choose a reward without letting the store take over the session.</p>
+            <p><strong>Clinical value:</strong> Protected therapy time while still keeping rewards available as a motivation tool.</p>
+          </article>
+
+          <div class="patient-access-panel">
+            <h3>Patient Access Controls — Therapist Toggles Reward Store per Patient</h3>
+            <div class="patient-access-grid">
+              <figure>
+                <div class="patient-access-shot"><img src="assets/patient-screen.png" alt="Patient access controls with the reward store turned off"></div>
+                <figcaption>Reward store toggled off — reward store hidden from patient login</figcaption>
+              </figure>
+              <figure>
+                <div class="patient-access-shot"><img src="assets/interface-detail.png" alt="Games page without reward store access"></div>
+                <figcaption>Rewards Store Absent on the games page</figcaption>
+              </figure>
+              <figure>
+                <div class="patient-access-shot"><img src="assets/reward-timer.png" alt="Patient access controls with the reward store turned on"></div>
+                <figcaption>Reward Store toggled on - patients can now access it.</figcaption>
+              </figure>
+              <figure>
+                <div class="patient-access-shot"><img src="assets/reward-games.png" alt="Games page with the reward store available"></div>
+                <figcaption>Reward store on the Games page</figcaption>
+              </figure>
+            </div>
+          </div>
+        </section>
+
+        <section id="principles">
+          <h2>6. Design Principles</h2>
+          <p class="section-kicker">What this project taught me about designing for clinical contexts.</p>
+          <div class="principles-list">
+            <article><strong>1. Engagement needs structure, not just stimulation</strong><p>Children respond to play, but therapy requires repeatable, goal-oriented engagement. Rewards and games work best when they are tied to effort, progress, and timing — not novelty alone.</p></article>
+            <article><strong>2. Therapists need control, not clutter</strong><p>Every extra step in a clinical interface takes attention away from the child. Common actions should be fast, visible, and easy to control during a live session.</p></article>
+            <article><strong>3. Gameplay must serve therapy, not decorate it</strong><p>Every object, motion pattern, and level should support a therapeutic purpose. If the game is fun but does not support movement practice, it can work against the session.</p></article>
+            <article><strong>4. Research the ecosystem, not just the user</strong><p>The most important insight came from people outside the primary user group. Caregivers and teachers helped reveal patterns children could not always explain during therapy.</p></article>
+          </div>
+        </section>
+
+        <section id="reflection">
+          <h2 class="ruled-heading">7. Reflection</h2>
+          <p class="section-kicker">What I would do differently.</p>
+          <p>This project gave me deep, repeated exposure to one therapy environment, but I would not treat those findings as universal without broader validation.</p>
+          <p>The same workflow issues surfaced across many sessions, which made the redesign direction clear. But before scaling, I would want to test the dashboard, programs, reward controls, and game progression with therapists from outpatient clinics, hospital-based programs, and independent practices.</p>
+          <p>ARWell Pro taught me that designing for healthcare is not about making clinical tools more playful on the surface. It is about understanding the coordination between therapist, child, task, motivation, and outcome — and designing a system where those pieces work together.</p>
+          <blockquote>In therapy design, engagement is only valuable when it protects the clinical goal — not when it pulls attention away from it.</blockquote>
+        </section>
+
+        <section id="next-steps">
+          <h2>8. Next Steps</h2>
+          <p class="section-kicker">What I would explore next.</p>
+          <div class="next-steps-grid">
+            <article><h3>Validate across more clinical settings</h3><p>Test the redesigned workflow with therapists from outpatient clinics, hospital-based programs, and independent practices to understand what changes across care environments.</p></article>
+            <article><h3>Study reward timing more deeply</h3><p>Run a focused study on when rewards help motivation versus when they interrupt therapy, especially across different ages, attention patterns, and therapy goals.</p></article>
+            <article><h3>Measure setup efficiency</h3><p>Track whether the redesigned dashboard, programs, and category-based game library reduce session setup time across repeated use.</p></article>
+            <article><h3>Personalize therapist controls</h3><p>Explore more flexible reward, program, and game-progression settings so therapists can adapt sessions to each child’s needs.</p></article>
+          </div>
+        </section>
+      </article>
+    </main>
+  </div>
+</body>
+</html>
