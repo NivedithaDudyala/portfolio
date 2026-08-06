@@ -469,7 +469,10 @@ document.querySelectorAll(".grid-card[data-portfolio-type]").forEach((card) => {
       enterPortfolio(type);
     }
   });
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && portfolioOverlayEl && portfolioOverlayEl.classList.contains("active")) {
+    closeVisualGrid();
+  }
 });
-
 
 init();

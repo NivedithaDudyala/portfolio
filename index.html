@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Niv — UX Researcher</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Boogaloo&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=Lilita+One&family=Boogaloo&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -71,47 +71,162 @@
           <h2>Selected Work</h2>
           <p>Choose a focus area to explore case studies, product strategy, and research outcomes.</p>
         </div>
-        <button id="closePortfolioOverlay" class="close-overlay-btn" aria-label="Close overlay">
+        <button id="closePortfolioOverlay" class="close-overlay-btn" aria-label="Go back to desk">
           <span>&larr;</span> Go Back to Desk
         </button>
       </header>
 
       <div class="visual-grid">
-        <div class="grid-card" data-portfolio-type="pm" tabindex="0" role="button" aria-label="View Product Management portfolio">
-          <div class="card-badge pm-badge">01</div>
-          <div class="card-icon">📈</div>
-          <div class="card-tag tag-pm">Product Management</div>
+        <!-- 01 Product Management -->
+        <a href="./pm/" class="grid-card" data-portfolio-type="pm" aria-label="View Product Management portfolio">
+          <div class="card-top-row">
+            <span class="card-number">01</span>
+          </div>
+
+          <div class="card-divider"></div>
+
+          <span class="card-eyebrow">FEATURED WORK</span>
+
+          <div class="card-chips">
+            <span class="chip">Apple Intelligence</span>
+            <span class="chip">Robotics Systems</span>
+            <span class="chip">ARWell Pro</span>
+          </div>
+
+          <div class="card-metrics">
+            <div class="metric-box">
+              <svg class="metric-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"></circle>
+                <circle cx="12" cy="12" r="6"></circle>
+                <circle cx="12" cy="12" r="2"></circle>
+              </svg>
+              <span>+29 pts accuracy</span>
+            </div>
+            <div class="metric-box">
+              <svg class="metric-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+              <span>3 programs retained</span>
+            </div>
+          </div>
+
           <h3 class="card-title">Product Management</h3>
-          <p class="card-desc">Product strategy, roadmap prioritization, cross-functional execution, and measurable outcomes.</p>
+          <p class="card-desc">Product strategy, prioritization, and cross-functional execution from idea to measurable outcome.</p>
+
+          <div class="card-bottom-divider"></div>
+
           <div class="card-footer">
             <span class="card-action">View PM Work</span>
-            <span class="card-arrow">&rarr;</span>
+            <span class="card-arrow-btn" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </span>
           </div>
-        </div>
+        </a>
 
-        <div class="grid-card" data-portfolio-type="design" tabindex="0" role="button" aria-label="View Product Design portfolio">
-          <div class="card-badge design-badge">02</div>
-          <div class="card-icon">🎨</div>
-          <div class="card-tag tag-design">Product Design</div>
+        <!-- 02 Product Design -->
+        <a href="./design/" class="grid-card" data-portfolio-type="design" aria-label="View Product Design portfolio">
+          <div class="card-top-row">
+            <span class="card-number">02</span>
+          </div>
+
+          <div class="card-divider"></div>
+
+          <span class="card-eyebrow">FEATURED WORK</span>
+
+          <div class="card-chips">
+            <span class="chip">ARWell</span>
+            <span class="chip">StudyHelper (TGP)</span>
+            <span class="chip">Shloka</span>
+          </div>
+
+          <div class="card-metrics">
+            <div class="metric-box">
+              <svg class="metric-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+              <span>SUS 92.5</span>
+            </div>
+            <div class="metric-box">
+              <svg class="metric-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="8" r="7"></circle>
+                <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+              </svg>
+              <span>Best Paper DIS 2025</span>
+            </div>
+          </div>
+
           <h3 class="card-title">Product Design</h3>
-          <p class="card-desc">End-to-end UX/UI design, augmented-reality exergames, gamified AI learning, and interaction systems.</p>
+          <p class="card-desc">End-to-end product design across AI, healthcare, learning, and emerging interactions.</p>
+
+          <div class="card-bottom-divider"></div>
+
           <div class="card-footer">
             <span class="card-action">View Design Work</span>
-            <span class="card-arrow">&rarr;</span>
+            <span class="card-arrow-btn" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </span>
           </div>
-        </div>
+        </a>
 
-        <div class="grid-card" data-portfolio-type="research" tabindex="0" role="button" aria-label="View Product Research portfolio">
-          <div class="card-badge research-badge">03</div>
-          <div class="card-icon">🧠</div>
-          <div class="card-tag tag-research">Product Research</div>
+        <!-- 03 Product Research -->
+        <a href="./research/" class="grid-card" data-portfolio-type="research" aria-label="View Product Research portfolio">
+          <div class="card-top-row">
+            <span class="card-number">03</span>
+          </div>
+
+          <div class="card-divider"></div>
+
+          <span class="card-eyebrow">FEATURED WORK</span>
+
+          <div class="card-chips">
+            <span class="chip">Apple Intelligence</span>
+            <span class="chip">Wearables Field Study</span>
+            <span class="chip">ARWell Research</span>
+          </div>
+
+          <div class="card-metrics">
+            <div class="metric-box">
+              <svg class="metric-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                <polyline points="17 6 23 6 23 12"></polyline>
+              </svg>
+              <span>2,000+ sessions</span>
+            </div>
+            <div class="metric-box">
+              <svg class="metric-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+              <span>300+ participants</span>
+            </div>
+          </div>
+
           <h3 class="card-title">Product Research</h3>
-          <p class="card-desc">User research, evaluative studies, AI assistant trust & interaction, and human behavior insight.</p>
+          <p class="card-desc">Human-centered research, product evaluation, and behavioral insight at scale.</p>
+
+          <div class="card-bottom-divider"></div>
+
           <div class="card-footer">
             <span class="card-action">View Research Work</span>
-            <span class="card-arrow">&rarr;</span>
+            <span class="card-arrow-btn" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </span>
           </div>
-        </div>
+        </a>
       </div>
     </div>
   </div>
