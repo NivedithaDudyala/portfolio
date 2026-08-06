@@ -54,11 +54,31 @@
     96% { transform:translateX(1px) rotate(0.25deg); }
   }
 
+/* Dynamic overlays start hidden until positionAll() has placed them */
+#workButton,
+#bulbWrap,
+#charWrap,
+#monitorHit,
+#cameraHit,
+#brainHit {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+html.scene-ready #workButton,
+html.scene-ready #bulbWrap,
+html.scene-ready #charWrap,
+html.scene-ready #monitorHit,
+html.scene-ready #cameraHit,
+html.scene-ready #brainHit {
+  visibility: visible;
+  opacity: 1;
+}
+
   #bulbWrap {
     position:absolute;
     display:block;
-    visibility:visible;
-    opacity:1;
     z-index:3;
     pointer-events:none;
     overflow:visible;
