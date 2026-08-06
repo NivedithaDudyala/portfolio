@@ -835,3 +835,214 @@
   background: #000000;
   text-decoration: none !important;
 }
+/* Visual Grid Overlay Styling */
+.portfolio-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.portfolio-overlay.active {
+  pointer-events: auto;
+  opacity: 1;
+}
+
+.portfolio-overlay.exiting {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.portfolio-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(26, 26, 46, 0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.portfolio-modal {
+  position: relative;
+  z-index: 2;
+  width: 92%;
+  max-width: 1040px;
+  background: #F5F0E8;
+  border-radius: 24px;
+  padding: 36px 40px;
+  border: 1.5px solid rgba(26, 26, 46, 0.12);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.18);
+  transform: scale(0.96);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.portfolio-overlay.active .portfolio-modal {
+  transform: scale(1);
+}
+
+.portfolio-overlay.exiting .portfolio-modal {
+  transform: scale(0.96);
+  transition: transform 0.25s ease;
+}
+
+.portfolio-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(26, 26, 46, 0.08);
+}
+
+.portfolio-header-text h2 {
+  font-family: 'Lilita One', cursive;
+  font-size: 32px;
+  color: #1a1a2e;
+  letter-spacing: 0.02em;
+}
+
+.portfolio-header-text p {
+  font-family: 'Nunito', system-ui, sans-serif;
+  font-size: 14px;
+  color: rgba(26, 26, 46, 0.6);
+  margin-top: 4px;
+}
+
+.close-overlay-btn {
+  font-family: 'Boogaloo', cursive;
+  font-size: 15px;
+  background: white;
+  border: 1.5px solid rgba(26, 26, 46, 0.12);
+  border-radius: 20px;
+  padding: 8px 18px;
+  cursor: pointer;
+  color: #1a1a2e;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.close-overlay-btn:hover {
+  transform: scale(1.03);
+  background: #fdfaf6;
+}
+
+.visual-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 28px;
+}
+
+.grid-card {
+  background: white;
+  border-radius: 20px;
+  padding: 28px 24px;
+  border: 1.5px solid rgba(26, 26, 46, 0.09);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 290px;
+  position: relative;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+  user-select: none;
+}
+
+.grid-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 40px rgba(26, 26, 46, 0.11);
+  border-color: rgba(232, 113, 90, 0.35);
+}
+
+.card-badge {
+  font-family: 'Boogaloo', cursive;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: rgba(26, 26, 46, 0.35);
+  margin-bottom: 12px;
+}
+
+.card-icon {
+  font-size: 38px;
+  margin-bottom: 14px;
+}
+
+.card-tag {
+  display: inline-block;
+  align-self: flex-start;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-family: 'Boogaloo', cursive;
+  margin-bottom: 10px;
+}
+
+.tag-pm { background: #e3f2fd; color: #1565c0; }
+.tag-design { background: #fdf0ed; color: #E8715A; }
+.tag-research { background: #fce4ec; color: #c62828; }
+
+.card-title {
+  font-family: 'Lilita One', cursive;
+  font-size: 22px;
+  color: #1a1a2e;
+  margin-bottom: 8px;
+}
+
+.card-desc {
+  font-family: 'Nunito', system-ui, sans-serif;
+  font-size: 13px;
+  color: rgba(26, 26, 46, 0.6);
+  line-height: 1.5;
+  flex: 1;
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(26, 26, 46, 0.06);
+}
+
+.card-action {
+  font-family: 'Boogaloo', cursive;
+  font-size: 14px;
+  color: #1a1a2e;
+  letter-spacing: 0.04em;
+}
+
+.card-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: #1a1a2e;
+  border-radius: 50%;
+  color: white;
+  font-size: 14px;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.grid-card:hover .card-arrow {
+  transform: translateX(4px);
+  background: #E8715A;
+}
+
+@media (max-width: 860px) {
+  .visual-grid {
+    grid-template-columns: 1fr;
+  }
+  .portfolio-modal {
+    padding: 24px 20px;
+  }
+}

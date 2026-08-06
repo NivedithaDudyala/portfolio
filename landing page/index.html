@@ -61,6 +61,60 @@
   <a class="nav-resume" href="#">Resume</a>
 </div>
 
+  <!-- Portfolio Visual Grid Overlay -->
+  <div id="portfolioOverlay" class="portfolio-overlay" aria-hidden="true">
+    <div class="portfolio-backdrop"></div>
+    <div class="portfolio-modal">
+      <header class="portfolio-header">
+        <div class="portfolio-header-text">
+          <h2>Selected Work</h2>
+          <p>Choose a focus area to explore case studies, product strategy, and research outcomes.</p>
+        </div>
+        <button id="closePortfolioOverlay" class="close-overlay-btn" aria-label="Close overlay">
+          <span>&larr;</span> Go Back to Desk
+        </button>
+      </header>
+
+      <div class="visual-grid">
+        <div class="grid-card" data-portfolio-type="pm" tabindex="0" role="button" aria-label="View Product Management portfolio">
+          <div class="card-badge pm-badge">01</div>
+          <div class="card-icon">📈</div>
+          <div class="card-tag tag-pm">Product Management</div>
+          <h3 class="card-title">Product Management</h3>
+          <p class="card-desc">Product strategy, roadmap prioritization, cross-functional execution, and measurable outcomes.</p>
+          <div class="card-footer">
+            <span class="card-action">View PM Work</span>
+            <span class="card-arrow">&rarr;</span>
+          </div>
+        </div>
+
+        <div class="grid-card" data-portfolio-type="design" tabindex="0" role="button" aria-label="View Product Design portfolio">
+          <div class="card-badge design-badge">02</div>
+          <div class="card-icon">🎨</div>
+          <div class="card-tag tag-design">Product Design</div>
+          <h3 class="card-title">Product Design</h3>
+          <p class="card-desc">End-to-end UX/UI design, augmented-reality exergames, gamified AI learning, and interaction systems.</p>
+          <div class="card-footer">
+            <span class="card-action">View Design Work</span>
+            <span class="card-arrow">&rarr;</span>
+          </div>
+        </div>
+
+        <div class="grid-card" data-portfolio-type="research" tabindex="0" role="button" aria-label="View Product Research portfolio">
+          <div class="card-badge research-badge">03</div>
+          <div class="card-icon">🧠</div>
+          <div class="card-tag tag-research">Product Research</div>
+          <h3 class="card-title">Product Research</h3>
+          <p class="card-desc">User research, evaluative studies, AI assistant trust & interaction, and human behavior insight.</p>
+          <div class="card-footer">
+            <span class="card-action">View Research Work</span>
+            <span class="card-arrow">&rarr;</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 <script src="main.js" defer></script>
 
 </body>

@@ -355,4 +355,87 @@ if (monitorHit && landing) {
 
 }
 
+
+// Portfolio Visual Grid Destinations & Entrance/Exit Logic
+const portfolioDestinations = {
+  pm: "../PM/PM.html",
+  design: "../Design/Design.html",
+  research: "../Research/Research.html"
+};
+
+const monitorHitEl = document.getElementById("monitorHit");
+const workBtnEl = document.getElementById("workButton");
+const portfolioOverlayEl = document.getElementById("portfolioOverlay");
+const closeOverlayBtnEl = document.getElementById("closePortfolioOverlay");
+const backdropEl = document.querySelector(".portfolio-backdrop");
+
+function openVisualGrid() {
+  if (!portfolioOverlayEl) return;
+  portfolioOverlayEl.classList.remove("exiting");
+  portfolioOverlayEl.classList.add("active");
+  portfolioOverlayEl.setAttribute("aria-hidden", "false");
+}
+
+function closeVisualGrid() {
+  if (!portfolioOverlayEl) return;
+  portfolioOverlayEl.classList.remove("active");
+  portfolioOverlayEl.setAttribute("aria-hidden", "true");
+}
+
+function enterPortfolio(type) {
+  const destination = portfolioDestinations[type];
+  if (!destination) return;
+
+  if (portfolioOverlayEl) {
+    portfolioOverlayEl.classList.add("exiting");
+    portfolioOverlayEl.classList.remove("active");
+  }
+
+  setTimeout(() => {
+    window.location.href = destination;
+  }, 250);
+}
+
+if (monitorHitEl) {
+  monitorHitEl.style.cursor = "pointer";
+  monitorHitEl.setAttribute("aria-hidden", "false");
+  monitorHitEl.addEventListener("click", (e) => {
+    e.preventDefault();
+    openVisualGrid();
+  });
+}
+
+if (workBtnEl) {
+  workBtnEl.style.cursor = "pointer";
+  workBtnEl.addEventListener("click", (e) => {
+    e.preventDefault();
+    openVisualGrid();
+  });
+}
+
+if (closeOverlayBtnEl) {
+  closeOverlayBtnEl.addEventListener("click", closeVisualGrid);
+}
+
+if (backdropEl) {
+  backdropEl.addEventListener("click", closeVisualGrid);
+}
+
+document.querySelectorAll(".grid-card[data-portfolio-type]").forEach((card) => {
+  card.addEventListener("click", (e) => {
+    e.preventDefault();
+    const type = card.dataset.portfolioType;
+    enterPortfolio(type);
+  });
+
+  card.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      const type = card.dataset.portfolioType;
+      enterPortfolio(type);
+    }
+  });
+});
+
+
 init();
