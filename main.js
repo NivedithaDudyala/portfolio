@@ -127,7 +127,7 @@ function startApp(frames, hats) {
   const BRAIN_H = 178;
 
   const CHAR_X = 925;
-  const CHAR_Y = 415;
+  const CHAR_Y = 462;
   const CHAR_W = 70;
   const CHAR_H = 134;
 
