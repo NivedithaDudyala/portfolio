@@ -358,9 +358,9 @@ if (monitorHit && landing) {
 
 // Portfolio Visual Grid Destinations & Entrance/Exit Logic
 const portfolioDestinations = {
-  pm: "../PM/PM.html",
-  design: "../Design/Design.html",
-  research: "../Research/Research.html"
+  pm: "../pm/index.html",
+  design: "../design/index.html",
+  research: "../research/index.html"
 };
 
 const monitorHitEl = document.getElementById("monitorHit");
