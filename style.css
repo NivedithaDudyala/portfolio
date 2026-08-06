@@ -134,6 +134,8 @@ html.scene-ready #brainHit {
   .hat-opt:hover .tip { opacity:1; }
   .monitor-hit { position:absolute; cursor:default; z-index:20; }
   .camera-hit { position:absolute; cursor:pointer; z-index:12; }
+  .cam-tip { position:absolute; bottom:120%; left:50%; transform:translateX(-50%); background:#1a1a2e; color:#F5F0E8; font-size:12px; padding:6px 14px; border-radius:20px; white-space:nowrap; opacity:0; pointer-events:none; transition:opacity 0.2s; font-family:'Boogaloo',cursive; }
+  .camera-hit:hover .cam-tip { opacity:1; }
   .camera-hit .rec-dot { position:absolute; top:1px; right:2px; width:4px; height:4px; background:#ff3333; border-radius:50%; visibility:hidden; }
   .camera-hit:hover .rec-dot { visibility:visible; animation:rec-pulse 1.2s ease-in-out infinite; }
   @keyframes rec-pulse { 0%,100% { transform:scale(1); box-shadow:0 0 0 0 rgba(255,51,51,0.6); } 50% { transform:scale(1.15); box-shadow:0 0 0 3px rgba(255,51,51,0); } }
