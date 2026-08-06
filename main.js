@@ -241,11 +241,44 @@ function startApp(frames, hats) {
     hatLayer.style.top = p.height * HAT_TOP_RATIO + 'px';
   }
 
+  function updateDesktopSceneScale() {
+    const vw = document.documentElement.clientWidth;
+    const vh = document.documentElement.clientHeight;
+    const aspect = vw / vh;
+
+    const containScale = Math.min(vw / VB_W, vh / VB_H);
+    const containedWidth = VB_W * containScale;
+    const desiredWidth = vw * 0.95;
+    const requiredZoom = desiredWidth / containedWidth;
+
+    let sceneZoom = 1;
+    if (vw >= 1200 && aspect >= 1.65) {
+      sceneZoom = Math.max(1, Math.min(1.10, requiredZoom));
+    }
+
+    const finalSceneWidth = containedWidth * sceneZoom;
+    const sceneSideGap = Math.max(0, (vw - finalSceneWidth) / 2);
+
+    document.documentElement.style.setProperty('--scene-zoom', sceneZoom.toString());
+    document.documentElement.style.setProperty('--scene-side-gap', `${sceneSideGap}px`);
+  }
+
+  let resizeRaf = null;
+  function handleWindowResize() {
+    if (resizeRaf) cancelAnimationFrame(resizeRaf);
+    resizeRaf = requestAnimationFrame(() => {
+      updateDesktopSceneScale();
+      positionAll();
+    });
+  }
+
+  updateDesktopSceneScale();
   positionAll();
-  window.addEventListener('resize', positionAll);
+
+  window.addEventListener('resize', handleWindowResize);
 
   if (window.visualViewport) {
-    window.visualViewport.addEventListener('resize', positionAll);
+    window.visualViewport.addEventListener('resize', handleWindowResize);
   }
 
   // Hide neuron spark in illustration

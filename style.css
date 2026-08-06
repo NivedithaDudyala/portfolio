@@ -122,7 +122,17 @@
   .brain-hit { position:absolute; cursor:pointer; z-index:12; }
   .brain-tip { position:absolute; bottom:110%; left:50%; transform:translateX(-50%); background:#1a1a2e; color:#F5F0E8; font-size:12px; padding:7px 14px; border-radius:20px; white-space:nowrap; opacity:0; pointer-events:none; transition:opacity 0.2s; font-family:'Boogaloo',cursive; }
   .brain-hit:hover .brain-tip { opacity:1; }
-  .nav-resume { position:absolute; top:28px; right:40px; font-family:'Boogaloo',cursive; font-size:16px; color:#1a1a2e; text-decoration:none; opacity:0.55; z-index:20; letter-spacing:0.06em; transition:opacity 0.2s; }
+  #sceneWrap {
+    position:absolute; inset:0; width:100%; height:100%;
+    pointer-events:none;
+    transform-origin:50% 50%;
+    transform:scale(var(--scene-zoom, 1));
+    will-change:transform;
+  }
+  #sceneWrap > * { pointer-events:auto; }
+  #monitorContentLayer { pointer-events:none; }
+
+  .nav-resume { position:absolute; top:28px; right:calc(var(--scene-side-gap, 0px) + 40px); font-family:'Boogaloo',cursive; font-size:16px; color:#1a1a2e; text-decoration:none; opacity:0.55; z-index:20; letter-spacing:0.06em; transition:opacity 0.2s, right 0.15s ease-out; }
   .nav-resume:hover { opacity:1; }
 
 
