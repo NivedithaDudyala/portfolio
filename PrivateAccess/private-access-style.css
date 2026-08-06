@@ -1,0 +1,201 @@
+:root {
+  --paper: #fffefa;
+  --desk: #f4eee4;
+  --card: #ffffff;
+  --ink: #171614;
+  --muted: #5c5852;
+  --accent: #e77860;
+  --accent-soft: #f5b3a5;
+  --line: #dfd7cb;
+  --card-radius: 20px;
+  --shadow: 0 10px 30px rgba(36, 29, 20, 0.07);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--desk);
+  font: 500 16px/1.5 "Nunito", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.access-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Minimal Top Navigation */
+.top-nav {
+  padding: 24px 32px;
+}
+.top-nav-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+.back-link {
+  font: 700 15px/1 "Bricolage Grotesque", Arial, sans-serif;
+  color: var(--ink);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 140ms ease;
+}
+.back-link:hover { color: var(--accent); }
+
+/* Main Content Centered Card */
+.access-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 20px 64px;
+}
+
+.centered-access-card {
+  width: 100%;
+  max-width: 520px;
+  background: var(--card);
+  border: 1.5px solid var(--line);
+  border-radius: var(--card-radius);
+  padding: 44px 40px;
+  box-shadow: var(--shadow);
+  text-align: left;
+}
+
+.nda-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: #fdf3f0;
+  border: 1px solid #f5c4b8;
+  color: var(--accent);
+  font: 700 13px/1 "Bricolage Grotesque", Arial, sans-serif;
+  padding: 6px 13px;
+  border-radius: 20px;
+  margin-bottom: 22px;
+}
+.lock-icon {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.centered-access-card h1 {
+  margin: 0 0 12px;
+  font: 800 clamp(30px, 3.4vw, 38px)/1.12 "Bricolage Grotesque", Arial, sans-serif;
+  letter-spacing: -0.035em;
+  color: var(--ink);
+}
+
+.hero-sub {
+  margin: 0 0 32px;
+  font: 500 clamp(15px, 1.2vw, 16.5px)/1.5 "Nunito", Arial, sans-serif;
+  color: #4c4741;
+}
+
+/* Form & Select Controls */
+.form-group {
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.form-group label {
+  font: 700 14.5px/1 "Bricolage Grotesque", Arial, sans-serif;
+  color: var(--ink);
+}
+
+select {
+  width: 100%;
+  padding: 13px 16px;
+  font: 600 15px/1.4 "Nunito", Arial, sans-serif;
+  color: var(--ink);
+  background: #fffdf8;
+  border: 1.5px solid #d4ccbf;
+  border-radius: 10px;
+  cursor: pointer;
+  appearance: auto;
+  transition: border-color 140ms ease, box-shadow 140ms ease;
+}
+select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(231, 120, 96, 0.2);
+}
+
+.primary-btn {
+  width: 100%;
+  padding: 14px 24px;
+  background: var(--ink);
+  color: #ffffff;
+  border: 1.5px solid var(--ink);
+  border-radius: 10px;
+  font: 700 16px/1 "Bricolage Grotesque", Arial, sans-serif;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 rgba(23, 22, 20, 0.15);
+  transition: transform 140ms ease, box-shadow 140ms ease, background 140ms ease;
+}
+.primary-btn:hover {
+  background: #2b2824;
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 rgba(23, 22, 20, 0.2);
+}
+.primary-btn:focus-visible {
+  outline: 3px solid rgba(231, 120, 96, 0.65);
+  outline-offset: 3px;
+}
+
+/* Email Alternative Help Text */
+.email-help {
+  margin: 18px 0 0;
+  font: 500 13.5px/1.4 "Nunito", Arial, sans-serif;
+  color: #635d55;
+  text-align: center;
+}
+.email-help a {
+  color: var(--accent);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.email-help a:hover { color: #bd4e39; }
+
+/* Status & Error Messages */
+.info-message {
+  margin-top: 18px;
+  padding: 12px 16px;
+  border-radius: 9px;
+  font: 600 14px/1.45 "Nunito", Arial, sans-serif;
+  text-align: center;
+}
+.info-message.status-error {
+  background: #fff3f0;
+  border: 1.5px solid #f5b3a5;
+  color: #bd4e39;
+}
+.info-message.status-success {
+  background: #f0f7f2;
+  border: 1.5px solid #bce3c9;
+  color: #276b43;
+}
+.info-message.hidden { display: none; }
+
+/* Phone Responsive Rules */
+@media (max-width: 600px) {
+  .top-nav { padding: 18px 20px; }
+  .centered-access-card {
+    padding: 32px 24px;
+    border-radius: 16px;
+  }
+}

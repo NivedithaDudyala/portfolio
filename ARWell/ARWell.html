@@ -1,260 +1,263 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="ARWell case study: transforming physical therapy goals into lasting habits.">
-  <title>ARWell — Case Study</title>
-  <link rel="stylesheet" href="ARWell-style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ARWell is a gamified augmented-reality movement experience redesigned through research, usability testing, and five connected product improvements.">
+  <meta name="theme-color" content="#f4eee4">
+  <title>ARWell — Transforming Goals Into Lasting Habits</title>
+  <link rel="icon" href="../PM/assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&amp;family=Madimi+One&amp;family=Nunito:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600..800&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="ARWell-style.css?v=20260804-6">
 </head>
 <body>
-  <div class="case-shell">
-    <aside class="sidebar">
-      <a class="back" href="../og-index.html">← <span>Back to Desk</span></a>
-      <nav class="contents" aria-label="Case study contents">
-        <h2>Contents</h2>
-        <ol>
-          <li><a href="#snapshot">Project Snapshot</a></li>
-          <li><a href="#role">My Role</a></li>
-          <li><a href="#context">Context</a></li>
-          <li><a href="#research">Research Process</a></li>
-          <li><a href="#hearing">What we kept hearing</a></li>
-          <li><a href="#iterations">Design Iterations</a></li>
-          <li><a href="#results">Results</a></li>
-          <li><a href="#inclusive">Inclusive Design</a></li>
-          <li><a href="#reflection">Reflection</a></li>
-          <li><a href="#next">Next Steps</a></li>
-        </ol>
-      </nav>
-      <div class="doodle" aria-hidden="true">✦</div>
-    </aside>
+  <button class="mobile-menu" id="mobileMenu" type="button" aria-expanded="false" aria-controls="sidebar">
+    <span aria-hidden="true">☰</span><span>Contents</span>
+  </button>
+  <button class="scrim" id="scrim" type="button" aria-label="Close case study navigation"></button>
 
-    <main>
-      <article class="paper">
-        <header class="hero">
-          <div>
-            <h1>ARWell: Transforming Goals Into Lasting Habits</h1>
-            <p class="lede">A gamified AR physical therapy app redesigned to make movement feel clearer, more rewarding, and worth returning to.</p>
-            <dl class="meta">
-              <div><dt>Role</dt><dd>Product Strategy · Product Research · Product Design</dd></div>
+  <div class="case-study-shell">
+    <div class="case-layout">
+      <aside class="sidebar" id="sidebar">
+        <a class="back-btn" href="../landing%20page/index.html">← <span>Go Back to Desk</span></a>
+
+        <nav class="contents-card" aria-label="ARWell case study sections">
+          <img class="contents-frame" src="assets/contents-frame.svg?v=20260804-2" alt="" aria-hidden="true">
+          <p class="contents-title">Contents</p>
+          <a class="active" href="#snapshot">1. Project Snapshot</a>
+          <a href="#role">2. My Role</a>
+          <a href="#context">3. Context</a>
+          <a href="#research">4. Research Process</a>
+          <a href="#patterns">5. What We Heard</a>
+          <a href="#iterations">6. Design Iterations</a>
+          <a href="#results">7. Results</a>
+          <a href="#inclusive">8. Inclusive Design</a>
+          <a href="#reflection">9. Reflection</a>
+          <a href="#next">10. Next Steps</a>
+        </nav>
+
+        <div class="sidebar-note">
+          <strong>ARWell</strong>
+          <span>Product design · research</span>
+          <a href="#iterations">See the redesign ↓</a>
+        </div>
+      </aside>
+
+      <main class="case-main" id="top">
+        <section class="hero paper-section" aria-labelledby="case-title">
+          <div class="hero-copy">
+            <p class="eyebrow">Product design · UX research · usability testing</p>
+            <h1 id="case-title">ARWell: Transforming Goals Into Lasting Habits</h1>
+            <p class="hero-lede">A gamified AR physical-therapy app redesigned to make movement feel clearer, more rewarding, and worth returning to.</p>
+
+            <dl class="hero-meta">
+              <div><dt>Role</dt><dd>Product Strategist · Product Researcher · Product Designer</dd></div>
               <div><dt>Duration</dt><dd>8 months</dd></div>
-              <div><dt>Methods</dt><dd>Agile Delivery · Sprint Planning · Risk &amp; Dependency Management · Surveys · User Interviews · Usability Testing</dd></div>
+              <div><dt>Methods</dt><dd>Surveys · Interviews · Usability Testing · Prototyping</dd></div>
             </dl>
           </div>
-          <img class="hero-image" src="assets/hero.png" alt="ARWell augmented-reality physical therapy game">
-        </header>
 
-        <section class="snapshot-stats" aria-label="Project outcomes">
-          <article><strong>+23%</strong><span>satisfaction &amp; task efficiency</span></article>
-          <article><strong>71.5 → 88.2</strong><span>SUS score</span></article>
-          <article><strong>80+</strong><span>participants across phases</span></article>
-          <article><strong>5</strong><span>core features redesigned</span></article>
+          <figure class="hero-visual hero-visual--supplied">
+            <img src="assets/hero.svg" width="480" height="334" alt="ARWell gameplay showing a child completing a movement exercise in an augmented-reality game world">
+          </figure>
         </section>
 
-        <section id="snapshot" class="project-snapshot">
-          <h2>1. Project Snapshot</h2>
-          <div class="snapshot-grid">
-            <article>
-              <h3>Problem</h3>
-              <p>ARWell had a strong core idea: make physical therapy feel like play. But users didn’t always trust the flow, stay oriented between games, or leave sessions feeling like they had accomplished something worth returning to.</p>
-            </article>
-            <article>
-              <h3>Approach</h3>
-              <p>We ran surveys, interviews, moderated usability tests, and unmoderated Maze studies across 80+ participants to understand where motivation, guidance, and confidence were breaking down.</p>
-            </article>
-            <article>
-              <h3>Key Insight</h3>
-              <p>The issue was not one broken screen. It was the compounding effect of small failures across the experience — goal setting took too much effort, transitions lacked guidance, rewards felt unclear, and progress feedback did not feel personal.</p>
-            </article>
-            <article>
-              <h3>Impact</h3>
-              <p>Redesigning the five core experience features together improved satisfaction and task efficiency by 23% and raised the SUS score from 71.5 to 88.2.</p>
-            </article>
+        <div class="hero-metrics hero-metrics--primary" aria-label="Project outcomes">
+          <article class="hero-metrics__primary"><strong>71.5 → 88.2</strong><span>SUS score</span></article>
+          <article><strong>+23%</strong><span>Satisfaction and task efficiency</span></article>
+          <article><strong>80+</strong><span>Participants across phases</span></article>
+          <article><strong>5</strong><span>Core features redesigned</span></article>
+        </div>
+
+        <section class="paper-section" id="snapshot">
+          <header class="section-heading"><span>01</span><div><h2>Project Snapshot</h2><p>The challenge, research, and outcome of a connected rehabilitation redesign.</p></div></header>
+          <div class="snapshot-flow">
+            <article><h3>Motivation stalled before movement</h3><p>Users loved the game, but they still felt uncertain about what came next, how rewards connected to effort, and whether their progress was real.</p></article>
+            <article><h3>Research found friction across the whole flow</h3><p>Surveys, interviews, and usability tests showed the problem was not one screen—it was how goal setting, transitions, rewards, and feedback stacked together.</p></article>
+            <article><h3>Five core moments were redesigned</h3><p>Goal Setting, the In-Between Screen, the Result Screen, the Badge System, and the Reward Store were rebuilt to feel like one coherent experience.</p></article>
+            <article><h3>Outcomes became clearer and more motivating</h3><p>Those connected changes raised task confidence, made progress easier to follow, and moved SUS from 71.5 to 88.2.</p></article>
           </div>
         </section>
 
-        <section id="role">
-          <h2>2. My Role</h2>
-          <p class="kicker">What I owned across research, design, and evaluation</p>
+        <section class="paper-section" id="role">
+          <header class="section-heading"><span>02</span><div><h2>My Role</h2><p>The product design ownership I held from research through validation.</p></div></header>
           <div class="role-grid">
-            <article><img src="assets/role-icon-redesign.svg" alt=""><h3>Research Planning</h3><p>Designed survey, interview, and usability test protocols to understand motivation, guidance, and confidence gaps across ARWell.</p></article>
-            <article><img src="assets/role-icon-evaluation.svg" alt=""><h3>Moderated Testing &amp; Synthesis</h3><p>Facilitated usability sessions, analyzed qualitative feedback, and identified recurring friction patterns across user groups.</p></article>
-            <article><img src="assets/role-icon-prototyping.svg" alt=""><h3>Feature Redesign</h3><p>Owned the end-to-end redesign of Goal Setting and the In-Between Screen, and contributed to prioritization across all five redesigned features.</p></article>
-            <article><img src="assets/role-icon-laptop.svg" alt=""><h3>Prototyping &amp; Testing</h3><p>Created high-fidelity Figma prototypes, configured Maze tests, and supported moderated and unmoderated evaluation rounds.</p></article>
-            <article><img src="assets/role-icon-extra.svg" alt=""><h3>Final Evaluation</h3><p>Synthesized findings into the final research report and sponsor presentation, connecting design changes to SUS, task efficiency, and satisfaction improvements.</p></article>
+            <article><span aria-hidden="true"><img src="assets/role-icon-research.svg" alt=""></span><h3>Research Planning</h3><p>Designed survey, interview, and usability-test protocols around motivation, guidance, and confidence.</p></article>
+            <article><span aria-hidden="true"><img src="assets/role-icon-testing.svg" alt=""></span><h3>Research Execution and Synthesis</h3><p>Facilitated sessions, analyzed qualitative feedback, and turned findings into actionable product patterns.</p></article>
+            <article><span aria-hidden="true"><img src="assets/role-icon-redesign.svg" alt=""></span><h3>End-to-End Product Design</h3><p>Owned Goal Setting, In-Between Screen, Result Screen, Badge System, and Reward Store across structure, information architecture, and interaction design.</p></article>
+            <article><span aria-hidden="true"><img src="assets/role-icon-prototyping.svg" alt=""></span><h3>Prototyping and Validation</h3><p>Built high-fidelity prototypes, tested moderated and unmoderated flows, and validated the redesign through SUS, efficiency, and satisfaction measures.</p></article>
           </div>
         </section>
 
-        <section id="context">
-          <h2>3. Context</h2>
-          <p class="kicker">The product already had the right idea<br>— the experience needed to catch up</p>
-          <div class="context-layout">
+        <section class="paper-section" id="context">
+          <header class="section-heading"><span>03</span><div><h2>Context</h2><p>The product already had the right idea—the experience needed to catch up.</p></div></header>
+          <div class="context-grid">
             <div class="context-copy">
-              <p><strong>ARWell is a gamified AR fitness app that turns full-body movement into play.</strong> Users complete exercises like squats, arm raises, and hip movements by interacting with an on-screen game world instead of following a traditional drill format.</p>
-              <p>The product had a strong foundation: movement was already playful, visual, and active. But early testing showed that users did not always feel confident inside the experience. They could complete tasks, but they did not always understand what was happening next, why rewards mattered, or how their effort connected to progress.</p>
-              <p>The design challenge became clear: how do we make ARWell feel easier to follow, more motivating, and more worth returning to?</p>
+              <p>ARWell is a gamified AR fitness app that turns full-body movement into play. Users complete squats, arm raises, and hip movements by interacting with an on-screen game world instead of following a traditional drill.</p>
+              <p>The foundation was playful, visual, and active. Early testing showed, however, that users could finish tasks without always understanding what came next, why rewards mattered, or how effort connected to progress.</p>
+              <p class="context-question">How might we make ARWell easier to follow, more motivating, and more worth returning to?</p>
             </div>
-            <figure class="context-figure">
-              <div class="context-crop"><img src="assets/context-1.png" alt="Moderated ARWell testing sessions with participants"></div>
-              <figcaption>Moderated testing sessions showed how users moved, paused, interpreted feedback &amp; navigated ARWell’s full body gameplay in real use contexts.</figcaption>
-            </figure>
+            <figure class="context-visual context-visual--supplied"><img src="assets/testing-context.svg" width="528" height="433" loading="lazy" decoding="async" alt="Moderated ARWell testing sessions showing how people moved, paused, and interpreted feedback in real contexts"></figure>
           </div>
-          <div class="challenge-grid">
-            <article><h3>Goal Setting</h3><p>Make goal creation faster simpler &amp; personalized.</p></article>
-            <article><h3>In-Between Screen</h3><p>Improve orientation and clarity during transitions between games.</p></article>
-            <article><h3>Result Screen</h3><p>Make performance feedback easier to understand and more personal.</p></article>
-            <article><h3>Badge System</h3><p>Make achievements clear, meaningful, and motivating.</p></article>
-            <article><h3>Reward Store</h3><p>Make rewards feel earnable, relevant, and exciting.</p></article>
+          <div class="focus-strip" aria-label="Movement journey phases">
+            <article><h3>Before movement</h3><p>Goal Setting: set a plan that feels clear, fast, and personal.</p></article>
+            <article><h3>Between activities</h3><p>In-Between Screen: keep transitions obvious and the next move easy to prepare for.</p></article>
+            <article><h3>After movement</h3><p>Result Screen, Badge System, Reward Store: make progress meaningful, motivating, and worth returning to.</p></article>
           </div>
         </section>
 
-        <section id="research">
-          <h2>4. Research Process</h2>
-          <p class="kicker">Three methods, one goal: understand where motivation broke</p>
-          <p class="research-intro">We used three research methods because each one answered a different question. Surveys showed broad patterns in wellness habits, interviews uncovered why people drop off even when they want to stay active, and usability tests revealed what users actually did when navigating ARWell.</p>
-          <div class="research-cards">
-            <article><h3>01 · Experience Surveys</h3><b>n = 45 · Ages 18–64</b><p>Mapped how people relate to wellness tools, motivation, and long-term exercise habits.</p></article>
-            <article><h3>02 · Semi-Structured Interviews</h3><b>n = 5 · Ages 20–30</b><p>Explored the gap between intention and behavior — why people lose momentum even when they want to stay consistent.</p></article>
-            <article><h3>03 · Usability Tests</h3><b>n = 41 · Ages 7–43</b><p>Observed task pathways, confusion points, and feature comprehension across moderated in-person sessions and unmoderated Maze testing.</p></article>
+        <section class="paper-section" id="research">
+          <header class="section-heading"><span>04</span><div><h2>Research Process</h2><p>Three methods, one goal: understand where motivation broke.</p></div></header>
+          <p class="section-intro">Each method answered a different question. Surveys exposed broad habit patterns, interviews revealed why momentum faded, and usability tests showed what users actually did inside ARWell.</p>
+          <div class="research-grid">
+            <article><span>01</span><h3>Experience Surveys</h3><strong>n = 45 · Ages 18–64</strong><p>Mapped how people relate to wellness tools, motivation, and long-term exercise habits.</p></article>
+            <article><span>02</span><h3>Semi-Structured Interviews</h3><strong>n = 5 · Ages 20–30</strong><p>Explored the gap between intention and behavior—why people lose momentum even when they want consistency.</p></article>
+            <article><span>03</span><h3>Usability Tests</h3><strong>n = 41 · Ages 7–43</strong><p>Observed task pathways and confusion across moderated sessions and unmoderated Maze testing.</p></article>
           </div>
-          <p class="center-note">Together, these methods revealed where motivation, personalization, and guidance were breaking down.</p>
+          <aside class="takeaway"><strong>Research takeaway</strong><p>Together, these methods revealed where motivation, personalization, and guidance were breaking down.</p></aside>
         </section>
 
-        <section id="hearing">
-          <h2>5. What We Kept Hearing</h2>
-          <p class="kicker">Three patterns that shaped the redesign</p>
-          <p class="hearing-intro">Across surveys, interviews, and usability tests, the same friction points kept appearing. Users did not just need better-looking screens — they needed clearer motivation, more personal feedback, and stronger guidance throughout the experience.</p>
-          <div class="hearing-cards">
-            <article>
-              <h3>01 · Motivation</h3>
-              <p>Users wanted evidence that their effort was building toward something. Without visible progress, meaningful rewards, or a reason to return, each session felt isolated.</p>
-              <blockquote>“I would use ARWell more if there was a streak system — something that shows my progress and keeps me coming back.” <cite>– P9</cite></blockquote>
-            </article>
-            <article>
-              <h3>02 · Personalization</h3>
-              <p>Generic feedback felt indifferent. Users responded more strongly when the app reflected their performance, preferences, progress, or choices.</p>
-              <blockquote>“It would be cool to give the frog a name, because it feels like your buddy throughout the game.” <cite>– P4</cite></blockquote>
-            </article>
-            <article>
-              <h3>03 · Guidance</h3>
-              <p>Uncertainty broke momentum. When users did not know what was coming next, whether they had completed a movement correctly, or what their results meant, they disengaged.</p>
-              <blockquote>“I want to know the purpose of what I’m doing — what makes me level up, and how often should I do it?” <cite>– P8</cite></blockquote>
-            </article>
+        <section class="paper-section" id="patterns">
+          <header class="section-heading"><span>05</span><div><h2>What We Kept Hearing</h2><p>Three recurring patterns shaped the redesign.</p></div></header>
+          <p class="section-intro">Users did not simply need better-looking screens. They needed clearer motivation, more personal feedback, and stronger guidance before, during, and after gameplay.</p>
+          <div class="pattern-grid">
+            <article><span>01</span><h3>Motivation</h3><p>Without visible progress, meaningful rewards, or a reason to return, each session felt isolated.</p><blockquote>“I would use ARWell more if there was a streak system—something that shows my progress.”<cite>— P9</cite></blockquote></article>
+            <article><span>02</span><h3>Personalization</h3><p>Generic feedback felt indifferent. Users responded when the app reflected their preferences and progress.</p><blockquote>“It would be cool to give the frog a name, because it feels like your buddy.”<cite>— P4</cite></blockquote></article>
+            <article><span>03</span><h3>Guidance</h3><p>Uncertainty broke momentum when users did not know what was next or what their results meant.</p><blockquote>“I want to know the purpose of what I’m doing—what makes me level up?”<cite>— P8</cite></blockquote></article>
           </div>
-          <div class="hearing-takeaway"><strong>Takeaway</strong><p>The redesign needed to make ARWell feel more motivating, personal, and easy to follow — before, during, and after gameplay.</p></div>
+          <aside class="takeaway"><strong>Design takeaway</strong><p>ARWell needed to feel motivating, personal, and easy to follow across the entire experience—not only during gameplay.</p></aside>
         </section>
 
-        <section id="iterations">
-          <h2>6. Design Iterations</h2>
-          <p class="kicker">Turning research patterns into five core experience fixes</p>
-          <p class="iterations-intro">The research patterns became design priorities. Instead of treating each feature as a separate UI problem, we redesigned the experience around what users needed before, between, and after gameplay: clearer goals, smoother transitions, understandable results, meaningful achievements, and rewards that felt earned.</p>
-          <div class="iteration goal-iteration">
-            <h3>01 · Goal Setting</h3>
-            <div class="iteration-detail"><strong>Problem</strong><p>Goal creation took too much effort and made a simple weekly commitment feel tedious.</p></div>
-            <div class="iteration-detail"><strong>Design Move</strong><p>Replaced repeated button taps with an iOS-style scroll picker, circular day indicators, and a confirmation state.</p></div>
-            <div class="goal-comparison">
-              <figure><figcaption>Before · Goal Setting</figcaption><div class="goal-shot goal-before" role="img" aria-label="Original ARWell goal-setting interface"></div><p>Limited goal tracking with little flexibility.</p></figure>
-              <figure><figcaption>After · Goal Setting</figcaption><div class="goal-shot goal-after" role="img" aria-label="Redesigned ARWell goal-setting interface"></div></figure>
+        <section class="paper-section" id="iterations">
+          <header class="section-heading"><span>06</span><div><h2>Design Iterations</h2><p>Turning research patterns into five connected experience fixes.</p></div></header>
+          <p class="section-intro">Rather than treating each feature as a separate UI problem, we redesigned the moments before, between, and after gameplay as one motivational system.</p>
+
+          <article class="iteration">
+            <header><span>01</span><div><h3>Goal Setting</h3><p>Make weekly commitments faster, clearer, and more flexible.</p></div></header>
+            <div class="iteration-summary"><p><strong>Problem</strong>Repeated taps made a simple weekly commitment feel tedious.</p><p><strong>Design move</strong>Introduced a scroll picker, circular day indicators, and an explicit confirmation state.</p></div>
+            <figure class="iteration-art"><img src="assets/comparison-goals.svg" width="908" height="451" loading="lazy" decoding="async" alt="Before and after comparison of the ARWell goal-setting modal"></figure>
+            <div class="comparison-grid responsive-comparison">
+              <figure><span>Before</span><div class="image-frame"><img src="assets/goal-before.webp" width="748" height="555" loading="lazy" decoding="async" alt="Original ARWell goal-setting interface with repeated increment controls"></div><figcaption>Limited goal tracking with little flexibility.</figcaption></figure>
+              <figure><span>After</span><div class="image-frame"><img src="assets/goal-after.svg" width="746" height="555" loading="lazy" decoding="async" alt="Redesigned ARWell goal-setting modal with weekly indicators and scroll pickers"></div><figcaption>Flexible weekly goal setting with clear progress tracking.</figcaption></figure>
             </div>
-            <p class="why-it-mattered"><strong>Why It Mattered</strong><br>Users could set goals faster, understand their weekly plan more easily, and feel more ownership over their progress.</p>
+            <p class="why"><strong>Why it mattered</strong>Users could set goals faster and understand their weekly plan more easily.</p>
+          </article>
+
+          <article class="iteration">
+            <header><span>02</span><div><h3>In-Between Screen</h3><p>Keep users oriented while moving between games.</p></div></header>
+            <div class="iteration-summary"><p><strong>Problem</strong>Small transition messages were easy to miss while users were physically active.</p><p><strong>Design move</strong>Built a full-screen transition card with the next game, exercise focus, controls, and countdown.</p></div>
+            <figure class="iteration-art"><img src="assets/comparison-transition.svg" width="908" height="451" loading="lazy" decoding="async" alt="Before and after comparison of the ARWell in-between screen"></figure>
+            <div class="comparison-grid responsive-comparison">
+              <figure><span>Before</span><div class="image-frame"><img src="assets/transition-before.webp" width="2048" height="1431" loading="lazy" decoding="async" alt="Original ARWell transition screen with a small movement checklist"></div><figcaption>Minimal transition guidance.</figcaption></figure>
+              <figure><span>After</span><div class="image-frame"><img src="assets/transition-after.webp" width="2048" height="1431" loading="lazy" decoding="async" alt="Redesigned ARWell in-between screen with visual instructions and setup details"></div><figcaption>Clear visual instructions and game setup.</figcaption></figure>
+            </div>
+            <p class="why"><strong>Why it mattered</strong>The experience became easier to follow without interrupting the flow of movement.</p>
+          </article>
+
+          <article class="iteration">
+            <header><span>03</span><div><h3>Result Screen</h3><p>Turn performance data into a meaningful accomplishment.</p></div></header>
+            <div class="iteration-summary"><p><strong>Problem</strong>Users saw metrics but did not understand what the numbers meant or why they mattered.</p><p><strong>Design move</strong>Reframed results around session-based stars, minutes played, and a personalized exercise achievement.</p></div>
+            <figure class="iteration-art"><img src="assets/comparison-results.svg" width="908" height="451" loading="lazy" decoding="async" alt="Before and after comparison of the ARWell result screen"></figure>
+            <div class="comparison-grid responsive-comparison">
+              <figure><span>Before</span><div class="image-frame"><img src="assets/result-before.webp" width="1200" height="900" loading="lazy" decoding="async" alt="Original ARWell result popup with generic streak, star, and badge metrics"></div><figcaption>Generic metrics with weak context.</figcaption></figure>
+              <figure><span>After</span><div class="image-frame"><img src="assets/result-after.webp" width="2048" height="1535" loading="lazy" decoding="async" alt="Redesigned ARWell result screen with stars, minutes, and exercise achievement"></div><figcaption>Session-specific and personal feedback.</figcaption></figure>
+            </div>
+            <p class="why"><strong>Why it mattered</strong>Performance feedback began to feel like accomplishment—not just data.</p>
+          </article>
+
+          <article class="iteration">
+            <header><span>04</span><div><h3>Badge System</h3><p>Make progress and unlock criteria understandable.</p></div></header>
+            <div class="iteration-summary"><p><strong>Problem</strong>Badges looked decorative, but earned, locked, and upcoming states were unclear.</p><p><strong>Design move</strong>Created distinct states, badge names, descriptions, unlock criteria, and a unified illustration system.</p></div>
+            <figure class="iteration-art"><img src="assets/comparison-badges.svg" width="908" height="451" loading="lazy" decoding="async" alt="Before and after comparison of the ARWell badge system"></figure>
+            <div class="comparison-grid responsive-comparison">
+              <figure><span>Before</span><div class="image-frame"><img src="assets/badge-before.webp" width="1200" height="900" loading="lazy" decoding="async" alt="Original ARWell badge list with mixed earned and locked states"></div><figcaption>Mixed states with unclear labels.</figcaption></figure>
+              <figure><span>After</span><div class="image-frame"><img src="assets/badge-after.webp" width="1366" height="1024" loading="lazy" decoding="async" alt="Redesigned ARWell quest and badge system with progress and collect states"></div><figcaption>Clear progress, sections, and reward states.</figcaption></figure>
+            </div>
+            <p class="why"><strong>Why it mattered</strong>Achievements became clearer, more meaningful, and more motivating to return for.</p>
+          </article>
+
+          <article class="iteration">
+            <header><span>05</span><div><h3>Reward Store</h3><p>Make rewards feel earnable, visible, and trustworthy.</p></div></header>
+            <div class="iteration-summary"><p><strong>Problem</strong>The store had unclear item states, limited previews, and weak purchase feedback.</p><p><strong>Design move</strong>Created a full-screen store with live avatar preview, categories, clear purchase states, and confirmation.</p></div>
+            <figure class="iteration-art"><img src="assets/comparison-rewards.svg" width="908" height="451" loading="lazy" decoding="async" alt="Before and after comparison of the ARWell reward store"></figure>
+            <div class="comparison-grid responsive-comparison">
+              <figure><span>Before</span><div class="image-frame"><img src="assets/reward-before.webp" width="1200" height="900" loading="lazy" decoding="async" alt="Original ARWell rewards store shown as a cramped popup"></div><figcaption>Cramped popup with mixed item states.</figcaption></figure>
+              <figure><span>After</span><div class="image-frame"><img src="assets/reward-after.webp" width="2048" height="1535" loading="lazy" decoding="async" alt="Redesigned ARWell reward store with live avatar preview and item categories"></div><figcaption>Full-screen store with a live preview.</figcaption></figure>
+            </div>
+            <p class="why"><strong>Why it mattered</strong>Rewards felt connected to effort and easier to trust.</p>
+          </article>
+        </section>
+
+        <section class="paper-section" id="results">
+          <header class="section-heading"><span>07</span><div><h2>Results</h2><p>The redesign made progress easier to understand—and easier to return to.</p></div></header>
+          <p class="section-intro">After the five core redesigns, ARWell tested as clearer, more motivating, and more rewarding. Users were noticing progress and asking how to keep going.</p>
+          <div class="results-grid">
+            <article class="results-primary"><strong>71.5 → 88.2</strong><h3>SUS Score</h3><p>The experience moved from a Grade C to a Grade A usability score.</p></article>
+            <article><strong>+23%</strong><h3>Satisfaction &amp; Efficiency</h3><p>Key flows became smoother while satisfaction increased.</p></article>
+            <article><strong>84.3</strong><h3>Unmoderated SUS</h3><p>Maze testing confirmed the redesign held up independently.</p></article>
+            <article class="results-note"><strong>↑</strong><h3>Return Motivation</h3><p>Participants asked how to earn more badges and continued into additional sessions.</p></article>
           </div>
-          <div class="iteration guidance-iteration">
-            <h3>02 · In-Between Screen</h3>
-            <div class="iteration-detail"><strong>Problem</strong><p>Users missed small transition messages while they were physically active and focused on the TV/game screen.</p></div>
-            <div class="iteration-detail"><strong>Design Move</strong><p>Replaced the small corner popup with a full-screen transition card showing the next game, exercise focus, icon, and countdown.</p></div>
-            <div class="guidance-comparison">
-              <figure><figcaption>Before · In-Between Screen</figcaption><img src="assets/iteration-goals.png" alt="Original ARWell in-between screen"><p>Minimal transition guidance that users could easily overlook.</p></figure>
-              <figure><figcaption>After · In-Between Screen</figcaption><img src="assets/iteration-guidance.png" alt="Redesigned ARWell in-between screen"><p>A clearer in-between screen with visual instructions and game setup details.</p></figure>
-            </div>
-            <p class="why-it-mattered"><strong>Why It Mattered</strong><br>The experience became easier to follow without interrupting the flow of movement.</p>
+          <aside class="takeaway"><strong>Result takeaway</strong><p>The biggest shift was not only usability. ARWell began to feel understandable, rewarding, and worth coming back to.</p></aside>
+        </section>
+
+        <section class="paper-section" id="inclusive">
+          <header class="section-heading"><span>08</span><div><h2>Inclusive Design</h2><p>Designing for movement, attention, and different ability levels.</p></div></header>
+          <p class="section-intro">ARWell’s users were often moving, watching a larger screen, interpreting feedback quickly, and sometimes relying on caregivers or therapists. Accessibility had to work beyond a typical app interface.</p>
+          <div class="inclusive-grid">
+            <article><h3>The body is moving</h3><p>Design made actions easy to start and understand while users were already in motion.</p></article>
+            <article><h3>Attention is divided</h3><p>Visual cues, icons, and clear hierarchy helped users notice the right information during active moments.</p></article>
+            <article><h3>Support may be shared</h3><p>Design considered caregivers, therapists, and shared attention so progress felt easier to support beyond the screen.</p></article>
           </div>
-          <div class="iteration result-iteration">
-            <h3>03 · Result Screen</h3>
-            <div class="iteration-detail"><strong>Problem</strong><p>The results showed performance data, but users did not always understand what the numbers meant or why they mattered.</p></div>
-            <div class="iteration-detail"><strong>Design Move</strong><p>Rebuilt the screen around session-based stars, minutes played, and personalized exercise.</p></div>
-            <div class="result-comparison">
-              <figure><figcaption>Before · Result Screen</figcaption><img src="assets/iteration-results.png" alt="Original ARWell result screen"><p>Generic streak, star, and badge metrics.</p></figure>
-              <figure><figcaption>After · Result Screen</figcaption><img src="assets/iteration-badges.png" alt="Redesigned ARWell result screen"><p>Session-specific stars, minutes played, and a personalized exercise achievement.</p></figure>
-            </div>
-            <p class="why-it-mattered"><strong>Why It Mattered</strong><br>Performance feedback started to feel like accomplishment, not just data.</p>
-          </div>
-          <div class="iteration badge-iteration">
-            <h3>04 · Badge System</h3>
-            <div class="iteration-detail"><strong>Problem</strong><p>Badges looked decorative, but users could not easily tell what they earned, what was locked, or how to unlock more.</p></div>
-            <div class="iteration-detail"><strong>Design Move</strong><p>Created earned and locked states, badge names, descriptions, unlock criteria, and a more unified visual system.</p></div>
-            <div class="badge-comparison">
-              <figure><figcaption>Before · Badge System</figcaption><img src="assets/iteration-store.png" alt="Original ARWell badge system"><p>Mixed earned and locked badges with no clear labels.</p></figure>
-              <figure><figcaption>After · Badge System</figcaption><img src="assets/inclusive-1.png" alt="Redesigned ARWell badge system"><p>Tabbed badge sections with names, earn descriptions, and a unified illustration style.</p></figure>
-            </div>
-            <p class="why-it-mattered"><strong>Why It Mattered</strong><br>Achievements became clearer, more meaningful, and more motivating to return for.</p>
-          </div>
-          <div class="iteration reward-iteration">
-            <h3>05 · Reward Store</h3>
-            <div class="iteration-detail"><strong>Problem</strong><p>The store had unclear item states, limited preview, and weak confirmation feedback, which made rewards feel less trustworthy.</p></div>
-            <div class="iteration-detail"><strong>Design Move</strong><p>Created a full-screen store with live avatar preview, item categories, clear purchase states, and success confirmation.</p></div>
-            <div class="reward-comparison">
-              <figure><figcaption>Before · Reward Store</figcaption><img src="assets/inclusive-2.png" alt="Original ARWell reward store"><p>Cramped popup, mixed item states, and no purchase feedback.</p></figure>
-              <figure><figcaption>After · Reward Store</figcaption><img src="assets/inclusive-3.png" alt="Redesigned ARWell reward store"><p>Full-screen store with live avatar preview, clear tabs, and purchase confirmation.</p></figure>
-            </div>
-            <p class="why-it-mattered"><strong>Why It Mattered</strong><br>Rewards felt more earnable, visible, and connected to the user’s effort.</p>
+          <aside class="takeaway"><strong>Inclusive-design takeaway</strong><p>The goal was to make ARWell easy to follow while users were physically active—not only make the screens cleaner.</p></aside>
+        </section>
+
+        <section class="paper-section" id="reflection">
+          <header class="section-heading"><span>09</span><div><h2>Reflection</h2><p>What this project taught me about designing for return behavior.</p></div></header>
+          <div class="reflection-card">
+            <p>ARWell taught me that a product can be functional and still fail to feel motivating. People could complete exercises and understand individual screens without feeling confident, rewarded, or excited to return.</p>
+            <ol><li><strong>Motivation is built through many small moments.</strong> Each redesign solved a different problem, but together they changed how the experience felt.</li><li><strong>Observed behavior matters more than surface-level approval.</strong> Users sometimes called a screen “fine” while missing its key information seconds later.</li></ol>
+            <aside><strong>Takeaway</strong><span>Designing for engagement means helping users understand their effort, feel progress, and know why returning matters.</span></aside>
           </div>
         </section>
 
-        <section id="results">
-          <h2>7. Results</h2>
-          <p class="kicker">The redesign made progress easier to understand — and easier to return to</p>
-          <p class="results-intro">After redesigning the five core experience areas, ARWell tested as clearer, more motivating, and more rewarding. Users were no longer just completing tasks; they were noticing progress, understanding rewards, and asking how to keep going.</p>
-          <div class="result-grid">
-            <article><strong>71.5 → 88.2</strong><b>SUS Score</b><p>The redesigned experience moved from a Grade C usability score to a Grade A experience. +23% Satisfaction &amp; Task Efficiency</p></article>
-            <article><strong>+23%</strong><b>Satisfaction &amp; Task Efficiency</b><p>Users completed key flows more smoothly and reported stronger satisfaction with the redesigned experience.</p></article>
-            <article><strong>84.3</strong><b>SUS in Unmoderated Testing</b><p>Maze testing showed that the redesign held up beyond moderated sessions, with users completing tasks independently.</p></article>
-            <article><strong class="return-metric">Return Motivation Increased</strong><p>Users began asking how to earn more badges, whether the app was available to use, and in one case continued into another session without being prompted.</p></article>
-          </div>
-          <div class="results-takeaway"><strong>Takeaway</strong><p>The biggest shift was not just usability. ARWell started to feel more understandable, rewarding, and worth coming back to.</p></div>
-        </section>
-
-        <section id="inclusive">
-          <h2>8. Inclusive Design</h2>
-          <p class="kicker">Designing for movement, attention, and different ability levels</p>
-          <p>ARWell’s primary users included children and young adults completing physical therapy or wellness exercises, so the redesign had to work beyond a typical app interface. Users were moving, watching a larger screen, interpreting feedback quickly, and sometimes relying on caregivers or therapists for support.</p>
-          <p>Because direct access to younger child participants was limited, we also considered feedback from adults, caregivers, teachers, and physical therapy perspectives while designing for clearer, more accessible gameplay.</p>
-          <h3 class="inclusive-heading">What this changed in the design</h3>
-          <div class="inclusive-principles">
-            <article><h3>Clearer visual hierarchy</h3><p>Important actions, progress, and rewards were made easier to notice at a glance.</p></article>
-            <article><h3>More than text</h3><p>Icons, motion cues, labels, and visual feedback supported users who might miss or skip written instructions.</p></article>
-            <article><h3>Less fine-motor dependence</h3><p>Interactions were redesigned to reduce repeated tapping and make choices easier to complete.</p></article>
-            <article><h3>Immediate feedback</h3><p>Goal confirmations, result summaries, badge states, and purchase confirmations helped users understand what just happened.</p></article>
-            <article><h3>Accessible motivation</h3><p>Progress was shown through goals, rewards, badges, and session achievements so users could understand effort in more than one way.</p></article>
-            <article><h3>Caregiver &amp; Therapist Support</h3><p>Clearer progress feedback and simple status cues helped support users beyond the screen.</p></article>
-          </div>
-          <div class="inclusive-takeaway"><strong>Takeaway</strong><p>For ARWell, inclusive design meant making the experience easier to follow while users were physically active — not just making the screens visually cleaner.</p></div>
-        </section>
-
-        <section id="reflection">
-          <h2>9. Reflection</h2>
-          <p class="kicker">What this project taught me about designing for return behavior</p>
-          <p>ARWell taught me that a product can be functional and still fail to feel motivating. Users could move through the app, complete exercises, and understand parts of the experience, but that did not always mean they felt confident, rewarded, or excited to come back.</p>
-          <ol class="reflection-lessons">
-            <li>The biggest lesson was that motivation is built through many small moments. A clearer goal-setting flow, a better transition screen, a more meaningful result screen, clearer badges, and a more trustworthy reward store each solved a different problem — but together, they changed how the experience felt.</li>
-            <li>I also learned to trust observed behavior over surface-level feedback. Some users said a screen was “fine,” but moved past it in seconds, missed key information, or could not explain what their result meant. That gap between what users say and what they actually do became one of the most important signals in the redesign.</li>
+        <section class="paper-section" id="next">
+          <header class="section-heading"><span>10</span><div><h2>Next Steps</h2><p>What I would improve next.</p></div></header>
+          <p class="section-intro">The next phase would connect redesigned flows to live product data and test the experience more directly with ARWell’s primary users.</p>
+          <ol class="next-list">
+            <li><strong>Test more directly with children ages 7–12.</strong> Run dedicated sessions to understand how goal setting, badges, rewards, and movement feedback land for young users.</li>
+            <li><strong>Strengthen celebration and reward moments.</strong> Explore badge animation, goal celebration, and clearer locked-state previews.</li>
+            <li><strong>Measure repeat engagement.</strong> Track whether redesigned goals, transitions, and rewards increase return behavior over time.</li>
+            <li><strong>Extend the research into ARWell Pro.</strong> Study how therapists and caregivers assign, monitor, and support exercises across sessions.</li>
           </ol>
-          <div class="reflection-takeaway"><strong>Takeaway</strong><p>Designing for engagement is not just about adding rewards. It is about helping users understand their effort, feel progress, and know why returning matters.</p></div>
+          <aside class="closing-thought"><strong>Closing thought</strong><p>ARWell’s next opportunity is not simply to make movement fun once—it is to make progress clear enough that people want to come back.</p></aside>
+        </section>
+      </main>
+    </div>
+
+    <footer class="case-footer">
+      <div class="footer-inner">
+        <section class="other-projects" aria-labelledby="other-projects-title">
+          <div class="footer-heading"><p>Keep exploring</p><h2 id="other-projects-title">Other Projects</h2></div>
+          <div class="other-projects-grid">
+            <a href="../Shloka/Shloka.html"><span class="project-thumb"><img src="../PM/assets/shloka.webp" width="1600" height="1179" loading="lazy" decoding="async" alt=""></span><strong>Shloka</strong></a>
+            <a href="../ARWell-Pro/ARWell-Pro.html"><span class="project-thumb"><img src="../PM/assets/arwell-pro.webp" width="1600" height="1185" loading="lazy" decoding="async" alt=""></span><strong>ARWell Pro</strong></a>
+            <a href="../TGP/TGP.html"><span class="project-thumb"><img src="../PM/assets/tgp.webp" width="1600" height="1013" loading="lazy" decoding="async" alt=""></span><strong>TGP</strong></a>
+            <a href="../PrivateAccess/private-access.html"><span class="project-thumb apple-thumb"><img src="../PM/assets/apple.webp" width="427" height="512" loading="lazy" decoding="async" alt=""></span><strong>Apple</strong></a>
+          </div>
         </section>
 
-        <section id="next">
-          <h2>10. Next Steps</h2>
-          <p class="kicker">What I would improve next</p>
-          <p class="next-intro">The redesign improved clarity, motivation, and return behavior, but the next step would be to test the experience more directly with ARWell’s primary users and connect the redesigned flows to live product data.</p>
-          <div class="next-grid">
-            <article><h3>01 · Test with younger users directly</h3><p>Run dedicated sessions with children ages 7–12 to better understand how they interpret goals, badges, rewards, and movement feedback without relying only on adult proxy feedback.</p></article>
-            <article><h3>02 · Add stronger reward moments</h3><p>Explore badge animations, goal-completion celebrations, and clearer locked-state previews so achievements feel more exciting and easier to understand.</p></article>
-            <article><h3>03 · Track live engagement over time</h3><p>Instrument the product to measure whether redesigned goals, results, badges, and rewards improve repeat sessions, feature use, and long-term motivation.</p></article>
-            <article><h3>04 · Extend the research to ARWell PRO</h3><p>Study how therapists and caregivers use ARWell PRO to assign, monitor, and support exercises across sessions.</p></article>
-          </div>
-          <div class="closing"><strong>Closing Thought</strong><p>ARWell’s next opportunity is not just to make movement fun once — it is to make users understand their progress well enough to want to come back.</p></div>
-        </section>
-      </article>
-    </main>
+        <nav class="contact-list" aria-label="Contact links">
+          <h2>Contact</h2>
+          <a href="mailto:dudyalaniveditha@gmail.com"><span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m4 7 8 6 8-6"></path></svg></span><span>Email</span><b>↗</b></a>
+          <a href="https://www.linkedin.com/in/niveditha-dudyala/" target="_blank" rel="noopener noreferrer"><span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M8 10v7M8 7v.01M12 17v-4a3 3 0 0 1 6 0v4M12 10v7"></path></svg></span><span>LinkedIn</span><b>↗</b></a>
+          <a href="https://drive.google.com/drive/folders/1laBtC9pYiVOIfIL2OgNv-nR30NiNtYRl?usp=drive_link" target="_blank" rel="noopener noreferrer"><span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"></path><path d="M14 3v5h5M9 12h6M9 16h6"></path></svg></span><span>Resume</span><b>↗</b></a>
+          <a href="#top"><span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21V3M5 10l7-7 7 7"></path></svg></span><span>Back to top</span><b>↑</b></a>
+        </nav>
+      </div>
+    </footer>
   </div>
+  <script src="ARWell-script.js?v=20260804-2"></script>
 </body>
 </html>

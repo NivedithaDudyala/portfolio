@@ -1,0 +1,8 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "/^cd /Users/neha && ls -l Downloads/ARWell\\.pdf Downloads/Shloka\\.pdf && python3 - <<'PY'\nfrom pathlib import Path\nimport sys\nfrom io import StringIO\ntry:\n    import fitz\nexcept ImportError:\n    print\\('no-fitx'\\)\n    sys\\.exit\\(0\\)\nfor name in \\['Downloads/ARWell\\.pdf','Downloads/Shloka\\.pdf'\\]:\n    p=Path\\(name\\)\n    print\\('FILE',name,p\\.stat\\(\\)\\.st_size\\)\n    try:\n        doc=fitz\\.open\\(str\\(p\\)\\)\n        print\\('pages',doc\\.page_count\\)\n        for i in range\\(min\\(2,doc\\.page_count\\)\\):\n            text=doc\\[i\\]\\.get_text\\('text'\\)\n            print\\('PAGE',i\\+1,'text len',len\\(text\\)\\)\n            print\\(text\\[:1000\\]\\.replace\\('\\\\n',' '\\)\\)\n    except Exception as e:\n        print\\('ERROR',e\\)\nPY$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}

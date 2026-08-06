@@ -1,0 +1,56 @@
+/* Design-specific composition layered on top of the shared portfolio system. */
+
+.design-page .currently blockquote {
+  top: 14px;
+  right: 0;
+  width: 160px;
+  transform: rotate(0.8deg);
+}
+
+.design-page .currently blockquote img {
+  width: 100%;
+  height: auto;
+  transform: none;
+}
+
+.design-page .work-section { margin-bottom: 88px; }
+.design-page .apple-section { margin-bottom: 0; }
+
+.design-page .horizontal-card .project-copy p { max-width: 430px; }
+.design-page .shloka-card {
+  height: 468px;
+  min-height: 468px;
+}
+.design-page .shloka-card .project-copy { padding-bottom: 82px; }
+
+.design-page .vertical-card p {
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+@media (max-width: 980px) {
+  .design-page .shloka-card {
+    height: auto;
+    min-height: 0;
+  }
+
+  .design-page .currently blockquote {
+    top: 14px;
+    right: -12px;
+    width: 150px;
+  }
+}
+
+@media (max-width: 760px) {
+  .design-page .currently blockquote {
+    top: auto;
+    right: -7px;
+    bottom: -48px;
+    width: 132px;
+    transform: rotate(3deg);
+  }
+
+  .design-page .currently blockquote img { transform: translateX(16px); }
+  .design-page .work-section { margin-bottom: 76px; }
+  .design-page .shloka-card .project-copy { padding-bottom: 34px; }
+}

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Request private access to Niveditha's NDA-protected Apple case study materials.">
+  <meta name="theme-color" content="#f4eee4">
+  <title>Request a Private Case Study — Niveditha</title>
+  <link rel="icon" href="../PM/assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&amp;family=Inter:wght@500;600;700&amp;family=Madimi+One&amp;family=Nunito:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="private-access-style.css?v=20260805-3">
+</head>
+<body>
+  <div class="access-shell" id="top">
+    <!-- Minimal Top Navigation -->
+    <header class="top-nav">
+      <div class="top-nav-inner">
+        <a class="back-link" href="../PM/PM.html#work">← <span>Back to selected work</span></a>
+      </div>
+    </header>
+
+    <main class="access-main">
+      <!-- One Centered Access Card -->
+      <div class="centered-access-card">
+        <div class="nda-badge" aria-hidden="true">
+          <svg class="lock-icon" viewBox="0 0 24 24">
+            <rect x="5" y="10" width="14" height="10" rx="2"></rect>
+            <path d="M8 10V7a4 4 0 0 1 8 0v3"></path>
+          </svg>
+          <span>NDA-Protected</span>
+        </div>
+
+        <h1>Request a Private Case Study</h1>
+        <p class="hero-sub">This work is under NDA. Select the case study you’d like to review.</p>
+
+        <form id="minimal-access-form" novalidate>
+          <div class="form-group">
+            <label for="casestudy-select">Select a case study</label>
+            <select id="casestudy-select" required>
+              <option value="" disabled selected>Select a case study</option>
+              <option value="Apple Intelligence">Apple Intelligence</option>
+              <option value="Robotics Systems">Robotics Systems</option>
+              <option value="Wearables Research">Wearables Research</option>
+            </select>
+          </div>
+
+          <button type="submit" class="primary-btn">Request access by email →</button>
+
+          <p class="email-help">Email not opening? Contact <a href="mailto:dudyalaniveditha@gmail.com?subject=Case%20Study%20Access%20Request">dudyalaniveditha@gmail.com</a></p>
+
+          <div id="form-message" class="info-message hidden" role="status"></div>
+        </form>
+      </div>
+    </main>
+  </div>
+  <script src="private-access-script.js?v=20260805-3"></script>
+</body>
+</html>

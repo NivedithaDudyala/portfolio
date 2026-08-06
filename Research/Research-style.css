@@ -1,0 +1,55 @@
+/* Research-specific composition layered on top of the shared PM system. */
+
+.research-page .currently blockquote {
+  top: 14px;
+  right: 0;
+  width: 160px;
+  transform: rotate(0.8deg);
+}
+
+.research-page .currently blockquote img {
+  width: 100%;
+  height: auto;
+  transform: none;
+}
+
+.research-page .work-section { margin-bottom: 88px; }
+.research-page .augment { margin-bottom: 0; }
+
+.research-page .horizontal-card .project-copy p {
+  max-width: 430px;
+}
+
+.research-page .shloka-card .project-copy {
+  padding-bottom: 82px;
+}
+
+.research-page .vertical-card p {
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+@media (max-width: 980px) {
+  .research-page .currently blockquote {
+    top: 14px;
+    right: -12px;
+    width: 150px;
+  }
+}
+
+@media (max-width: 760px) {
+  .research-page .currently blockquote {
+    top: auto;
+    right: -7px;
+    bottom: -48px;
+    width: 132px;
+    transform: rotate(3deg);
+  }
+
+  .research-page .currently blockquote img {
+    transform: translateX(16px);
+  }
+
+  .research-page .work-section { margin-bottom: 76px; }
+  .research-page .shloka-card .project-copy { padding-bottom: 34px; }
+}

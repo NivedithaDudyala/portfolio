@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Niv — UX Researcher</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Boogaloo&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div id="landing">
+  <div id="illustrationContainer"></div>
+
+  <!-- Independent overlays: the bulb swings; the button receives a subtle hover emphasis. -->
+  <div id="monitorContentLayer" aria-hidden="true">
+    <div id="bulbWrap">
+      <img
+        id="bulbFrame"
+        src="assets/bulb/Light bulb centre.svg"
+        alt=""
+      >
+    </div>
+
+    <div id="workButton">
+      <img
+        id="workButtonImage"
+        src="assets/buttons/view-my-work-button.svg"
+        alt=""
+      >
+    </div>
+  </div>
+
+  <div id="charWrap">
+    <div id="hatPicker">
+      <div class="hat-opt" data-hat="none"><span class="tip">no hat</span>🚫</div>
+      <div class="hat-opt active" data-hat="neuron"><span class="tip">neuron ✨</span></div>
+      <div class="hat-opt" data-hat="plant"><span class="tip">plant</span></div>
+      <div class="hat-opt" data-hat="bow"><span class="tip">bow</span></div>
+      <div class="hat-opt" data-hat="party"><span class="tip">party</span></div>
+    </div>
+
+    <div id="hatLayer"></div>
+    <div id="charAnim"></div>
+  </div>
+
+  <!-- Hover target only. It is intentionally not linked anywhere yet. -->
+  <div class="monitor-hit" id="monitorHit" aria-hidden="true"></div>
+
+  <div class="camera-hit" id="cameraHit">
+    <div class="rec-dot"></div>
+    <div class="cam-tip">👁 watching you watch me</div>
+  </div>
+
+  <div class="brain-hit" id="brainHit">
+    <div class="brain-tip">I study brains. I design for them.</div>
+  </div>
+
+  <a class="nav-resume" href="#">Resume</a>
+</div>
+
+<script src="main.js" defer></script>
+
+</body>
+</html>

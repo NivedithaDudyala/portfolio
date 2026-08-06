@@ -1,0 +1,82 @@
+document.addEventListener('DOMContentLoaded', () => {
+  const mobileMenu = document.getElementById('mobileMenu');
+  const sidebar = document.getElementById('sidebar');
+  const scrim = document.getElementById('scrim');
+  const navLinks = document.querySelectorAll('.contents-card a');
+  const sections = document.querySelectorAll('main section[id]');
+
+  function openMenu() {
+    sidebar.classList.add('open');
+    scrim.classList.add('show');
+    document.body.classList.add('nav-open');
+    mobileMenu.setAttribute('aria-expanded', 'true');
+  }
+
+  function closeMenu(restoreFocus = false) {
+    sidebar.classList.remove('open');
+    scrim.classList.remove('show');
+    document.body.classList.remove('nav-open');
+    mobileMenu.setAttribute('aria-expanded', 'false');
+    if (restoreFocus && mobileMenu) {
+      mobileMenu.focus();
+    }
+  }
+
+  if (mobileMenu) {
+    mobileMenu.addEventListener('click', () => {
+      const isOpen = sidebar.classList.contains('open');
+      if (isOpen) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+  }
+
+  if (scrim) {
+    scrim.addEventListener('click', () => closeMenu(true));
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && sidebar.classList.contains('open')) {
+      closeMenu(true);
+    }
+  });
+
+  navLinks.forEach((link) => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth <= 860) {
+        closeMenu();
+      }
+    });
+  });
+
+  // ScrollObserver for active contents links & aria-current="location" across 9 sections
+  if ('IntersectionObserver' in window && sections.length > 0) {
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -60% 0px',
+      threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          navLinks.forEach((link) => {
+            const href = link.getAttribute('href').replace('#', '');
+            if (href === id) {
+              link.classList.add('active');
+              link.setAttribute('aria-current', 'location');
+            } else {
+              link.classList.remove('active');
+              link.removeAttribute('aria-current');
+            }
+          });
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach((section) => observer.observe(section));
+  }
+});

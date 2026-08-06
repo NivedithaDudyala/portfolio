@@ -1,162 +1,554 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TGP case study: A taxonomy for embedding game mechanics into LLM prompts, transforming transactional AI interactions into immersive, playful learning experiences.">
+  <meta name="theme-color" content="#f4eee4">
   <title>TGP — Turning Chatbots into Game Engines for Learning</title>
+  <link rel="icon" href="../PM/assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&amp;family=Madimi+One&amp;family=Nunito:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600..800&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="TGP-style.css">
 </head>
 <body>
-  <div class="case-shell">
-    <aside class="sidebar" aria-label="Case study navigation">
-      <a class="back" href="../og-index.html"><span aria-hidden="true">←</span> Back to Desk</a>
-      <nav class="contents" aria-label="Contents">
-        <h2>Contents</h2>
-        <ol>
-          <li><a href="#snapshot">Project Snapshot</a></li>
-          <li><a href="#role">My Role</a></li>
-          <li><a href="#problem">The Problem</a></li>
-          <li><a href="#research">Research Approach</a></li>
-          <li><a href="#turning-point">The Turning Point</a></li>
-          <li><a href="#taxonomy">The Taxonomy</a></li>
-          <li><a href="#evaluation">Evaluation</a></li>
-          <li><a href="#decisions">Decisions &amp; Limitations</a></li>
-          <li><a href="#impact">Impact &amp; Outcomes</a></li>
-          <li><a href="#skills">Skills &amp; Methods</a></li>
-        </ol>
-      </nav>
-      <div class="doodle" aria-hidden="true">✦</div>
-    </aside>
+  <button class="mobile-menu" id="mobileMenu" type="button" aria-expanded="false" aria-controls="sidebar">
+    <span aria-hidden="true">☰</span><span>Contents</span>
+  </button>
+  <button class="scrim" id="scrim" type="button" aria-label="Close case study navigation"></button>
 
-    <main>
-      <article class="paper">
-        <header class="hero">
-          <div>
-            <h1>Turning Chatbots into<br>Game Engines for Learning</h1>
-            <p class="lede">A taxonomy for embedding game mechanics into LLM prompts, transforming transactional AI interactions into immersive, playful learning experiences.</p>
-            <dl class="meta">
-              <div><dt>Role</dt><dd>Researcher</dd></div>
-              <div><dt>Live Tool</dt><dd><a href="#">Try StudyCrafter AI →</a></dd></div>
-              <div><dt>Methods</dt><dd>Participatory Design · Grounded Theory · Controlled Experiments · Statistical Analysis</dd></div>
-            </dl>
-          </div>
-          <div class="hero-stats" aria-label="Project highlights">
-            <article><strong>60</strong><span>co-designed prompts</span></article>
-            <article><strong>960</strong><span>coded units analyzed</span></article>
-            <article><strong>2.4×</strong><span>immersion lift</span></article>
-            <article><strong>97%</strong><span>taxonomy coverage</span></article>
-          </div>
-        </header>
+  <div class="case-study-shell">
+    <div class="case-layout">
+      <aside class="sidebar" id="sidebar">
+        <a class="back-btn" href="../landing%20page/index.html">← <span>Go Back to Desk</span></a>
 
-        <section id="snapshot">
-          <h2>1. The Essentials in 60 Seconds</h2>
-          <div class="snapshot-grid">
-            <article><h3>Problem</h3><p>LLM interactions in education are often transactional — students ask, the AI answers, and learning stays shallow.</p></article>
-            <article><h3>The Approach</h3><p>I used participatory design with 70+ stakeholders to co-create gamified prompts, then applied grounded theory to turn the patterns into a formal taxonomy.</p></article>
-            <article><h3>The Taxonomy</h3><p>The final framework includes 5 dimensions and 19 sub-dimensions for designing game-like LLM learning experiences: Game Director, Game Mechanics, The Teacher, AI Control, and NPCs.</p></article>
-            <article><h3>The Impact</h3><p>The taxonomy supported stronger engagement, including a 2.4× immersion lift, 97% coverage on unseen prompts, and adoption across university partners.</p></article>
-          </div>
-          <figure class="media-card"><img src="assets/research-method.png" alt="Examples progressing from a traditional LLM interaction to narrative roleplay and a complex gamified learning system"><figcaption>From transactional Q&amp;A to narrative roleplay to full gamified learning systems with NPCs, inventory, and game mechanics.</figcaption></figure>
-        </section>
+        <nav class="contents-card" aria-label="TGP case study sections">
+          <img class="contents-frame" src="assets/contents-frame-tgp.svg" alt="" aria-hidden="true">
+          <p class="contents-title">Contents</p>
+          <a class="active" href="#snapshot">01. Project Snapshot</a>
+          <a href="#role">02. My Role</a>
+          <a href="#problem">03. The Problem</a>
+          <a href="#research">04. Research Approach</a>
+          <a href="#turning-point">05. The Turning Point</a>
+          <a href="#taxonomy">06. The Taxonomy</a>
+          <a href="#evaluation">07. Evaluation</a>
+          <a href="#decisions">08. Decisions &amp; Limitations</a>
+          <a href="#impact">09. Impact &amp; Outcomes</a>
+          <a href="#skills">10. Skills &amp; Methods</a>
+        </nav>
+      </aside>
 
-        <section id="role">
-          <h2>2. My Role</h2>
-          <p class="kicker">What I owned across research, product strategy, design, and evaluation</p>
-          <div class="role-map">
-            <div class="role-core">TGP -<br>Gamified<br>Prompts</div>
-            <article><h3>Research Strategy &amp; Co-Design</h3><p>Designed the research approach and facilitated participatory prompt creation with students, instructors, and course stakeholders.</p></article>
-            <article><h3>Grounded Theory &amp; Taxonomy</h3><p>Analyzed 960 prompt units and developed the five-dimension taxonomy for gamified LLM learning.</p></article>
-            <article><h3>AI Product Strategy</h3><p>Translated research findings into the product direction and structure for a broader gamified-learning platform ecosystem.</p></article>
-            <article><h3>End-to-End Platform Design</h3><p>Designed across the full StudyCrafter AI ecosystem, from content creation to learning and evaluation.</p></article>
-            <article><h3>Evaluation &amp; Analysis</h3><p>Designed the coverage, usability, and learner-engagement studies and synthesized the quantitative and qualitative findings.</p></article>
+      <main class="case-main" id="top">
+        <!-- Hero Header -->
+        <section class="hero paper-section" aria-labelledby="case-title">
+          <div class="hero-split">
+            <div class="hero-left">
+              <h1 id="case-title">Turning Chatbots into Game Engines for Learning</h1>
+              <p class="hero-lede">A taxonomy for embedding game mechanics into LLM prompts, transforming transactional AI interactions into immersive, playful learning experiences.</p>
+              
+              <dl class="hero-compact-meta" aria-label="Project metadata">
+                <div class="meta-item">
+                  <dt>Role</dt>
+                  <dd>Researcher</dd>
+                </div>
+                <div class="meta-item">
+                  <dt>Methods</dt>
+                  <dd>Participatory Design · Grounded Theory · Within-Subjects Experiments · Interviews</dd>
+                </div>
+                <div class="meta-item">
+                  <dt>Live Tool</dt>
+                  <dd><a href="https://siddu1998.github.io/SCAI/StudyCrafterAI.html" target="_blank" rel="noopener noreferrer" class="live-tool-link">Try StudyCrafter AI →</a></dd>
+                </div>
+              </dl>
+            </div>
+
+            <div class="hero-right">
+              <div class="hero-outcomes-grid" aria-label="Project highlights">
+                <article><strong>2.4×</strong><span>Immersion lift</span></article>
+                <article><strong>60</strong><span>Co-designed prompts</span></article>
+                <article><strong>960</strong><span>Coded units analyzed</span></article>
+                <article><strong>97%</strong><span>Taxonomy coverage</span></article>
+              </div>
+            </div>
           </div>
         </section>
 
-        <section id="problem">
-          <h2>3. The Problem</h2>
-          <p class="kicker">Students were outsourcing their thinking to AI.</p>
-          <p>LLMs are becoming part of everyday learning, but most educational interactions still follow a simple pattern: students ask, the AI answers, and the learning experience stays passive.</p>
-          <p>The problem was not access to information — it was the lack of structure for deeper engagement. Without intentional design, LLMs can make learning faster while also making it easier for students to avoid thinking through the material themselves.</p>
-          <p>Game-based learning can create deeper engagement through challenge, roles, feedback, and progression. But building game-based learning experiences usually requires specialized development, budgets, and teacher training.</p>
-          <figure class="media-card"><img src="assets/corpus-generation.png" alt="Food-label challenge, world-building prompt, and point-based prompt examples"><figcaption>Corpus examples showed early attempts to make chatbots feel game-like through image challenges, world-building, points, and progress systems.</figcaption></figure>
-          <div class="outlined-callout"><p><strong>Core tension</strong><br>Games create engagement, but are hard to build.<br>LLMs are easy to access, but often encourage passive use.</p><p><strong>Research gap</strong><br>Educators had a powerful engine, but no shared design language for turning chatbot interactions into structured, game-like learning experiences.</p><p><strong>Research Question</strong><br>What game design elements and strategies can be embedded into LLM prompts to enhance student engagement?</p></div>
+        <!-- 01. Project Snapshot -->
+        <section class="paper-section" id="snapshot">
+          <header class="section-heading">
+            <h2>01. Project Snapshot</h2>
+            <p>The Essentials in 60 Seconds</p>
+          </header>
+          
+          <div class="snapshot-grid-2x2">
+            <article>
+              <h3>Problem</h3>
+              <p>LLM interactions in education are often transactional — students ask, the AI answers, and learning stays shallow.</p>
+            </article>
+            <article>
+              <h3>The Approach</h3>
+              <p>I used participatory design with 70+ stakeholders to co-create gamified prompts, then applied grounded theory to turn the patterns into a formal taxonomy.</p>
+            </article>
+            <article>
+              <h3>The Taxonomy</h3>
+              <p>The final framework includes five dimensions and nineteen sub-dimensions: Game Director, Game Mechanics, The Teacher, AI Control, and NPCs.</p>
+            </article>
+            <article>
+              <h3>The Impact</h3>
+              <p>The taxonomy supported 2.4× immersion lift, 97% coverage on unseen prompts, and adoption across university partners.</p>
+            </article>
+          </div>
+
+          <figure class="approved-visual">
+            <img src="approved-visuals/01-learning-system-progression.svg" width="100%" height="auto" loading="lazy" decoding="async" alt="Progression from transactional text Q&A to narrative roleplay and full gamified learning systems">
+          </figure>
         </section>
 
-        <section id="research">
-          <h2>4. Research Approach</h2>
-          <p class="kicker">Bottom-up discovery, not top-down theory.</p>
-          <p><strong>I had two options:</strong> start from existing serious games theory and force those categories onto LLM prompts, or start from real artifacts created by real stakeholders and let the design patterns emerge from the data.</p>
-          <p>I chose a bottom-up approach because LLMs behave differently from traditional game engines. In a game engine, rules are coded. In an LLM, game-like behavior has to be prompted, maintained, and controlled through language. This led to a three-phase research process: corpus generation, grounded theory taxonomy construction, and evaluation.</p>
-          <p><strong>What I owned</strong><br>Study design · Co-design facilitation · StudyHelper platform design · Grounded theory coding · Evaluation design · Statistical analysis · Participant interviews</p>
-          <figure class="media-card"><h3>Three-phase research methodology: Corpus</h3><img src="assets/grounded-analysis.png" alt="Corpus generation, taxonomy building, and taxonomy evaluation methodology"><figcaption>Generation → Building Taxonomy → Evaluation</figcaption></figure>
-          <div class="phase">
+        <!-- 02. My Role -->
+        <section class="paper-section" id="role">
+          <header class="section-heading">
+            <h2>02. My Role</h2>
+            <p>End-to-end research, taxonomy development, platform design, and evaluation</p>
+          </header>
+
+          <p class="section-intro-text">I led the research strategy, grounded theory analysis, platform interaction design, and experimental evaluation across five core responsibility areas:</p>
+
+          <figure class="approved-visual">
+            <img src="approved-visuals/02-role-and-ownership-map.svg" width="100%" height="auto" loading="lazy" decoding="async" alt="Role and ownership map covering Research Strategy, Grounded Theory, AI Product Strategy, Platform Design, and Evaluation">
+          </figure>
+
+          <div class="role-accessibility-list" aria-label="Ownership summary">
+            <ul>
+              <li><strong>Research Strategy &amp; Co-Design:</strong> Designed the overall research strategy and facilitated participatory prompt creation with stakeholders.</li>
+              <li><strong>Grounded Theory &amp; Taxonomy:</strong> Segmented and analyzed 960 functional prompt units and developed the taxonomy through open, axial, and selective coding.</li>
+              <li><strong>AI Product Strategy:</strong> Translated research findings into a reusable design framework for gamified LLM learning experiences.</li>
+              <li><strong>End-to-End Platform Design:</strong> Designed and built the StudyHelper research platform and its Playground and Taxonomy modes.</li>
+              <li><strong>Evaluation &amp; Analysis:</strong> Designed the coverage, usability, and learner-engagement evaluations, conducting interviews and statistical analysis.</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- 03. The Problem -->
+        <section class="paper-section" id="problem">
+          <header class="section-heading">
+            <h2>03. The Problem</h2>
+            <p>Students were outsourcing their thinking to AI.</p>
+          </header>
+
+          <div class="editorial-prose">
+            <p>LLMs are becoming part of everyday learning, but most educational interactions still follow a simple pattern: students ask, the AI answers, and the learning experience stays passive.</p>
+            <p>The problem was not access to information — it was the lack of structure for deeper engagement. Without intentional design, LLMs can make learning faster while also making it easier for students to avoid thinking through the material themselves.</p>
+            <p>Game-based learning can create deeper engagement through challenge, roles, feedback, and progression. But building conventional game-based learning experiences usually requires specialized development, budgets, and educator training.</p>
+          </div>
+
+          <figure class="approved-visual">
+            <img src="approved-visuals/03-corpus-examples.svg" width="100%" height="auto" loading="lazy" decoding="async" alt="Corpus prompt examples showing food-label challenge, world-building prompt, point, and progress systems">
+          </figure>
+
+          <div class="editorial-callout-stack">
+            <div class="callout-row">
+              <strong>Core tension</strong>
+              <p>Games create engagement but are difficult to build.<br>LLMs are accessible but often encourage passive use.</p>
+            </div>
+            <div class="callout-row">
+              <strong>Research gap</strong>
+              <p>Educators had a powerful engine but no shared design language for turning chatbot interactions into structured, game-like learning experiences.</p>
+            </div>
+            <div class="callout-row">
+              <strong>Research question</strong>
+              <p>What game-design elements and strategies can be embedded into LLM prompts to enhance student engagement?</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 04. Research Approach -->
+        <section class="paper-section" id="research">
+          <header class="section-heading">
+            <h2>04. Research Approach</h2>
+            <p>Bottom-up discovery, not top-down theory.</p>
+          </header>
+
+          <div class="editorial-prose">
+            <p>I had two options: start from existing serious-games theory deductively and force those categories onto LLM prompts, or start from real artifacts created by real stakeholders and let the design patterns emerge inductively from the data.</p>
+            <p>I chose a bottom-up approach because LLM behavior differs from traditional coded game engines. In a game engine, rules are coded. In an LLM, game-like behavior has to be prompted, maintained, and controlled through language.</p>
+            <p><em>I owned the end-to-end research design, co-design workshops, coding pipeline, platform design, and experimental evaluation.</em></p>
+          </div>
+
+          <figure class="approved-visual">
+            <img src="approved-visuals/04a-three-phase-research-methodology.svg" width="100%" height="auto" loading="lazy" decoding="async" alt="Three-phase research methodology overview: Corpus Generation, Grounded-Theory Analysis, and Evaluation">
+          </figure>
+
+          <div class="flat-phase-subsection">
             <h3>Phase 1 — Corpus Generation</h3>
-            <p>I used participatory design to build a corpus of 60 gamified learning prompts across three sources: instructors, students, and course-based assignments. Each group added a different perspective — instructors brought pedagogical structure, students brought game-like creativity, and assignments added volume and ecological validity.</p>
-            <figure class="media-card"><img src="assets/studyhelper.png" alt="Gamified Bot-a-thon and StudyHelper prompt generation activities"><figcaption>Prompt generation was triangulated across instructors, a gamified Bot-a-thon, and course assignments to capture both pedagogical structure and player-like creativity.</figcaption></figure>
+            <p>I used participatory design to build a corpus of 60 gamified learning prompts across three sources: instructors, a gamified Bot-a-thon, and course assignments. Each group added a different perspective — instructors brought pedagogical structure, students brought game-like creativity, and assignments added volume and ecological validity.</p>
+            <figure class="approved-visual">
+              <img src="approved-visuals/04b-corpus-generation.svg" width="100%" height="auto" loading="lazy" decoding="async" alt="Corpus generation triangulated across instructors, Bot-a-thon, and course assignments">
+            </figure>
           </div>
-          <div class="phase">
-            <h3>Phase 2 — Grounded Theory Analysis</h3>
-            <p>I segmented the prompts into 960 functional units — each unit representing an instruction that shaped how the LLM should behave. Through grounded theory coding, I moved from open codes to axial codes to selective codes, turning messy prompt artifacts into a structured taxonomy of recurring game-design patterns.</p>
-            <figure class="media-card"><img src="assets/turning-point.png" alt="Corpus topic distribution and taxonomy element density charts"><figcaption>Grounded theory coding helped turn messy prompt artifacts into a structured taxonomy of recurring design patterns.</figcaption></figure>
+
+          <div class="flat-phase-subsection">
+            <h3>Phase 2 — Grounded-Theory Analysis</h3>
+            <p>I segmented the prompts into 960 functional units — each unit representing an instruction that shaped how the LLM should behave. Through grounded theory coding (open coding → axial coding → selective coding), I turned messy prompt artifacts into a structured taxonomy of recurring game-design patterns.</p>
+            <figure class="approved-visual">
+              <img src="approved-visuals/04c-grounded-theory-analysis.svg" width="100%" height="auto" loading="lazy" decoding="async" alt="Grounded theory analysis showing coding from 960 functional units to taxonomy">
+            </figure>
           </div>
-          <div class="phase">
+
+          <div class="flat-phase-subsection">
             <h3>Phase 3 — Evaluation + StudyHelper</h3>
             <p>I designed and built StudyHelper, a controlled research platform with Playground Mode and Taxonomy Mode. This let me evaluate the taxonomy across three questions: whether it could classify unseen prompts, whether it helped designers create prompts with less effort, and whether taxonomy-guided prompts improved learner engagement.</p>
-            <figure class="media-card"><img src="assets/taxonomy.png" alt="StudyHelper architecture and controlled prompt-design interfaces"><figcaption>StudyHelper created a controlled environment for testing whether the taxonomy helped designers create stronger gamified learning prompts.</figcaption></figure>
+            <figure class="approved-visual">
+              <img src="approved-visuals/04d-studyhelper-platform.svg" width="100%" height="auto" loading="lazy" decoding="async" alt="StudyHelper research platform architecture and evaluation modes">
+            </figure>
           </div>
         </section>
 
-        <section id="turning-point">
-          <h2>5. The Turning Point</h2>
-          <p class="kicker">The design challenge was not implementation — it was orchestration.</p>
-          <p>I expected existing game-design frameworks to map cleanly onto gamified prompts. But the data showed something different: LLMs do not behave like traditional game engines.<br>In a traditional game, rules are coded and outcomes are predictable. In an LLM, the prompt has to persuade the model to simulate rules, maintain roles, follow constraints, and keep the experience coherent through language.</p>
-          <p><strong>That shifted the project from asking:</strong><br>“What game mechanics can we add to prompts?”<br>to:<br>“How do we orchestrate game-like behavior inside an LLM conversation?”</p>
-          <figure class="media-card"><h3>From Game Mechanics to LLM Orchestration</h3><img src="assets/taxonomy-action.png" alt="Grounded theory workshops and whiteboard analysis"><figcaption>Grounded theory analysis showed that designing gamified prompts was less about adding mechanics and more about controlling how the LLM maintained rules, roles, feedback, and progression.</figcaption></figure>
-          <h3>Three findings shaped the final taxonomy:</h3>
-          <div class="finding-grid"><article><h3>AI Control became its own category</h3><p>Designers had to specify output limits, input formats, visual styles, and response boundaries so the LLM would not break the experience.</p></article><article><h3>NPCs became the engagement engine</h3><p>Characters were not decorative. They changed the learner’s role from answering questions to participating in a world.</p></article><article><h3>Attention and immersion behaved differently</h3><p>Basic narrative framing helped attention, but structured mechanics like progression, NPCs, and inventory drove deeper immersion and emotional engagement.</p></article></div>
+        <!-- 05. The Turning Point -->
+        <section class="paper-section" id="turning-point">
+          <header class="section-heading">
+            <h2>05. The Turning Point</h2>
+            <p>The design challenge was not implementation — it was orchestration.</p>
+          </header>
+
+          <div class="editorial-prose">
+            <p>I expected existing game-design frameworks to map cleanly onto gamified prompts. But the data showed something different: LLMs do not behave like traditional game engines.</p>
+            <p>In a traditional game, rules are coded and outcomes are predictable. In an LLM, the prompt has to persuade the model to simulate rules, maintain roles, follow constraints, and keep the experience coherent through language.</p>
+
+            <div class="editorial-shift-box">
+              <p class="shift-from">From: “What game mechanics can we add to prompts?”</p>
+              <p class="shift-to">To: “How do we orchestrate game-like behavior inside an LLM conversation?”</p>
+            </div>
+          </div>
+
+          <figure class="approved-visual">
+            <img src="approved-visuals/05-llm-orchestration-analysis.svg" width="100%" height="auto" loading="lazy" decoding="async" alt="Grounded theory analysis showing LLM control orchestration over mechanics alone">
+          </figure>
+
+          <div class="editorial-strip-3col">
+            <article>
+              <h3>AI Control became its own category</h3>
+              <p>Designers needed to define output limits, input formats, visual styles, and response boundaries so the LLM would not break the experience.</p>
+            </article>
+            <article>
+              <h3>NPCs became the engagement engine</h3>
+              <p>Characters changed the learner’s role from answering questions to participating in a world.</p>
+            </article>
+            <article>
+              <h3>Attention and immersion behaved differently</h3>
+              <p>Basic narrative framing helped attention. Structured mechanics such as progression, NPCs, and inventory drove deeper immersion and emotional engagement.</p>
+            </article>
+          </div>
         </section>
 
-        <section id="taxonomy">
-          <h2>6. The Taxonomy</h2>
-          <p class="kicker">5 dimensions, 19 sub-dimensions — a design language for gamified prompts.</p>
-          <p>The grounded theory analysis produced the Taxonomy of Gamified Prompts, a framework for designing game-like learning experiences inside LLM conversations.</p>
-          <p>Instead of treating prompts as one-off instructions, the taxonomy breaks them into reusable design elements that help educators structure challenge, feedback, roles, progression, constraints, and interaction.</p>
-          <figure class="media-card taxonomy-figure"><img src="assets/taxonomy-examples.png" alt="The Gamified Prompt Taxonomy with five selective-code dimensions and nineteen axial codes"></figure>
-          <figure class="media-card taxonomy-action-figure"><img src="assets/coverage.png" alt="Taxonomy in Action: coded prompt example showing how taxonomy elements translate into a playable learning interaction"></figure>
-          <figure class="media-card"><img src="assets/usability.png" alt="Examples of multiplayer roles, achievements, and randomization in gamified prompts"><figcaption>Examples from the corpus show how game mechanics can be created through prompt instructions, not hard-coded game systems.</figcaption></figure>
-          <div class="dimension-grid"><article><h3>Game Director</h3><p>Defines the overall game structure: game type, world, win/loss conditions, and level progression.</p></article><article><h3>Game Mechanics</h3><p>Adds systems such as points, rewards, inventory, survival mechanics, and randomization.</p></article><article><h3>The Teacher</h3><p>Connects gameplay to learning through goals, scaffolding, hints, feedback, and reflection.</p></article><article><h3>AI Control</h3><p>Keeps the LLM experience usable by controlling output format, input mechanics, visual style, and response boundaries.</p></article><article><h3>NPCs</h3><p>Creates characters, roles, and interaction patterns that make the learner feel like a participant in a world, not just a user asking questions.</p></article></div>
+        <!-- 06. The Taxonomy -->
+        <section class="paper-section" id="taxonomy">
+          <header class="section-heading">
+            <h2>06. The Taxonomy</h2>
+            <p>5 dimensions, 19 sub-dimensions — a design language for gamified prompts.</p>
+          </header>
+
+          <div class="editorial-prose">
+            <p>The grounded theory analysis produced the Taxonomy of Gamified Prompts, a framework containing 5 selective-code dimensions, 19 axial sub-dimensions, and 75 open codes for designing game-like learning experiences inside LLM conversations.</p>
+            <p>Instead of treating prompts as one-off instructions, the taxonomy breaks them into reusable design elements that help educators structure challenge, feedback, roles, progression, constraints, and interaction.</p>
+          </div>
+
+          <figure class="approved-visual">
+            <img src="approved-visuals/06a-taxonomy-framework.svg" width="100%" height="auto" loading="lazy" decoding="async" alt="The Taxonomy of Gamified Prompts framework diagram displaying five selective dimensions and nineteen sub-dimensions">
+          </figure>
+
+          <figure class="approved-visual">
+            <img src="approved-visuals/06b-taxonomy-in-action-and-game-mechanics-examples.svg" width="100%" height="auto" loading="lazy" decoding="async" alt="Taxonomy in action, coded prompt example, multiplayer roles, achievements, and randomization examples">
+          </figure>
+
+          <dl class="taxonomy-flat-dl">
+            <dt>Game Director</dt>
+            <dd>Defines overall game structure, world, win/loss conditions, and level progression.</dd>
+
+            <dt>Game Mechanics</dt>
+            <dd>Adds systems such as points, rewards, inventory, survival mechanics, and randomization.</dd>
+
+            <dt>The Teacher</dt>
+            <dd>Connects gameplay to learning goals, scaffolding, hints, feedback, and reflection.</dd>
+
+            <dt>AI Control</dt>
+            <dd>Controls output format, input mechanics, visual style, and response boundaries.</dd>
+
+            <dt>NPCs</dt>
+            <dd>Creates characters, roles, and interaction patterns that make learners participants rather than answer-seekers.</dd>
+          </dl>
         </section>
 
-        <section id="evaluation">
-          <h2>7. Evaluation</h2>
-          <p>Three studies tested whether the taxonomy was complete, usable, and actually improved learner engagement.<br>I evaluated the taxonomy across three stages: coverage, usability, and learner engagement. Each study tested a different question in the taxonomy’s lifecycle: whether it could classify unseen prompts, whether it helped designers create better prompts with less effort, and whether taxonomy-guided prompts created stronger learning experiences for students.</p>
-          <div class="metric-strip"><article><b>Coverage</b><strong>97%</strong><span>of blind-workshop units classified</span></article><article><b>Usability (N=33)</b><strong>50%</strong><span>frustration reduction, p &lt; 0.001</span></article><article><b>Impact (N=10)</b><strong>2.4×</strong><span>immersion lift, p &lt; 0.001</span></article></div>
-          <div class="study"><h3>Study 1 — Coverage</h3><p>I tested whether the taxonomy could classify gamified prompts created by designers who had never seen the framework. This helped check whether the taxonomy generalized beyond the original corpus.</p><figure class="media-card"><img src="assets/engagement.png" alt="Coverage results across axial and selective taxonomy codes"></figure><p><strong>Result:</strong> The taxonomy classified 97% of blind-workshop prompt units.</p></div>
-          <div class="study"><h3>Study 2 — Usability</h3><p>I ran a within-subjects study where participants created prompts with and without the taxonomy. This tested whether the taxonomy reduced design effort while helping people create more structured gamified prompts.</p><div class="metric-strip usability-metrics"><article><strong>7/7</strong><b>Ease of Use (median)</b><span>vs. 4/7 without taxonomy, p &lt; 0.001</span></article><article><strong>50%</strong><b>Frustration Reduction</b><span>NASA-TLX: 4 → 2,<br>r = 0.68 (large)</span></article><article><strong>63%</strong><b>Cognitive Load Reduction</b><span>Mental demand: 5 → 3,<br>p &lt; 0.01</span></article><article><strong>4→7</strong><b>Future Intent (median)</b><span>Would prefer taxonomy over other tools</span></article></div><figure class="media-card"><img src="assets/problem-corpus.png" alt="Taxonomy elements used with and without the taxonomy"><figcaption>Prompt designers used more taxonomy elements when the taxonomy was available, suggesting it helped structure their ideas.</figcaption></figure><blockquote>“I felt like I was firing off ideas so much faster with this because it was easier to translate my ideas into a game with the library.” <cite>— P19, Prompt Designer</cite></blockquote><p><strong>Result:</strong> Designers reported 50% lower frustration and 63% lower cognitive load when using the taxonomy.</p></div>
-          <div class="study"><h3>Study 3 — Learner Engagement</h3><p>I compared three learning conditions: a standard prompt, a gamified prompt without the taxonomy, and a gamified prompt with the taxonomy. This helped separate basic gamification from taxonomy-guided gamification.</p><figure class="media-card"><img src="assets/misc.png" alt="Learner engagement results by study condition"></figure><blockquote>“Here I am not just answering, instead I am talking to a person... It’s like a small community.” <cite>— P7, Student Participant</cite></blockquote><p><strong>Result:</strong> Taxonomy-guided prompts produced a 2.4× immersion lift, with stronger emotional engagement and enjoyment.</p></div>
+        <!-- 07. Evaluation -->
+        <section class="paper-section" id="evaluation">
+          <header class="section-heading">
+            <h2>07. Evaluation</h2>
+            <p>Testing coverage, usability, and learner engagement across three studies.</p>
+          </header>
+
+          <div class="eval-horizontal-strip">
+            <article>
+              <span class="strip-label">Coverage</span>
+              <strong>97%</strong>
+              <span class="strip-sub">of blind-workshop units classified</span>
+            </article>
+            <article>
+              <span class="strip-label">Usability, N = 33</span>
+              <strong>50%</strong>
+              <span class="strip-sub">frustration reduction, p &lt; 0.001</span>
+            </article>
+            <article>
+              <span class="strip-label">Impact, N = 10</span>
+              <strong>2.4×</strong>
+              <span class="strip-sub">immersion lift, p &lt; 0.001</span>
+            </article>
+          </div>
+
+          <!-- Study 1 -->
+          <div class="flat-study-subsection">
+            <h3>STUDY 1 — COVERAGE</h3>
+            <p>I tested whether the taxonomy could classify gamified prompts created by designers who had never seen the framework. This helped check whether the taxonomy generalized beyond the original corpus.</p>
+            
+            <figure class="approved-visual">
+              <img src="approved-visuals/07a-coverage-results.svg" width="100%" height="auto" loading="lazy" decoding="async" alt="Coverage study results showing 97% classification accuracy across unseen prompt units">
+            </figure>
+
+            <p class="study-result-line"><strong>Result:</strong> The taxonomy classified 97% of blind-workshop prompt units.</p>
+          </div>
+
+          <!-- Study 2 -->
+          <div class="flat-study-subsection">
+            <h3>STUDY 2 — USABILITY</h3>
+            <p>I ran a within-subjects study where participants created prompts with and without the taxonomy. This tested whether the taxonomy reduced design effort while helping people create more structured gamified prompts.</p>
+            
+            <div class="usability-3part-strip">
+              <article>
+                <strong>7/7</strong>
+                <span>Ease of Use (median)</span>
+                <small>vs. 4/7 without taxonomy, p &lt; 0.001</small>
+              </article>
+              <article>
+                <strong>63%</strong>
+                <span>Cognitive Load Reduction</span>
+                <small>Mental demand: 5 → 3, p &lt; 0.01</small>
+              </article>
+              <article>
+                <strong>4 → 7</strong>
+                <span>Future Intent (median)</span>
+                <small>Would prefer taxonomy over other tools</small>
+              </article>
+            </div>
+
+            <figure class="approved-visual">
+              <img src="approved-visuals/07b-usability-results.svg" width="100%" height="auto" loading="lazy" decoding="async" alt="Usability study results comparing taxonomy element usage with and without taxonomy">
+            </figure>
+
+            <blockquote class="user-quote">
+              “I felt like I was firing off ideas so much faster with this because it was easier to translate my ideas into a game with the library.”
+              <cite>— P19, Prompt Designer</cite>
+            </blockquote>
+
+            <p class="study-result-line"><strong>Result:</strong> Designers reported 50% lower frustration and 63% lower cognitive load when using the taxonomy.</p>
+          </div>
+
+          <!-- Study 3 -->
+          <div class="flat-study-subsection">
+            <h3>STUDY 3 — LEARNER ENGAGEMENT</h3>
+            <p>I compared three study conditions — a <em>standard prompt</em>, a <em>gamified prompt without the taxonomy</em>, and a <em>gamified prompt with the taxonomy</em> — to separate basic gamification from structured, taxonomy-guided gamification.</p>
+            
+            <figure class="approved-visual">
+              <img src="approved-visuals/07c-learner-engagement-results.svg" width="100%" height="auto" loading="lazy" decoding="async" alt="Learner engagement study results comparing immersion, emotional engagement, attention, and enjoyment across conditions">
+            </figure>
+
+            <blockquote class="user-quote">
+              “Here I am not just answering, instead I am talking to a person… It’s like a small community.”
+              <cite>— P7, Student Participant</cite>
+            </blockquote>
+
+            <p class="study-result-line"><strong>Result:</strong> Taxonomy-guided prompts produced a <strong>2.4× immersion lift</strong>, with stronger emotional engagement and enjoyment.</p>
+          </div>
         </section>
 
-        <section id="decisions">
-          <h2>8. Decisions, Trade-offs &amp; Limitations</h2>
-          <p class="kicker">What I chose, what I traded away, and what I would test next.</p>
-          <div class="decision-list"><article><h3>Bottom-up taxonomy over top-down theory</h3><p>I chose to build the taxonomy from real gamified prompts instead of forcing existing game-design frameworks onto the data. This took longer, but it produced categories that reflected how people actually design with LLMs.</p></article><article><h3>Functional units over full-prompt coding</h3><p>I segmented prompts into functional units — each instruction that shaped how the LLM should behave. This preserved design intent while making patterns easier to compare across prompts.</p></article><article><h3>Three stakeholder groups over one source</h3><p>Instructors brought pedagogical structure, students brought game-like creativity, and course assignments added scale. A single-source corpus would have been faster, but narrower.</p></article><article><h3>Engagement over learning outcomes</h3><p>I focused the first evaluation on engagement, usability, and taxonomy coverage. Learning transfer and retention would need a larger follow-up study with pre/post assessments.</p></article><article><h3>Small learner study sample</h3><p>The learner engagement study showed strong directional results, but the sample was small. I treated the quantitative results as supporting evidence alongside interviews, not as the final word.</p></article></div>
+        <!-- 08. Decisions, Trade-offs & Limitations -->
+        <section class="paper-section" id="decisions">
+          <header class="section-heading">
+            <h2>08. Decisions, Trade-offs &amp; Limitations</h2>
+            <p>Methodological choices and study boundaries.</p>
+          </header>
+
+          <div class="decisions-stacked-container">
+            <article class="decision-row">
+              <h3>1. Bottom-up taxonomy over top-down theory</h3>
+              <p>The inductive approach took longer but reflected how people actually designed with LLMs rather than forcing existing game frameworks onto prompt data.</p>
+            </article>
+            <article class="decision-row">
+              <h3>2. Functional units over full-prompt coding</h3>
+              <p>Segmenting prompts into functional units preserved design intent and supported direct comparison across prompt types.</p>
+            </article>
+            <article class="decision-row">
+              <h3>3. Three stakeholder groups over one source</h3>
+              <p>Instructors brought pedagogical structure, students brought game-like creativity, and course assignments added volume and ecological validity.</p>
+            </article>
+            <article class="decision-row">
+              <h3>4. Engagement over learning outcomes</h3>
+              <p>The initial evaluation focused on engagement, usability, and taxonomy coverage. Longitudinal learning transfer and retention require future pre/post studies.</p>
+            </article>
+            <article class="decision-row">
+              <h3>5. Small learner-study sample</h3>
+              <p>The learner study showed strong directional results, but the sample was small. I treated the quantitative results as strong directional evidence supported by interviews, not a universal final conclusion.</p>
+            </article>
+          </div>
         </section>
 
-        <section id="impact">
-          <h2>9. Impact &amp; Outcomes</h2>
-          <p class="kicker">From research artifact to cross-university collaboration.</p>
-          <p>The taxonomy moved beyond a classroom research project into a framework being used to support gamified learning design across institutions.</p>
-          <div class="impact-grid"><article><h3>CHI PLAY 2026</h3><p>Accepted as a research contribution at a premier games and HCI venue.</p></article><article><h3>4 university partners</h3><p>Expanded through collaborators at Northeastern, UT Houston, NYU, and UC.</p></article><article><h3>97% taxonomy coverage</h3><p>Validated on unseen gamified prompt artifacts from a blind workshop.</p></article><article><h3>Live tool</h3><p>Integrated into StudyCrafter AI as a publicly available tool for educators.</p></article></div>
-          <h3>Why it mattered</h3>
-          <div class="why-grid"><article><h3>For educators</h3><p>A practical design language for creating game-like learning experiences without needing to build full games from scratch.</p></article><article><h3>For HCI practitioners</h3><p>A structured way to design, analyze, and compare LLM-based educational interfaces.</p></article><article><h3>For researchers</h3><p>A reusable framework for studying which combinations of game mechanics, pedagogy, AI controls, and NPCs improve engagement.</p></article></div>
+        <!-- 09. Impact & Outcomes -->
+        <section class="paper-section" id="impact">
+          <header class="section-heading">
+            <h2>09. Impact &amp; Outcomes</h2>
+            <p>From research artifact to cross-university collaboration.</p>
+          </header>
+
+          <p class="section-intro-text">The taxonomy moved beyond a classroom research project into a framework being used to support gamified learning design across institutions.</p>
+
+          <div class="impact-2x2-grid">
+            <article>
+              <strong>4 University Partners</strong>
+              <p>Northeastern, UT Houston, NYU, and UC.</p>
+            </article>
+            <article>
+              <strong>CHI PLAY 2026</strong>
+              <p>Accepted as a research contribution at a premier games and HCI venue.</p>
+            </article>
+            <article>
+              <strong>97% Taxonomy Coverage</strong>
+              <p>Validated using unseen gamified prompt artifacts from a blind workshop.</p>
+            </article>
+            <article>
+              <strong>Live Tool</strong>
+              <p>Integrated into StudyCrafter AI as a publicly available educator tool.</p>
+            </article>
+          </div>
+
+          <div class="audiences-editorial-block">
+            <h3>Why it mattered</h3>
+            <div class="audiences-3col-strip">
+              <article>
+                <h3>For educators</h3>
+                <p>A practical design language for creating game-like learning experiences without building complete games from scratch.</p>
+              </article>
+              <article>
+                <h3>For HCI practitioners</h3>
+                <p>A structured way to design, analyze, and compare LLM-based educational interfaces.</p>
+              </article>
+              <article>
+                <h3>For researchers</h3>
+                <p>A reusable framework for studying combinations of mechanics, pedagogy, AI controls, and NPCs.</p>
+              </article>
+            </div>
+          </div>
         </section>
 
-        <section id="skills">
-          <h2>10. Skills &amp; Methods Demonstrated</h2>
-          <div class="skills-grid"><article><h3>Research</h3><p>Participatory Design · Co-Design Workshops · Grounded Theory · Within-Subjects Experiments · Semi-Structured Interviews</p></article><article><h3>Analysis</h3><p>Qualitative Coding · Constant Comparison · Inter-Rater Reliability · Wilcoxon Signed-Rank · Friedman Tests · NASA-TLX · TAM</p></article><article><h3>Domain</h3><p>Game-Based Learning · Educational Technology · LLM Orchestration · Serious Games</p></article><article><h3>Final takeaway</h3><p>We gave educators a powerful engine. This research gave them the manual.</p></article></div>
+        <!-- 10. Skills & Methods Demonstrated -->
+        <section class="paper-section" id="skills">
+          <header class="section-heading">
+            <h2>10. Skills &amp; Methods Demonstrated</h2>
+            <p>Core competencies applied throughout the project.</p>
+          </header>
+
+          <div class="skills-2x2-grid">
+            <article>
+              <h3>Research</h3>
+              <ul class="bullet-list">
+                <li>Participatory Design</li>
+                <li>Co-Design Workshops</li>
+                <li>Grounded Theory</li>
+                <li>Within-Subjects Experiments</li>
+                <li>Semi-Structured Interviews</li>
+              </ul>
+            </article>
+            <article>
+              <h3>Analysis</h3>
+              <ul class="bullet-list">
+                <li>Qualitative Coding</li>
+                <li>Constant Comparison</li>
+                <li>Inter-Rater Reliability</li>
+                <li>Wilcoxon Signed-Rank</li>
+                <li>Friedman Tests</li>
+                <li>NASA-TLX · TAM</li>
+              </ul>
+            </article>
+            <article>
+              <h3>Domain</h3>
+              <ul class="bullet-list">
+                <li>Game-Based Learning</li>
+                <li>Educational Technology</li>
+                <li>LLM Orchestration</li>
+                <li>Serious Games</li>
+              </ul>
+            </article>
+            <article class="skills-takeaway-block">
+              <h3>Final Takeaway</h3>
+              <blockquote>“We gave educators a powerful engine. This research gave them the manual.”</blockquote>
+            </article>
+          </div>
         </section>
-      </article>
-    </main>
+      </main>
+    </div>
+
+    <!-- Portfolio Footer -->
+    <footer class="case-footer">
+      <div class="footer-inner">
+        <div class="footer-projects">
+          <div class="footer-heading">
+            <p>MORE WORK</p>
+            <h2>Explore Other Case Studies</h2>
+          </div>
+          <div class="other-projects-grid">
+            <a href="../ARWell/ARWell.html">
+              <span class="project-thumb"><img src="../PM/assets/arwell.webp" alt="ARWell case study preview"></span>
+              <strong>ARWell</strong>
+            </a>
+            <a href="../Shloka/Shloka.html">
+              <span class="project-thumb"><img src="../PM/assets/shloka.webp" alt="Shloka case study preview"></span>
+              <strong>Shloka</strong>
+            </a>
+            <a href="../ARWell-Pro/ARWell-Pro.html">
+              <span class="project-thumb"><img src="../PM/assets/arwell-pro.webp" alt="ARWell Pro case study preview"></span>
+              <strong>ARWell Pro</strong>
+            </a>
+            <a href="../PrivateAccess/private-access.html">
+              <span class="project-thumb apple-thumb"><img src="../PM/assets/apple.webp" alt="Apple project preview"></span>
+              <strong>Apple</strong>
+            </a>
+          </div>
+        </div>
+
+        <div class="contact-list">
+          <h2>Get in Touch</h2>
+          <a href="mailto:dudyalaniveditha@gmail.com" target="_blank" rel="noopener noreferrer">
+            <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><path d="M22 6l-10 7L2 6"></path></svg></span>
+            <span>Email</span>
+            <b>↗</b>
+          </a>
+          <a href="https://www.linkedin.com/in/niveditha-dudyala/" target="_blank" rel="noopener noreferrer">
+            <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></span>
+            <span>LinkedIn</span>
+            <b>↗</b>
+          </a>
+          <a href="https://drive.google.com/drive/folders/1laBtC9pYiVOIfIL2OgNv-nR30NiNtYRl?usp=drive_link" target="_blank" rel="noopener noreferrer">
+            <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg></span>
+            <span>Resume</span>
+            <b>↗</b>
+          </a>
+          <a href="#top" class="back-to-top-link">
+            <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg></span>
+            <span>Back to Top</span>
+            <b>↑</b>
+          </a>
+        </div>
+      </div>
+    </footer>
   </div>
+
+  <script src="TGP-script.js"></script>
 </body>
 </html>
