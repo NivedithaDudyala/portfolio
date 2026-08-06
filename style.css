@@ -505,58 +505,183 @@ html.scene-ready #brainHit {
   transform: translateX(4px);
 }
 
-/* Tablet & Mobile Responsive */
+/* Tablet & Mobile Responsive Adjustments (Scoped to #portfolioOverlay) */
+
 @media (max-width: 1120px) {
-  .portfolio-modal {
+  #portfolioOverlay .portfolio-modal {
     width: calc(100vw - 40px);
-    padding: 32px 32px 36px 32px;
+    padding: 32px 28px;
   }
-  .visual-grid {
+  #portfolioOverlay .visual-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
   }
-  .grid-card {
+  #portfolioOverlay .grid-card {
     min-height: auto;
+    height: auto;
   }
 }
 
-@media (max-width: 768px) {
-  .portfolio-overlay {
-    padding: 16px 12px;
+@media (max-width: 640px) {
+  #portfolioOverlay.portfolio-overlay {
+    padding: 12px 10px;
     align-items: flex-start;
+    overflow-y: auto;
   }
-  .portfolio-modal {
-    width: calc(100vw - 24px);
+
+  #portfolioOverlay .portfolio-modal {
+    width: 100%;
+    max-width: 100%;
     max-height: none;
-    padding: 24px 20px 28px 20px;
-    border-radius: 20px;
+    height: auto;
+    min-height: 0;
+    border-radius: 18px;
+    padding: 22px 18px;
+    overflow-x: hidden;
   }
-  .portfolio-header {
-    flex-direction: column-reverse;
-    gap: 16px;
+
+  #portfolioOverlay .portfolio-header {
+    flex-direction: column;
     align-items: flex-start;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+
+  #portfolioOverlay .close-overlay-btn {
+    order: -1;
+    font-size: 14px;
+    padding: 6px 12px;
+    border-width: 2px;
+    box-shadow: 2px 2px 0 #171614;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    margin-top: 0;
+  }
+
+  #portfolioOverlay .portfolio-title-wrap {
+    padding-bottom: 2px;
+  }
+
+  #portfolioOverlay .portfolio-title-wrap .title-text {
+    font-size: 40px;
+    line-height: 0.98;
+    letter-spacing: -1.5px;
+    display: block;
+  }
+
+  #portfolioOverlay .portfolio-title-wrap .title-underline {
+    bottom: -2px;
+    width: 60px;
+    height: 3px;
+  }
+
+  #portfolioOverlay .portfolio-header-text p {
+    font-size: 16px;
+    line-height: 1.45;
+    width: 100%;
+    max-width: 100%;
+    margin-top: 12px;
     margin-bottom: 24px;
   }
-  .portfolio-header-text h2 {
-    font-size: 32px;
-  }
-  .visual-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-  .grid-card {
-    padding: 22px 20px 18px 20px;
-  }
-  .card-metrics {
-    grid-template-columns: 1fr;
-  }
-}
 
-@media (max-width: 860px) {
-  .visual-grid {
+  #portfolioOverlay .visual-grid {
     grid-template-columns: 1fr;
+    gap: 18px;
+    width: 100%;
   }
-  .portfolio-modal {
-    padding: 24px 20px;
+
+  #portfolioOverlay .grid-card {
+    height: auto;
+    min-height: 0;
+    padding: 22px 20px;
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 8px 24px rgba(36, 29, 20, 0.08);
+  }
+
+  #portfolioOverlay .card-top-row {
+    height: auto;
+    margin-bottom: 8px;
+  }
+
+  #portfolioOverlay .card-number {
+    font-size: 17px;
+  }
+
+  #portfolioOverlay .card-divider {
+    margin-bottom: 14px;
+  }
+
+  #portfolioOverlay .card-eyebrow {
+    font-size: 11px;
+    height: auto;
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+
+  #portfolioOverlay .card-chips {
+    min-height: 0;
+    height: auto;
+    gap: 6px;
+    margin-bottom: 14px;
+  }
+
+  #portfolioOverlay .chip {
+    font-size: 12px;
+    padding: 5px 10px;
+    line-height: 1.2;
+    white-space: normal;
+  }
+
+  #portfolioOverlay .card-metrics {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    height: auto;
+    min-height: 0;
+    margin-bottom: 18px;
+  }
+
+  #portfolioOverlay .metric-box {
+    min-height: 46px;
+    height: auto;
+    padding: 9px 12px;
+    font-size: 12px;
+    white-space: normal;
+  }
+
+  #portfolioOverlay .card-title {
+    font-size: 30px;
+    line-height: 1.08;
+    margin-top: 20px;
+    margin-bottom: 8px;
+    height: auto;
+    min-height: 0;
+    white-space: normal;
+    position: static;
+    transform: none;
+  }
+
+  #portfolioOverlay .card-desc {
+    font-size: 15px;
+    line-height: 1.45;
+    margin-bottom: 18px;
+    height: auto;
+    min-height: 0;
+    flex: none;
+  }
+
+  #portfolioOverlay .card-bottom-divider {
+    margin-top: 20px;
+    margin-bottom: 14px;
+  }
+
+  #portfolioOverlay .card-footer {
+    position: static;
+    margin-top: 0;
+  }
+
+  #portfolioOverlay .card-cta {
+    font-size: 13.5px;
   }
 }
