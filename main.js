@@ -403,6 +403,40 @@ const portfolioOverlayEl = document.getElementById("portfolioOverlay");
 const closeOverlayBtnEl = document.getElementById("closePortfolioOverlay");
 const backdropEl = document.querySelector(".portfolio-backdrop");
 
+// Role Parameter Routing Setup
+const urlParams = new URLSearchParams(window.location.search);
+const rawRole = urlParams.get("role");
+const activeRole = rawRole ? rawRole.toLowerCase().trim() : null;
+
+const roleDestinations = {
+  pm: "./pm/",
+  research: "./research/",
+  design: "./design/"
+};
+
+const roleLabels = {
+  pm: "View Product Management portfolio",
+  research: "View Product Research portfolio",
+  design: "View Product Design portfolio"
+};
+
+if (activeRole && roleLabels[activeRole]) {
+  if (workBtnEl) {
+    workBtnEl.setAttribute("aria-label", roleLabels[activeRole]);
+  }
+  if (monitorHitEl) {
+    monitorHitEl.setAttribute("aria-label", roleLabels[activeRole]);
+  }
+}
+
+function handleWorkAction() {
+  if (activeRole && roleDestinations[activeRole]) {
+    window.location.href = roleDestinations[activeRole];
+  } else {
+    openVisualGrid();
+  }
+}
+
 function openVisualGrid() {
   if (!portfolioOverlayEl) return;
   portfolioOverlayEl.classList.remove("exiting");
@@ -435,7 +469,7 @@ if (monitorHitEl) {
   monitorHitEl.setAttribute("aria-hidden", "false");
   monitorHitEl.addEventListener("click", (e) => {
     e.preventDefault();
-    openVisualGrid();
+    handleWorkAction();
   });
 }
 
@@ -443,7 +477,7 @@ if (workBtnEl) {
   workBtnEl.style.cursor = "pointer";
   workBtnEl.addEventListener("click", (e) => {
     e.preventDefault();
-    openVisualGrid();
+    handleWorkAction();
   });
 }
 
