@@ -1,0 +1,10 @@
+exclude:
+  - scratch/
+  - ARWell-Pro-reference.pdf
+  - TGP/TGP-reference..pdf
+  - "Side Quests/Side Quests Reference.pdf"
+  - TGP/tgp-figma-reference.png
+  - website-dummy.png
+  - homepage-placement-reference.svg
+  - temp-index.html
+  - Start Portfolio.command
