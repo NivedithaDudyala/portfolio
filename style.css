@@ -684,4 +684,20 @@ html.scene-ready #brainHit {
   #portfolioOverlay .card-cta {
     font-size: 13.5px;
   }
+
+  /* Mobile Landing Scene Composition */
+  #landing {
+    height: 100dvh;
+    overflow: hidden;
+  }
+
+  #sceneWrap {
+    transform-origin: 50% 50%;
+    transform: translateY(18px) scale(1.19);
+  }
+
+  .nav-resume {
+    top: 24px;
+    right: 24px;
+  }
 }
