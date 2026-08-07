@@ -9,7 +9,7 @@ let lastActiveHash = null;
 function scrollActiveLinkIntoView(activeLink) {
   if (!activeLink || !contentsLinksContainer) return;
 
-  if (window.innerWidth > 860 && contentsLinksContainer.scrollHeight > contentsLinksContainer.clientHeight) {
+  if (contentsLinksContainer.scrollHeight > contentsLinksContainer.clientHeight) {
     const containerTop = contentsLinksContainer.scrollTop;
     const containerHeight = contentsLinksContainer.clientHeight;
     const linkTop = activeLink.offsetTop;
