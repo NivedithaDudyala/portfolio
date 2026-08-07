@@ -3,13 +3,50 @@ const sidebar = document.getElementById("sidebar");
 const scrim = document.getElementById("scrim");
 const navLinks = [...document.querySelectorAll(".contents-card a[href^='#']")];
 
+const contentsLinksContainer = document.getElementById("contentsLinks");
+let lastActiveHash = null;
+
+function scrollActiveLinkIntoView(activeLink) {
+  if (!activeLink || !contentsLinksContainer) return;
+
+  if (window.innerWidth > 860 && contentsLinksContainer.scrollHeight > contentsLinksContainer.clientHeight) {
+    const containerTop = contentsLinksContainer.scrollTop;
+    const containerHeight = contentsLinksContainer.clientHeight;
+    const linkTop = activeLink.offsetTop;
+    const linkHeight = activeLink.offsetHeight;
+
+    const isAbove = linkTop < containerTop + 6;
+    const isBelow = (linkTop + linkHeight) > (containerTop + containerHeight - 6);
+
+    if (isAbove || isBelow) {
+      const targetScrollTop = linkTop - (containerHeight / 2) + (linkHeight / 2);
+      contentsLinksContainer.scrollTo({
+        top: Math.max(0, targetScrollTop),
+        behavior: "smooth"
+      });
+    }
+  }
+}
+
 function setActiveLink(hash) {
+  if (lastActiveHash === hash) return;
+  lastActiveHash = hash;
+
+  let activeLink = null;
   navLinks.forEach((link) => {
     const active = link.getAttribute("href") === hash;
     link.classList.toggle("active", active);
-    if (active) link.setAttribute("aria-current", "location");
-    else link.removeAttribute("aria-current");
+    if (active) {
+      link.setAttribute("aria-current", "location");
+      activeLink = link;
+    } else {
+      link.removeAttribute("aria-current");
+    }
   });
+
+  if (activeLink) {
+    scrollActiveLinkIntoView(activeLink);
+  }
 }
 
 function setNavigation(open) {
