@@ -20,6 +20,11 @@
   max-width: 430px;
 }
 
+.research-page .shloka-card {
+  height: 468px;
+  min-height: 468px;
+}
+
 .research-page .shloka-card .project-copy {
   padding-bottom: 82px;
 }
@@ -30,6 +35,11 @@
 }
 
 @media (max-width: 980px) {
+  .research-page .shloka-card {
+    height: auto;
+    min-height: 0;
+  }
+
   .research-page .currently blockquote {
     top: 14px;
     right: -12px;

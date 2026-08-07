@@ -446,6 +446,7 @@ main {
   font-size: clamp(30px, 2.7vw, 38px);
 }
 .horizontal-card .project-copy p {
+  max-width: 430px;
   margin-bottom: 22px;
   font-size: 16px;
   line-height: 1.55;
@@ -531,6 +532,10 @@ main {
   bottom: -82px;
   width: 116px;
   filter: drop-shadow(0 5px 6px rgba(30, 24, 18, 0.07));
+}
+.shloka-card {
+  height: 468px;
+  min-height: 468px;
 }
 .shloka-card .project-copy {
   justify-content: flex-start;
