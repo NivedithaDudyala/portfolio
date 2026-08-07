@@ -37,4 +37,23 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  (function initRoleContextRouting() {
+    const urlParams = new URLSearchParams(window.location.search);
+    let role = (urlParams.get("role") || urlParams.get("from") || "").toLowerCase().trim();
+
+    if (!["pm", "research", "design"].includes(role)) {
+      const referrer = document.referrer.toLowerCase();
+      if (referrer.includes("/pm/")) role = "pm";
+      else if (referrer.includes("/research/")) role = "research";
+      else if (referrer.includes("/design/")) role = "design";
+    }
+
+    if (["pm", "research", "design"].includes(role)) {
+      const backBtn = document.querySelector(".back-btn, .back, .back-link, #backToDesk");
+      if (backBtn) {
+        backBtn.href = `../${role}/index.html`;
+      }
+    }
+  })();
 });
