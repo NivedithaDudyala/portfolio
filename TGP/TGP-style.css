@@ -54,16 +54,39 @@ button { font: inherit; }
 .sidebar-note {
   flex: 0 0 auto;
   width: 215px;
-  display: grid;
-  gap: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
   padding: 15px 17px;
   border: 1.5px solid var(--ink);
   background: #fffdf8;
   transform: rotate(-0.7deg);
+  box-shadow: 2px 2px 0 rgba(23, 22, 20, 0.08);
 }
-.sidebar-note strong { font: 750 18px/1.1 "Plus Jakarta Sans", Arial, sans-serif; }
-.sidebar-note span { color: var(--muted); font-size: 12px; }
-.sidebar-note a { width: fit-content; margin-top: 7px; color: var(--accent-dark); font: 700 12px/1.2 "Inter", Arial, sans-serif; text-underline-offset: 4px; }
+.sidebar-note strong {
+  display: block;
+  font: 750 18px/1.15 "Plus Jakarta Sans", Arial, sans-serif;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+.sidebar-note span {
+  display: block;
+  color: var(--muted);
+  font: 600 12px/1.35 "Nunito", Arial, sans-serif;
+}
+.sidebar-note a {
+  display: inline-block;
+  width: fit-content;
+  margin-top: 6px;
+  color: var(--accent-dark);
+  font: 700 12px/1.2 "Inter", Arial, sans-serif;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  transition: opacity 140ms ease;
+}
+.sidebar-note a:hover {
+  opacity: 0.85;
+}
 
 .mobile-menu, .scrim { display: none; }
 
