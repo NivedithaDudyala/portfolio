@@ -51,7 +51,30 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // ScrollObserver for active contents links & aria-current="location" across 9 sections
+  const contentsLinksContainer = document.getElementById('contentsLinks');
+
+  function scrollActiveLinkIntoView(activeLink) {
+    if (!activeLink || !contentsLinksContainer) return;
+    if (contentsLinksContainer.scrollHeight > contentsLinksContainer.clientHeight) {
+      const containerTop = contentsLinksContainer.scrollTop;
+      const containerHeight = contentsLinksContainer.clientHeight;
+      const linkTop = activeLink.offsetTop;
+      const linkHeight = activeLink.offsetHeight;
+
+      const isAbove = linkTop < containerTop + 6;
+      const isBelow = (linkTop + linkHeight) > (containerTop + containerHeight - 6);
+
+      if (isAbove || isBelow) {
+        const targetScrollTop = linkTop - (containerHeight / 2) + (linkHeight / 2);
+        contentsLinksContainer.scrollTo({
+          top: Math.max(0, targetScrollTop),
+          behavior: 'smooth'
+        });
+      }
+    }
+  }
+
+  // ScrollObserver for active contents links & aria-current="location"
   if ('IntersectionObserver' in window && sections.length > 0) {
     const observerOptions = {
       root: null,
@@ -68,6 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (href === id) {
               link.classList.add('active');
               link.setAttribute('aria-current', 'location');
+              scrollActiveLinkIntoView(link);
             } else {
               link.classList.remove('active');
               link.removeAttribute('aria-current');
