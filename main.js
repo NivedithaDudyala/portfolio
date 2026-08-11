@@ -403,6 +403,12 @@ const portfolioOverlayEl = document.getElementById("portfolioOverlay");
 const closeOverlayBtnEl = document.getElementById("closePortfolioOverlay");
 const backdropEl = document.querySelector(".portfolio-backdrop");
 
+const requestedTrack = new URLSearchParams(window.location.search).get("role");
+if (portfolioDestinations[requestedTrack]) {
+  sessionStorage.setItem("portfolioEntryMode", "role");
+  sessionStorage.setItem("portfolioTrack", requestedTrack);
+}
+
 let entryMode = sessionStorage.getItem("portfolioEntryMode");
 if (entryMode !== "general" && entryMode !== "role") {
   entryMode = "general";
