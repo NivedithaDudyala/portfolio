@@ -407,7 +407,21 @@ const backdropEl = document.querySelector(".portfolio-backdrop");
 // The plain /portfolio/ desk URL has no role parameter and always shows all choices.
 const urlParams = new URLSearchParams(window.location.search);
 const rawRole = urlParams.get("role");
-const activeRole = rawRole ? rawRole.toLowerCase().trim() : null;
+const normalizedRole = rawRole ? rawRole.toLowerCase().trim() : null;
+
+let returnedFromRolePage = false;
+if (document.referrer) {
+  const referrerUrl = new URL(document.referrer);
+  returnedFromRolePage =
+    referrerUrl.origin === window.location.origin &&
+    /^\/(?:portfolio\/)?(pm|design|research)\/(?:index\.html)?$/.test(referrerUrl.pathname);
+}
+
+if (returnedFromRolePage && normalizedRole) {
+  window.history.replaceState({}, "", `${window.location.pathname}${window.location.hash}`);
+}
+
+const activeRole = returnedFromRolePage ? null : normalizedRole;
 
 const roleDestinations = {
   pm: "./pm/",
