@@ -403,17 +403,8 @@ const portfolioOverlayEl = document.getElementById("portfolioOverlay");
 const closeOverlayBtnEl = document.getElementById("closePortfolioOverlay");
 const backdropEl = document.querySelector(".portfolio-backdrop");
 
-// Role-specific desk links may open their matching portfolio directly.
-// The plain /portfolio/ desk URL has no role parameter and always shows all choices.
-const urlParams = new URLSearchParams(window.location.search);
-const rawRole = urlParams.get("role");
-const activeRole = rawRole ? rawRole.toLowerCase().trim() : null;
-
-const roleDestinations = {
-  pm: "./pm/",
-  research: "./research/",
-  design: "./design/"
-};
+const storedTrack = sessionStorage.getItem("portfolioTrack");
+const activeTrack = portfolioDestinations[storedTrack] ? storedTrack : null;
 
 const roleLabels = {
   pm: "View Product Management portfolio",
@@ -421,18 +412,18 @@ const roleLabels = {
   design: "View Product Design portfolio"
 };
 
-if (activeRole && roleLabels[activeRole]) {
+if (activeTrack && roleLabels[activeTrack]) {
   if (workBtnEl) {
-    workBtnEl.setAttribute("aria-label", roleLabels[activeRole]);
+    workBtnEl.setAttribute("aria-label", roleLabels[activeTrack]);
   }
   if (monitorHitEl) {
-    monitorHitEl.setAttribute("aria-label", roleLabels[activeRole]);
+    monitorHitEl.setAttribute("aria-label", roleLabels[activeTrack]);
   }
 }
 
 function handleWorkAction() {
-  if (activeRole && roleDestinations[activeRole]) {
-    window.location.href = roleDestinations[activeRole];
+  if (activeTrack) {
+    window.location.href = portfolioDestinations[activeTrack];
   } else {
     openVisualGrid();
   }
@@ -454,6 +445,8 @@ function closeVisualGrid() {
 function enterPortfolio(type) {
   const destination = portfolioDestinations[type];
   if (!destination) return;
+
+  sessionStorage.setItem("portfolioTrack", type);
 
   if (portfolioOverlayEl) {
     portfolioOverlayEl.classList.add("exiting");

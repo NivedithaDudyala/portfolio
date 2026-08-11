@@ -10,12 +10,12 @@
   };
 
   if (destinations[requestedSource]) {
-    sessionStorage.setItem('portfolioRole', requestedSource);
+    sessionStorage.setItem('portfolioTrack', requestedSource);
   }
 
   const source = destinations[requestedSource]
     ? requestedSource
-    : sessionStorage.getItem('portfolioRole');
+    : sessionStorage.getItem('portfolioTrack');
 
   returnLink.href = destinations[source] || '../index.html';
 
