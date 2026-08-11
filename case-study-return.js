@@ -2,12 +2,20 @@
   const returnLink = document.querySelector('[data-role-return]');
   if (!returnLink) return;
 
-  const source = new URLSearchParams(window.location.search).get('from');
+  const requestedSource = new URLSearchParams(window.location.search).get('from');
   const destinations = {
     pm: '../pm/index.html#work',
     design: '../design/index.html#work',
     research: '../research/index.html#work'
   };
+
+  if (destinations[requestedSource]) {
+    sessionStorage.setItem('portfolioRole', requestedSource);
+  }
+
+  const source = destinations[requestedSource]
+    ? requestedSource
+    : sessionStorage.getItem('portfolioRole');
 
   returnLink.href = destinations[source] || '../index.html';
 
