@@ -159,7 +159,10 @@
       </div>
     </footer>
   </div>
-  <script>sessionStorage.setItem('portfolioTrack', 'pm');</script>
+  <script>
+    if (!sessionStorage.getItem('portfolioEntryMode')) sessionStorage.setItem('portfolioEntryMode', 'role');
+    sessionStorage.setItem('portfolioTrack', 'pm');
+  </script>
   <script src="portfolio-cards.js?v=20260803-1"></script>
 </body>
 </html>

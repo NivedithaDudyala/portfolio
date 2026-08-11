@@ -403,6 +403,12 @@ const portfolioOverlayEl = document.getElementById("portfolioOverlay");
 const closeOverlayBtnEl = document.getElementById("closePortfolioOverlay");
 const backdropEl = document.querySelector(".portfolio-backdrop");
 
+let entryMode = sessionStorage.getItem("portfolioEntryMode");
+if (entryMode !== "general" && entryMode !== "role") {
+  entryMode = "general";
+  sessionStorage.setItem("portfolioEntryMode", entryMode);
+}
+
 const storedTrack = sessionStorage.getItem("portfolioTrack");
 const activeTrack = portfolioDestinations[storedTrack] ? storedTrack : null;
 
@@ -412,7 +418,7 @@ const roleLabels = {
   design: "View Product Design portfolio"
 };
 
-if (activeTrack && roleLabels[activeTrack]) {
+if (entryMode === "role" && activeTrack && roleLabels[activeTrack]) {
   if (workBtnEl) {
     workBtnEl.setAttribute("aria-label", roleLabels[activeTrack]);
   }
@@ -422,7 +428,7 @@ if (activeTrack && roleLabels[activeTrack]) {
 }
 
 function handleWorkAction() {
-  if (activeTrack) {
+  if (entryMode === "role" && activeTrack) {
     window.location.href = portfolioDestinations[activeTrack];
   } else {
     openVisualGrid();
