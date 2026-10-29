@@ -47,7 +47,7 @@ button { font: inherit; }
 .contents-links::-webkit-scrollbar-thumb { background: rgba(23, 22, 20, 0.25); border-radius: 4px; }
 .contents-links::-webkit-scrollbar-track { background: transparent; }
 
-.contents-card a { display: inline-flex; width: auto; max-width: calc(100% - 7px); margin: 3px 0; padding: 5px 10px; border-radius: 999px; font: 700 11.5px/1.2 "Inter", Arial, sans-serif; text-decoration: none; transition: background 140ms ease, transform 140ms ease; flex-shrink: 0; }
+.contents-card a { align-self: flex-start; display: inline-flex; width: auto; max-width: calc(100% - 7px); margin: 3px 0; padding: 5px 8px; border-radius: 999px; font: 700 11.5px/1.2 "Inter", Arial, sans-serif; text-decoration: none; transition: background 140ms ease, transform 140ms ease; flex-shrink: 0; }
 .contents-card a.active, .contents-card a:hover { background: rgba(217, 79, 121, 0.16); color: var(--accent-dark); }
 .contents-card a:hover { transform: translateX(2px); }
 

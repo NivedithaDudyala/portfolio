@@ -25,6 +25,7 @@
   document.querySelectorAll('a[href]').forEach((link) => {
     const url = new URL(link.href, window.location.href);
     if (url.origin !== window.location.origin || !caseStudyPath.test(url.pathname)) return;
+    if (url.pathname === window.location.pathname) return;
     if (!url.searchParams.has('from')) url.searchParams.set('from', source);
     link.href = `${url.pathname}${url.search}${url.hash}`;
   });

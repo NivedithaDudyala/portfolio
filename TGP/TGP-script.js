@@ -2,8 +2,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const mobileMenu = document.getElementById('mobileMenu');
   const sidebar = document.getElementById('sidebar');
   const scrim = document.getElementById('scrim');
-  const navLinks = document.querySelectorAll('.contents-card a');
-  const sections = document.querySelectorAll('main section[id]');
+  const navLinks = [...document.querySelectorAll('.contents-card a[href^="#"]')];
+  const sections = navLinks
+    .map((link) => document.querySelector(link.getAttribute('href')))
+    .filter(Boolean);
+
+  function setActiveLink(hash) {
+    navLinks.forEach((link) => {
+      const active = link.getAttribute('href') === hash;
+      link.classList.toggle('active', active);
+      if (active) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    });
+  }
 
   function openMenu() {
     sidebar.classList.add('open');
@@ -45,6 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   navLinks.forEach((link) => {
     link.addEventListener('click', () => {
+      setActiveLink(link.getAttribute('href'));
       if (window.innerWidth <= 860) {
         closeMenu();
       }
@@ -74,33 +86,33 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // ScrollObserver for active contents links & aria-current="location"
-  if ('IntersectionObserver' in window && sections.length > 0) {
-    const observerOptions = {
-      root: null,
-      rootMargin: '-20% 0px -60% 0px',
-      threshold: 0
-    };
+  let scrollUpdateQueued = false;
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const id = entry.target.getAttribute('id');
-          navLinks.forEach((link) => {
-            const href = link.getAttribute('href').replace('#', '');
-            if (href === id) {
-              link.classList.add('active');
-              link.setAttribute('aria-current', 'location');
-              scrollActiveLinkIntoView(link);
-            } else {
-              link.classList.remove('active');
-              link.removeAttribute('aria-current');
-            }
-          });
-        }
-      });
-    }, observerOptions);
+  function updateActiveFromScroll() {
+    scrollUpdateQueued = false;
+    if (!sections.length) return;
 
-    sections.forEach((section) => observer.observe(section));
+    const pageBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 4;
+    const readingLine = window.scrollY + Math.min(window.innerHeight * 0.28, 220);
+    let current = sections[0];
+
+    for (const section of sections) {
+      if (section.offsetTop <= readingLine) current = section;
+      else break;
+    }
+
+    if (pageBottom) current = sections[sections.length - 1];
+    setActiveLink(`#${current.id}`);
   }
+
+  function requestScrollUpdate() {
+    if (scrollUpdateQueued) return;
+    scrollUpdateQueued = true;
+    window.requestAnimationFrame(updateActiveFromScroll);
+  }
+
+  window.addEventListener('scroll', requestScrollUpdate, { passive: true });
+  window.addEventListener('resize', requestScrollUpdate);
+  window.addEventListener('load', updateActiveFromScroll);
+  updateActiveFromScroll();
 });
